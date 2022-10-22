@@ -6,8 +6,8 @@ resource "google_container_cluster" "devops-techday" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnet.name
+  network    = "frontend-vpc"
+  subnetwork = "subnet-frontend"
 
   master_auth {
     username = "root"
@@ -33,13 +33,13 @@ resource "google_container_node_pool" "nodes_primarios" {
     ]
 
     labels = {
-      env = sensitive(var.project_id)
+      env = "bootcamp-363315"
     }
 
-    machine_type = "e2-standard-2"
-    tags         = ["gke-node", sensitive("${var.project_id}-gke")]
+    ode_config {
+    preemptible  = true
+    machine_type = "e2-medium"
     metadata = {
       disable-legacy-endpoints = "true"
     }
   }
-}
