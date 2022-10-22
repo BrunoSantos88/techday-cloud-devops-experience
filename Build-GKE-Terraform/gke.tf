@@ -43,3 +43,5 @@ resource "google_container_node_pool" "nodes_primarios" {
       disable-legacy-endpoints = "true"
     }
   }
+
+  }
