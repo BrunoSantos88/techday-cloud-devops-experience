@@ -1,7 +1,6 @@
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool
 resource "google_container_node_pool" "k8s-cluster" {
   name       = "k8s-cluster"
-  cluster    = google_container_cluster.k8-cluster.id
+  cluster    = "k8-cluster-devops"
   node_count = 1
 
   management {
@@ -13,16 +12,12 @@ resource "google_container_node_pool" "k8s-cluster" {
     preemptible  = false
     machine_type = "e2-small"
 
-    labels = {
-      role = "general"
-    }
-
   }
 }
 
 resource "google_container_node_pool" "spot" {
   name    = "spot"
-  cluster = google_container_cluster.k8-cluster.id
+  cluster = "k8-cluster-devops"
 
   management {
     auto_repair  = true
@@ -37,17 +32,6 @@ resource "google_container_node_pool" "spot" {
   node_config {
     preemptible  = true
     machine_type = "e2-small"
-
-    labels = {
-      team = "devops"
-    }
-
-    taint {
-      key    = "instance_type"
-      value  = "spot"
-      effect = "NO_SCHEDULE"
-    }
-
     
   }
 }
