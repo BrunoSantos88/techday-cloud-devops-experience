@@ -8,7 +8,7 @@ steps:
   - | 
     cd build-terraform-rede
     terraform init
-    terraform destroy -auto-approve
+    terraform apply -auto-approve
 - id: 'tf apply security-rede'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
@@ -17,13 +17,4 @@ steps:
   - | 
    cd build-terraform-firewall
    terraform init
-   terraform destroy -auto-approve
-- id: 'tf apply instancia-frontend'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd build-terraform-compute
-    terraform init
-    terraform destroy -auto-approve
+   terraform apply -auto-approve
