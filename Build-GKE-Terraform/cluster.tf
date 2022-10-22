@@ -4,7 +4,7 @@ resource "google_container_cluster" "cluster-k8" {
   initial_node_count       = 1
 
   node_locations = [
-    ["us-central1-a","us-central1-b","us-central1-c"]
+    "us-central1-a","us-central1-b","us-central1-c"
   ]
 
   ip_allocation_policy {
