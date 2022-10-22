@@ -11,7 +11,7 @@ resource "google_container_cluster" "k8_cluster" {
 
   master_auth {
     username = "root"
-    password = "root"
+    password = "mulekao1988"
 
     client_certificate_config {
       issue_client_certificate = false
