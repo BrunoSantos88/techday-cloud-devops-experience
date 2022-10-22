@@ -1,19 +1,34 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster
-resource "google_container_cluster" "devops-techday" {
-  name                     = "devops-techday"
+resource "google_container_cluster" "primary" {
+  name                     = "primary"
   location                 = "us-central1"
   remove_default_node_pool = true
   initial_node_count       = 1
   network                  = "cluster-k8s-vpc"
   subnetwork               = "k8-private"
-  logging_service          = "logging.googleapis.com/kubernetes"
-  monitoring_service       = "monitoring.googleapis.com/kubernetes"
   networking_mode          = "VPC_NATIVE"
 
   # Optional, if you want multi-zonal cluster
   node_locations = [
     "us-central1-b"
   ]
+
+  addons_config {
+    http_load_balancing {
+      disabled = true
+    }
+    horizontal_pod_autoscaling {
+      disabled = false
+    }
+  }
+
+  release_channel {
+    channel = "REGULAR"
+  }
+
+  workload_identity_config {
+    workload_pool = "devops-v4.svc.id.goog"
+  }
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "k8s-pod-range"
