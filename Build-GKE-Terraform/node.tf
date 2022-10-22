@@ -32,7 +32,7 @@ resource "google_container_node_pool" "node-cluster" {
 
   node_config {
     preemptible  = true
-    disk_size_gb = 10
+    disk_size_gb = 20
 
   }
 
