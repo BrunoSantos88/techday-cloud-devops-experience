@@ -21,9 +21,9 @@ resource "google_container_cluster" "devops-techday" {
 
 # Node Pool Gerenciado Separadamente
 resource "google_container_node_pool" "nodes_primarios" {
-  name       = "${google_container_cluster.devops-carrefuer.name}-node-pool"
+  name       = "${google_container_cluster.devops-techday.name}-node-pool"
   location   = "us-central1"
-  cluster    = google_container_cluster.devops-carrefuer.name
+  cluster    = google_container_cluster.devops-techday.name
   node_count = 3
 
   node_config {
@@ -33,7 +33,7 @@ resource "google_container_node_pool" "nodes_primarios" {
     ]
 
     labels = {
-      env = "bootcamp-363315"
+      env = sensitive(var.project_id)
     }
 
     machine_type = "e2-standard-2"

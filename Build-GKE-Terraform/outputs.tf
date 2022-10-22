@@ -1,8 +1,3 @@
-output "region" {
-  value       = var.region
-  description = "Região do GCloud"
-}
-
 output "project_id" {
   value       = var.project_id
   description = "ID do projeto GCP"
@@ -10,13 +5,13 @@ output "project_id" {
 }
 
 output "kubernetes_cluster_name" {
-  value       = google_container_cluster.marcelo_cluster.name
+  value       = google_container_cluster.devops-techday.name
   description = "Nome do cluster GKE"
   sensitive   = true
 }
 
 output "kubernetes_cluster_host" {
-  value       = google_container_cluster.marcelo_cluster.endpoint
+  value       = google_container_cluster.devops-techday.endpoint
   description = "Host do cluster GKE"
   sensitive   = true
 }
