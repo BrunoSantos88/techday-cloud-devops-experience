@@ -1,11 +1,11 @@
 output "kubernetes_cluster_name" {
-  value       = google_container_cluster.primary.name
+  value       = google_container_cluster.cluster-k8.name
   description = "Nome do cluster GKE"
-  sensitive   = true
+  sensitive   = false
 }
 
 output "kubernetes_cluster_host" {
-  value       = google_container_cluster.primary.endpoint
+  value       = google_container_cluster.cluster-k8.endpoint
   description = "Host do cluster GKE"
-  sensitive   = true
+  sensitive   = false
 }
