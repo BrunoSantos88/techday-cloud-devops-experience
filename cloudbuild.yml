@@ -6,7 +6,7 @@ steps:
   args: 
   - '-c'
   - | 
-    cd build-terraform-rede
+    cd Build-Terraform-Rede
     terraform init
     terraform apply -auto-approve
 - id: 'tf apply security-rede'
@@ -15,6 +15,6 @@ steps:
   args: 
   - '-c'
   - | 
-   cd build-terraform-firewall
+   cd Build-Terraform-Firewall
    terraform init
    terraform apply -auto-approve
