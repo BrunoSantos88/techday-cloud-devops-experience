@@ -6,7 +6,7 @@ resource "google_service_account" "kubernetes" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_node_pool
 resource "google_container_node_pool" "general" {
   name       = "general"
-  cluster    = google_container_cluster.primary.id
+  cluster    = google_container_cluster.devops-techday.id
   node_count = 1
 
   management {
@@ -18,24 +18,6 @@ resource "google_container_node_pool" "general" {
     preemptible  = false
     machine_type = "e2-small"
 
-    labels = {
-      role = "general"
-    }
-
-    service_account = google_service_account.kubernetes.email
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/cloud-platform"
-    ]
-  }
-}
-
-resource "google_container_node_pool" "spot" {
-  name    = "spot"
-  cluster = google_container_cluster.primary.id
-
-  management {
-    auto_repair  = true
-    auto_upgrade = true
   }
 
   autoscaling {
@@ -47,19 +29,6 @@ resource "google_container_node_pool" "spot" {
     preemptible  = true
     machine_type = "e2-small"
 
-    labels = {
-      team = "devops"
-    }
-
-    taint {
-      key    = "instance_type"
-      value  = "spot"
-      effect = "NO_SCHEDULE"
-    }
-
-    service_account = google_service_account.kubernetes.email
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/cloud-platform"
-    ]
   }
+
 }
