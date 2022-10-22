@@ -15,7 +15,7 @@ resource "google_container_cluster" "cluster-k8" {
   private_cluster_config {
     enable_private_nodes    = true
     enable_private_endpoint = true
-    master_ipv4_cidr_block  = "10.0.0.0/18"
+    master_ipv4_cidr_block  = "172.16.0.0/28"
   }
 
 
