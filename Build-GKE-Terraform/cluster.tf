@@ -1,5 +1,5 @@
 resource "google_container_cluster" "gke_cluster" {
-  min_master_version = "${data.google_container_engine_versions.gke_versions.latest_master_version}"
+  min_master_version = "latest"
   name               = "gke-cluster"
 
   
