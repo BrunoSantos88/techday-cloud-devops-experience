@@ -2,7 +2,7 @@ resource "google_container_cluster" "cluster-k8" {
   name     = "my-cluster-k8"
   remove_default_node_pool = true
   initial_node_count       = 1
-  node_location = ["us-central1-a","us-central1-b","us-central1-c"]
+  node_location = "us-central1-a"
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "k8s-pod-range"
