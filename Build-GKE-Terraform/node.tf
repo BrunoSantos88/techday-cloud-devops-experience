@@ -15,9 +15,9 @@ resource "google_container_node_pool" "k8s-cluster" {
   }
 }
 
-resource "google_container_node_pool" "spot" {
-  name    = "spot"
-  cluster = "k8-cluster-devops"
+resource "google_container_node_pool" "node-cluster" {
+  name    = "node-cluster"
+  cluster = google_container_node_pool.k8s-cluster.id
 
   management {
     auto_repair  = true
@@ -25,7 +25,7 @@ resource "google_container_node_pool" "spot" {
   }
 
   autoscaling {
-    min_node_count = 0
+    min_node_count = 3
     max_node_count = 10
   }
 
