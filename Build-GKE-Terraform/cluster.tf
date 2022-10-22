@@ -7,20 +7,6 @@ resource "google_container_cluster" "cluster-k8" {
     ["us-central1-a","us-central1-b","us-central1-c"]
   ]
 
-}
-  addons_config {
-    http_load_balancing {
-      disabled = true
-    }
-    horizontal_pod_autoscaling {
-      disabled = false
-    }
-  }
-
-  release_channel {
-    channel = "REGULAR"
-  }
-
   ip_allocation_policy {
     cluster_secondary_range_name  = "k8s-pod-range"
     services_secondary_range_name = "k8s-service-range"
@@ -33,4 +19,4 @@ resource "google_container_cluster" "cluster-k8" {
   }
 
 
-
+}
