@@ -1,9 +1,9 @@
 resource "google_container_cluster" "cluster-k8" {
   name     = "my-cluster-k8"
   remove_default_node_pool = true
-  initial_node_count       = 2
+  initial_node_count       = 3
    node_locations = [
-    "us-central1-b","us-central1-c"
+    "us-central1-b"
   ]
 
   ip_allocation_policy {
