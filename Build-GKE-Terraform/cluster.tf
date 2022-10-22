@@ -1,25 +1,45 @@
-#Cluster GKE
-resource "google_container_cluster" "k8_cluster" {
-remove_default_node_pool = true
-initial_node_count       = 1
-network    = "cluster-k8s-vpc"
-subnetwork = "private"
+resource "google_container_cluster" "k8-cluster" {
+  name                     = "k8-cluster-devops"
+  location                 = "us-central1"
+  remove_default_node_pool = true
+  initial_node_count       = 1
+  network                  = "cluster-k8s-vpc"
+  subnetwork               = "private"
+  logging_service          = "logging.googleapis.com/kubernetes"
+  monitoring_service       = "monitoring.googleapis.com/kubernetes"
+  networking_mode          = "VPC_NATIVE"
 
-  
-client_certificate_config {
-issue_client_certificate = false
+  # Optional, if you want multi-zonal cluster
+  node_locations = [
+    "us-central1-c"
+  ]
+
+  addons_config {
+    http_load_balancing {
+      disabled = true
+    }
+    horizontal_pod_autoscaling {
+      disabled = false
     }
   }
 
-resource "google_container_node_pool" "nodes_primarios" {
-  name       = "${google_container_cluster.k8_cluster.name}-node-pool"
-  location   = "us-central1"
-  cluster    = google_container_cluster.k8_cluster.name
-  node_count = "1"
-
-  
-    machine_type = "e2-standard-2"
-    metadata = {
-      disable-legacy-endpoints = "true"
-    }
+  release_channel {
+    channel = "REGULAR"
   }
+
+  workload_identity_config {
+    workload_pool = "devops-v4.svc.id.goog"
+  }
+
+  ip_allocation_policy {
+    cluster_secondary_range_name  = "k8s-pod-range"
+    services_secondary_range_name = "k8s-service-range"
+  }
+
+  private_cluster_config {
+    enable_private_nodes    = true
+    enable_private_endpoint = false
+    master_ipv4_cidr_block  = "172.16.0.0/28"
+  }
+
+}
