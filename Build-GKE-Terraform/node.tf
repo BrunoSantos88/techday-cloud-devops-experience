@@ -10,7 +10,7 @@ resource "google_container_node_pool" "k8s-cluster" {
 
   node_config {
     preemptible  = false
-    machine_type = "e2-small"
+    machine_type = "e2-standard-4"
 
   }
 }
@@ -19,19 +19,31 @@ resource "google_container_node_pool" "node-cluster" {
   name    = "node-cluster"
   cluster = google_container_node_pool.k8s-cluster.id
 
+  autoscaling {
+    max_node_count = 1
+    min_node_count = 1
+  }
+  max_pods_per_node = 100
+
   management {
     auto_repair  = true
     auto_upgrade = true
   }
 
-  autoscaling {
-    min_node_count = 3
-    max_node_count = 10
-  }
-
   node_config {
     preemptible  = true
-    machine_type = "e2-small"
-    
+    disk_size_gb = 10
+
+    service_account = var.service_account
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/servicecontrol",
+      "https://www.googleapis.com/auth/service.management.readonly",
+      "https://www.googleapis.com/auth/trace.append",
+    ]
+
   }
+
 }
