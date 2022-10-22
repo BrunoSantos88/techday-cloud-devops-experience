@@ -20,9 +20,5 @@ management {
     max_node_count = 10
   }
 
-    labels = {
-      team = "devops"
-    }
-
 
 }
