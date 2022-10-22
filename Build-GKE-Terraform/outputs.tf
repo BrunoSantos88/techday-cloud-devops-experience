@@ -1,9 +1,3 @@
-output "project_id" {
-  value       = var.project_id
-  description = "ID do projeto GCP"
-  sensitive   = true
-}
-
 output "kubernetes_cluster_name" {
   value       = google_container_cluster.devops-techday.name
   description = "Nome do cluster GKE"
