@@ -6,11 +6,6 @@ resource "google_container_cluster" "cluster-k8" {
   network                  = "cluster-k8s-vpc"
   subnetwork               = "private"
   
-# Optional, if you want multi-zonal cluster
-  node_locations = [
-    "us-central1-b"
-  ]
-
   addons_config {
     http_load_balancing {
       disabled = true
@@ -18,14 +13,6 @@ resource "google_container_cluster" "cluster-k8" {
     horizontal_pod_autoscaling {
       disabled = false
     }
-  }
-
-  release_channel {
-    channel = "REGULAR"
-  }
-
-  workload_identity_config {
-    workload_pool = "devops-v4.svc.id.goog"
   }
 
   ip_allocation_policy {
