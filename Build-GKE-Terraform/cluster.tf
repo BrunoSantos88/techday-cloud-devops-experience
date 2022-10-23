@@ -9,7 +9,7 @@ resource "google_container_cluster" "cluster-k8" {
 
   # Optional, if you want multi-zonal cluster
   node_locations = [
-    "us-central1-b"
+    "us-central1-b" ,"us-central1-b"
   ]
 
   ip_allocation_policy {
