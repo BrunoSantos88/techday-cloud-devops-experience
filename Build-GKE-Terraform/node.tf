@@ -5,7 +5,9 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
     "us-central1-b", "us-central1-c", "us-central1-a"
   ]
   node_count = 3
-  min_master_version = "1.22.13-gke.1000"
+  min_master_version = "1.22.13"
+
+  
   node_config {
     preemptible  = true
     machine_type = "e2-medium"
