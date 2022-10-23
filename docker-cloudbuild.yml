@@ -5,14 +5,14 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t database:latest database/.
-    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker build -t database:renew database/.
+    docker tag database:renew us-central1-docker.pkg.dev/bootcamp-363315/database/database:renew
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:renew
 - name: 'gcr.io/cloud-builders/docker/frontend'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t frontend:latest frontend/.
-    docker tag frontend:latest us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+    docker build -t frontend:renew frontend/.
+    docker tag frontend:renew us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
