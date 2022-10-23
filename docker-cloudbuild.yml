@@ -1,6 +1,6 @@
 steps:
 
-- id: 'Docker build database'
+- id: 'Docker projeto database'
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -9,4 +9,22 @@ steps:
     docker build -t database:latest .
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
-    
+
+- id: 'Docker projeto frontend'
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend:latest frontend/.
+    docker tag frontend:latest us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+- id: 'Docker projeto backend'
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:latest backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
