@@ -1,13 +1,15 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t database:renew database/.
-    docker tag database:renew us-central1-docker.pkg.dev/bootcamp-363315/database/database:renew
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:renew
+- name: node
+  entrypoint: npm
+  args: ['install']
+- name: node
+  entrypoint: npm
+  args: ['test']
+- name: node
+  entrypoint: npm
+  args: ['run', 'build']
+  
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
