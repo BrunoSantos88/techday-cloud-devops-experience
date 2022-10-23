@@ -1,6 +1,6 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker/database'
   entrypoint: 'sh'
   args: 
   - '-c'
@@ -8,7 +8,7 @@ steps:
     docker build -t database:latest database/.
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/cloud-builders/docker/frontend'
   entrypoint: 'sh'
   args: 
   - '-c'
