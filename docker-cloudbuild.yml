@@ -5,7 +5,7 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t database:latest .
+    docker build -t database:latest database/.
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
 
