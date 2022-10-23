@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'docker database imagen'
   entrypoint: 'sh'
   args: 
   - '-c'
