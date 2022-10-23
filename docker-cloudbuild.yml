@@ -5,6 +5,6 @@ steps:
   - '-c'
   - | 
     docker build -t database .
-    docker tag database:2:0 us-central1-docker.pkg.dev/bootcamp-363315/database/database
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:2:0
+    docker tag database:1:00 us-central1-docker.pkg.dev/bootcamp-363315/database/database
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:1:00
     
