@@ -1,22 +1,10 @@
 steps:
-- name: 'Build docker imagen'
+- name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
     docker build -t database:renew .
-
-- name: 'Tag docker imagen'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
     docker tag database:renew us-central1-docker.pkg.dev/bootcamp-363315/database/database:renew
-
-- name: 'Deploy docker imagen'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:renew
     
