@@ -5,6 +5,6 @@ steps:
   - '-c'
   - | 
     docker build -t database:staging .
-    docker tag database us-central1-docker.pkg.dev/bootcamp-363315/database/database:staging
+    docker tag database:staging us-central1-docker.pkg.dev/bootcamp-363315/database/database:staging
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:staging
     
