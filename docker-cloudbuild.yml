@@ -4,7 +4,7 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t database:1:00 .
-    docker tag database:1:00 us-central1-docker.pkg.dev/bootcamp-363315/database/database
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:1:00
+    docker build -t database .
+    docker tag database us-central1-docker.pkg.dev/bootcamp-363315/database/database
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:Tag
     
