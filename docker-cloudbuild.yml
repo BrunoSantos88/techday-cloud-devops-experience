@@ -1,13 +1,10 @@
 steps:
 
-- name: 'Node build'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    npm install
-    node_modules/*
-
+steps:
+- name: node
+  entrypoint: npm
+  args: ['install']
+      
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
