@@ -1,11 +1,5 @@
-FROM python:3.10-slim-buster
-
-WORKDIR /app
-
-COPY requirements.txt requirements.txt
-
-RUN pip3 install -r requirements.txt
-
-COPY . .
-
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+FROM mysql:5.7
+WORKDIR /var/lib/mysql/
+ENV MYSQL_ROOT_PASSWORD=Senha123
+ENV MYSQL_DATABASE=meubanco
+EXPOSE 3306
