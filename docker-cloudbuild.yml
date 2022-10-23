@@ -17,12 +17,3 @@ steps:
     docker build -t frontend:latest frontend/.
     docker tag frontend:latest us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
-
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t backend:latest backend/.
-    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
