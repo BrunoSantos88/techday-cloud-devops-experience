@@ -6,12 +6,12 @@ resource "google_container_cluster" "cluster-k8" {
   network                  = "cluster-k8s-vpc"
   subnetwork               = "private"
   
-}
+# Optional, if you want multi-zonal cluster
+  node_locations = [
+    "us-central1-b"
+  ]
 
-  ip_allocation_policy {
-    cluster_secondary_range_name  = "k8s-pod-range"
-    services_secondary_range_name = "k8s-service-range"
-addons_config {
+  addons_config {
     http_load_balancing {
       disabled = true
     }
@@ -38,5 +38,4 @@ addons_config {
     enable_private_endpoint = false
     master_ipv4_cidr_block  = "172.16.0.0/28"
   }
-
-  }
+}
