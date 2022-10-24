@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
-        imagePullPolicy: Always
+        image: us-central1-docker.pkg.dev/bootcamp-363315/backend/backend
         ports:
         - containerPort: 80
 
