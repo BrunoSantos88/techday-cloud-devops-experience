@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+        image: gcr.io/bootcamp-363315/frontend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
