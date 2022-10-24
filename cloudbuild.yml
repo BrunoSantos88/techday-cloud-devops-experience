@@ -5,7 +5,7 @@ steps:
   args:
   - run
   - --filename=kubernets/frontend.yml
-  - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+  - --us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend@sha256:5e07313deec46ac507726e194d86ae4a9b4c910c4b4ede0d403d103e428125a2
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s
@@ -15,7 +15,7 @@ steps:
   args:
   - run
   - --filename=kubernets/backend.yml
-  - --image=us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+  - --image=us-us-central1-docker.pkg.dev/bootcamp-363315/backend/backend@sha256:118c7eecf51a6c84432d2641d1ce37f0980a813c81d1aedd0f6e602f33e69e09
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s
@@ -24,7 +24,7 @@ steps:
   args:
   - run
   - --filename=kubernets/database.yml
-  - --image=us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/database/database@sha256:7f806379f0042fff9291af4cf466434cf3c2418d405f141520e14d33f4245219
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s

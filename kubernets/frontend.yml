@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend@sha256:5e07313deec46ac507726e194d86ae4a9b4c910c4b4ede0d403d103e428125a2
         imagePullPolicy: Always
         ports:
         - containerPort: 80
