@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: website
-        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
+        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
         imagePullPolicy: Always
         ports:
         - containerPort: 80
