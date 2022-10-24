@@ -2,7 +2,9 @@ steps:
 
 - name: gcr.io/cloud-builders/kubectl
   args:
-     - ./kubernets/backend.yml
-     - ./kubernets/database.yml
-     - ./kubernets/frontend.yml
+     - --./kubernets/backend.yml
+     - --./kubernets/database.yml
+     - --./kubernets/frontend.yml
+     - --location=us-central1-a
+     - --cluster=my-cluster-k8
   timeout: 1200s
