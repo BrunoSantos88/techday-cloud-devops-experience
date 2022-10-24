@@ -1,14 +1,5 @@
 steps:
-- name: bash
-  script: |
-    #!/bin/bash
-    echo "Hello World"
-
 - name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t frontend:renew frontend/.
-    docker tag frontend:renew us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
+  args: ['build', '-t', 'us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend']
