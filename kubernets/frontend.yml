@@ -5,7 +5,7 @@ metadata:
   labels:
     app: app
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: app
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
         imagePullPolicy: Always
         ports:
         - containerPort: 80
