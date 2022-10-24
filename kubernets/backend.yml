@@ -19,16 +19,3 @@ spec:
         image: gcr.io/bootcamp-363315/backend:latest
         ports:
         - containerPort: 80
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: app
-spec:
-  type: LoadBalancer
-  selector:
-    app: app
-  ports:
-    - port: 80
-      targetPort: 80
