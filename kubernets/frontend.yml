@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
+  name: frontend
   labels:
-    app: app
+    app: frontend
 spec:
   replicas: 15
   selector:
     matchLabels:
-      app: app
+      app: frontend
   template:
     metadata:
       labels:
-        app: app
+        app: frontend
     spec:
       containers:
-      - name: app
+      - name: frontend
         image: gcr.io/bootcamp-363315/frontend:latest
         imagePullPolicy: Always
         ports:
@@ -25,11 +25,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app
+  name: frontend
 spec:
   type: LoadBalancer
   selector:
-    app: app
+    app: frontend
   ports:
     - port: 80
       targetPort: 80
