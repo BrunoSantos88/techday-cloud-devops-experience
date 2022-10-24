@@ -14,5 +14,6 @@ steps:
   - run
   - --filename=kubernets/frontend.yml
   - --filename=kubernets/loadbalancer.yml
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
   - --location=us-central1-a
   - --cluster=my-cluster-k8
