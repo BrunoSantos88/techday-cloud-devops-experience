@@ -1,34 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
-  labels:
-    app: app
+  name: mysql
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: app
+      app: mysql
   template:
     metadata:
       labels:
-        app: app
+        app: mysql
     spec:
       containers:
-      - name: app
+      - name: mysql
         image: 
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 3306
+
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
-  name: app
+  name: mysql-connection
 spec:
-  type: LoadBalancer
-  selector:
-    app: app
   ports:
-    - port: 80
-      targetPort: 80
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
