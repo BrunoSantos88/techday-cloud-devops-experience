@@ -16,7 +16,7 @@ management {
   }
 
   autoscaling {
-    min_node_count = 1
+    min_node_count = 0
     max_node_count = 10
   }
 
