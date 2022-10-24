@@ -8,6 +8,7 @@ steps:
   - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
+  timeout: 10m
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
