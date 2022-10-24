@@ -1,10 +1,21 @@
 steps:
 
-- name: gcr.io/cloud-builders/kubectl
+
+- name: gcr.io/$PROJECT_ID/frontend
   args:
-     - --./kubernets/backend.yml
-     - --./kubernets/database.yml
-     - --./kubernets/frontend.yml
-     - --location=us-central1-a
-     - --cluster=my-cluster-k8
-  timeout: 1200s
+   - upgrade
+   - -i
+   - app
+   - ./kubernets
+   - --set
+   - image.repository=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:lastest
+   - -f
+   - ./kubernets/frontend.yml
+  env:
+      - KUBECONFIG=/workspace/.kube/config
+      - TILLERLESS=false
+      - TILLER_NAMESPACE=kube-system
+timeout: 1200s
+substitutions:
+  _CUSTOM_REGION: us-central1-a
+  _CUSTOM_CLUSTER: my-cluster-k8
