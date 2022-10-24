@@ -5,9 +5,9 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t webapp:latest frontend-webapp/.
-    docker tag webapp:latest us-central1-docker.pkg.dev/bootcamp-363315/webapp/webapp:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/webapp/webapp:latest
+    docker build -t webapp frontend-webapp/.
+    docker tag webapp us-central1-docker.pkg.dev/bootcamp-363315/webapp/webapp
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/webapp/webapp
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
