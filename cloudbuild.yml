@@ -1,39 +1,18 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t database:latest database/.
-    docker tag database:latest gcr.io/bootcamp-363315/database:latest
-    docker push gcr.io/bootcamp-363315/database:latest
-
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t backend:latest backend/.
-    docker tag backend:latest gcr.io/bootcamp-363315/backend:latest
-    docker push gcr.io/bootcamp-363315/backend:latest
-
-
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/database.yml
-  - --image=gcr.io/bootcamp-363315/database:latest
-  - --location=us-central1-a
-  - --cluster=my-cluster-k8
-  timeout: 200s
-
-
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=kubernets/backend.yml
   - --image=gcr.io/bootcamp-363315/backend:latest
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+  timeout: 200s
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/loadbalacer.yml
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 200s
