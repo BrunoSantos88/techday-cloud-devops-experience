@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: website
-        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend@sha256:9fa3e5da326b6c21ac28c9f3ae63bff556a7bd51139ea290153721a7f26f2c4b
         imagePullPolicy: Always
         ports:
         - containerPort: 80
