@@ -1,17 +1,31 @@
 steps:
 
-
-- name: gcr.io/$PROJECT_ID/frontend
+- name: "gcr.io/cloud-builders/gke-deploy"
   args:
-   - upgrade
-   - -i
-   - app
-   - ./kubernets
-   - --set
-   - image.repository=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:lastest
-   - -f
-   - ./kubernets/frontend.yml
-timeout: 1200s
-substitutions:
-  _CUSTOM_REGION: us-central1-a
-  _CUSTOM_CLUSTER: my-cluster-k8
+  - run
+  - --filename=kubernets/frontend.yml
+  - --us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+  timeout: 1200s
+
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/backend.yml
+  - --image=us-us-central1-docker.pkg.dev/bootcamp-363315/backend/backend
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+  timeout: 1200s
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/database.yml
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/database/database
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+  timeout: 1200s
+
+
