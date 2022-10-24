@@ -1,0 +1,9 @@
+steps:
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/frontend.yml
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+  - --location=us-central1
+  - --cluster=my-cluster-k8
