@@ -1,5 +1,14 @@
 steps:
 
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend:latest frontend/.
+    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
+    docker push gcr.io/bootcamp-363315/frontend:latest
+
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
