@@ -25,7 +25,7 @@ steps:
   - | 
     docker build -t backend:latest backend/.
     docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
 
 
 - name: "gcr.io/cloud-builders/gke-deploy"
