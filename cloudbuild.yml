@@ -1,6 +1,42 @@
 steps:
-  
-- id: 'tf apply infraestrutura-rede'
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend:latest frontend/.
+    docker tag frontend:renew us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t database:latest database/.
+    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:latest backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/backend:latest
+
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend frontend/.
+    docker tag frontend us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+
+- id: 'tf apply cluster-GKE'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
@@ -9,3 +45,34 @@ steps:
     cd Build-GKE-Terraform
     terraform init
     terraform apply -auto-approve
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/frontend.yml
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend:latest
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/backend.yml
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/database.yml
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/database:latest
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/loadbalancer.yml
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
