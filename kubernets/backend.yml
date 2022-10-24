@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+        image: gcr.io/bootcamp-363315/backend:latest
         ports:
         - containerPort: 80
 
