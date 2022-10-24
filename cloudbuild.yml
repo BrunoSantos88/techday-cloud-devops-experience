@@ -8,6 +8,8 @@ steps:
   - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
+  timeout: 1200s
+
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -16,6 +18,7 @@ steps:
   - --image=us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
+  timeout: 1200s
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -24,3 +27,4 @@ steps:
   - --image=us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
+  timeout: 1200s
