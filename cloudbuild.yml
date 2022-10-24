@@ -5,7 +5,7 @@ steps:
   args:
   - run
   - --filename=kubernets/frontend.yml
-  - --us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+  - --us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s
@@ -15,7 +15,7 @@ steps:
   args:
   - run
   - --filename=kubernets/backend.yml
-  - --image=us-us-central1-docker.pkg.dev/bootcamp-363315/backend/backend
+  - --image=us-us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s
@@ -24,7 +24,7 @@ steps:
   args:
   - run
   - --filename=kubernets/database.yml
-  - --image=us-central1-docker.pkg.dev/bootcamp-363315/database/database
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s
