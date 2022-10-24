@@ -1,8 +1,8 @@
 resource "google_container_cluster" "cluster-k8" {
   name                     = "my-cluster-k8"
-  location                 = "us-central1-a"
+  location                 = ["us-central1-a","us-central1-b",]
   remove_default_node_pool = true
-  initial_node_count       = 1
+  initial_node_count       = 2
   network                  = "cluster-k8s-vpc"
   subnetwork               = "private"
   
