@@ -11,10 +11,6 @@ steps:
    - image.repository=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:lastest
    - -f
    - ./kubernets/frontend.yml
-  env:
-      - KUBECONFIG=/workspace/.kube/config
-      - TILLERLESS=false
-      - TILLER_NAMESPACE=kube-system
 timeout: 1200s
 substitutions:
   _CUSTOM_REGION: us-central1-a
