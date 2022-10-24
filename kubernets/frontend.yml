@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  name: website
   labels:
-    app: webapp
+    app: website
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: webapp
+      app: website
   template:
     metadata:
       labels:
-        app: webapp
+        app: website
     spec:
       containers:
-      - name: webapp
-        image: us-central1-docker.pkg.dev/bootcamp-363315/webapp:latest
+      - name: website
+        image: us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp
+  name: website
 spec:
   type: LoadBalancer
   selector:
-    app: webapp
+    app: website
   ports:
     - port: 80
       targetPort: 80
