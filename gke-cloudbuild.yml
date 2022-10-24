@@ -1,0 +1,11 @@
+steps:
+  
+- id: 'tf apply infraestrutura-rede'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Build-GKE-Terraform
+    terraform init
+    terraform apply -auto-approve
