@@ -1,16 +1,16 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
+#- name: 'gcr.io/cloud-builders/docker'
+ # entrypoint: 'sh'
+ # args: 
+ # - '-c'
   - | 
-    docker build -t frontend:renew frontend/.
-    docker tag frontend:renew us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
+#   docker build -t frontend:renew frontend/.
+#   docker tag frontend:renew us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
+#   docker push us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
 
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
+  - name: "gcr.io/cloud-builders/gke-deploy"
+    args:
   - run
   - --filename=kubernets/frontend.yml
   - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:renew
