@@ -4,7 +4,7 @@ steps:
   args:
   - run
   - --filename=kubernets/frontend.yml
-  - --us-central1-docker.pkg.dev/bootcamp-363315/frontend
+  - --us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend:latest
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s
