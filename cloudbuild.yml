@@ -2,37 +2,7 @@ steps:
 
 - name: gcr.io/cloud-builders/kubectl
   args:
-     - cluster-info
-  env:
-     - CLOUDSDK_COMPUTE_REGION=$_CUSTOM_REGION
-     - CLOUDSDK_CONTAINER_CLUSTER=$_CUSTOM_CLUSTER
-     - KUBECONFIG=/workspace/.kube/config
-
-
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/frontend.yml
-  - --us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
-  - --location=us-central1-a
-  - --cluster=my-cluster-k8
-  timeout: 1200s
-
-
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/backend.yml
-  - --image=us-us-central1-docker.pkg.dev/bootcamp-363315/backend/backend
-  - --location=us-central1-a
-  - --cluster=my-cluster-k8
-  timeout: 1200s
-
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/database.yml
-  - --image=us-central1-docker.pkg.dev/bootcamp-363315/database/database
-  - --location=us-central1-a
-  - --cluster=my-cluster-k8
+     - ./kubernets/backend.yml
+     - ./kubernets/database.yml
+     - ./kubernets/frontend.yml
   timeout: 1200s
