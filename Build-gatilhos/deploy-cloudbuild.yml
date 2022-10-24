@@ -1,9 +1,18 @@
 steps:
 
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t webapp:latest frontend-webapp/.
+    docker tag webapp:latest us-central1-docker.pkg.dev/bootcamp-363315/webapp/webapp:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/webapp/webapp:latest
+
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=kubernets/frontend.yml
-  - --image=us-central1-docker.pkg.dev/bootcamp-363315/frontend/frontend
+  - --image=us-central1-docker.pkg.dev/bootcamp-363315/webapp
   - --location=us-central1-a
   - --cluster=my-cluster-k8
