@@ -3,6 +3,14 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
+  - --filename=kubernets/frontend.yml
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8
+  timeout: 200s
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
   - --filename=kubernets/backend.yml
   - --location=us-central1-a
   - --cluster=my-cluster-k8
@@ -13,15 +21,6 @@ steps:
   args:
   - run
   - --filename=kubernets/database.yml
-  - --location=us-central1-a
-  - --cluster=my-cluster-k8
-  timeout: 200s
-
-
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/loadbalancer.yml
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 200s
