@@ -23,6 +23,6 @@ resource "google_container_cluster" "quickstart-prod" {
   private_cluster_config {
     enable_private_nodes    = true
     enable_private_endpoint = false
-    master_ipv4_cidr_block  = "10.0.0.0/18"
+    master_ipv4_cidr_block  = "10.48.0.0/14"
   }
 }
