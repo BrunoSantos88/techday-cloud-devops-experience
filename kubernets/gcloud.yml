@@ -1,14 +1,18 @@
+apiVersion: skaffold/v2beta16
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - k8s-*
+---
 apiVersion: v1
-kind: Deployment
+kind: Pod
 metadata:
   name: getting-started
 spec:
   containers:
-      - name: frontend
-        image: gcr.io/bootcamp-363315/frontend:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
+  - name: frontend
+    image: gcr.io/bootcamp-363315/frontend:latest
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
