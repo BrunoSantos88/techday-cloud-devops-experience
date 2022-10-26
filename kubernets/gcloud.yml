@@ -5,25 +5,44 @@ metadata:
 description: main application pipeline
 serialPipeline:
  stages:
- - targetId: qsdev
+ - targetId: frontend
    profiles: []
- - targetId: qsprod
+ - targetId: frontend
    profiles: []
 ---
 
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
- name: qsdev
+ name: frontend
+ labels:
+    app: frontend
+spec:
+  replicas: 15
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: gcr.io/bootcamp-363315/frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
 description: development cluster
 gke:
- cluster: projects/bootcamp-363315/locations/us-central1/clusters/quickstart-cluster-qsdev
----
+ cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8
 
-apiVersion: deploy.cloud.google.com/v1
-kind: Target
+---
+apiVersion: v1
+kind: Service
 metadata:
- name: qsprod
-description: production cluster
-gke:
- cluster: projects/bootcamp-363315/locations/us-central1/clusters/quickstart-cluster-qsprod
+  name: frontend
+spec:
+  type: LoadBalancer
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
