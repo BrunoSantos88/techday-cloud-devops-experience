@@ -20,8 +20,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
-gke:
- cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8
 ---
 apiVersion: v1
 kind: Service
