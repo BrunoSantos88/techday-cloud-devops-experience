@@ -6,13 +6,16 @@ deploy:
       - k8s-*
 ---
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
   name: getting-started
 spec:
   containers:
-  - name: frontend
-    image: gcr.io/bootcamp-363315/frontend:latest
+      - name: frontend
+        image: gcr.io/bootcamp-363315/frontend:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
 ---
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
