@@ -1,8 +1,8 @@
-resource "google_container_cluster" "quickstart-prod" {
-  name                     = "quickstart-prod"
+resource "google_container_cluster" "cluster-k8" {
+  name                     = "my-cluster-k8"
   location                 = "us-central1-a"
   remove_default_node_pool = true
-  initial_node_count       = 1
+  initial_node_count       = 2
   network                  = "cluster-k8s-vpc"
   subnetwork               = "private"
   
@@ -23,5 +23,6 @@ resource "google_container_cluster" "quickstart-prod" {
   private_cluster_config {
     enable_private_nodes    = true
     enable_private_endpoint = false
+    master_ipv4_cidr_block  = "172.16.0.0/28"
   }
 }
