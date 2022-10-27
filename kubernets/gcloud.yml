@@ -1,7 +1,7 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
-  name: my-gke-cluster-devtest
+  name: frontend
 description: Hello World Deployment Pipeline 
 serialPipeline:
  stages:
@@ -11,6 +11,15 @@ serialPipeline:
    profiles: []
 ---
 apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: my-gke-cluster-devtest
+description: my-gke-cluster-devtest cluster 
+gke:
+  cluster: projects/bootcamp-363315/locations/southamerica-east1/clusters/my-gke-cluster-devtest
+
+---
+apiVersion: deploy.cloud.google.com/v1beta1
 kind: Target
 metadata:
   name: my-cluster-k8
