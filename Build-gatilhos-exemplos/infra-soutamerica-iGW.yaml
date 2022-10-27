@@ -1,0 +1,18 @@
+- id: 'tf apply infraestrutura-rede'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Build-terraform-rede-Internet-Gatway
+    terraform init
+    terraform apply -auto-approve
+- id: 'tf apply security-rede'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Build-firewall-IGW
+   terraform init
+   terraform apply -auto-approve
