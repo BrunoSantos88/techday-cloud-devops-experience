@@ -16,8 +16,7 @@ resource "google_container_cluster" "cluster-k8" {
   }
 
   ip_allocation_policy {
-    cluster_secondary_range_name  = "k8s-pod-range"
-    services_secondary_range_name = "k8s-service-range"
+    cluster_secondary_range_name  = "public-subnetwork"
   }
 
   private_cluster_config {
