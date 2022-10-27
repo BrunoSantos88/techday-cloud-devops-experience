@@ -7,5 +7,4 @@ steps:
   - '-c'
   - | 
     cd build-Gke-Prod
-    terraform init
-    terraform apply -auto-approve
+    terraform destoy -auto-approve
