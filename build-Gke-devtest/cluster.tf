@@ -7,7 +7,7 @@ resource "google_container_cluster" "cluster-k8-devtest" {
   subnetwork               = "private"
   
   private_cluster_config {
-    enable_private_nodes    = true
+    enable_private_nodes    = false
     enable_private_endpoint = false
   }
 }
