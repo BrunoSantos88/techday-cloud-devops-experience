@@ -5,9 +5,7 @@ steps:
   - run
   - --filename=kubernets/gcloud.yml
   - --location=southamerica-east1
-  - --cluster=my-cluster-k8
-  - --location=us-central1
-  - --cluster=
+  - --cluster=my-gke-cluster-devtest
   timeout: 1200s
 
 
