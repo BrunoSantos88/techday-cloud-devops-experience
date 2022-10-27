@@ -5,4 +5,4 @@ name: getting-started
 spec:
 containers:
 - name: echoserver
-image: my-app-image
+image: frontend
