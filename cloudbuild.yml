@@ -1,18 +1,8 @@
 steps:
-
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=kubernets/pok8s.yml
-  - --location=us-central1-a
-  - --cluster=my-cluster-k8
-  timeout: 1200s
-
-
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/pok8s.yml
+  - --filename=kubernets/gcloud.yml
   - --location=us-central1-a
   - --cluster=my-cluster-k8
   timeout: 1200s
