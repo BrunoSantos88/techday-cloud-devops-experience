@@ -1,25 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  labels:
-    app: frontend
+  name: hello-world-app
 spec:
-  replicas: 10
   selector:
     matchLabels:
-      app: frontend
+      app: hello-world-app
   template:
     metadata:
       labels:
-        app: frontend
+        app: hello-world-app
     spec:
       containers:
-      - name: frontend
+      - name: hello-world-app
         image: gcr.io/bootcamp-363315/frontend:latest
-        imagePullPolicy: Always
         ports:
-        - containerPort: 80
+          - containerPort: 8080
 
 
 
