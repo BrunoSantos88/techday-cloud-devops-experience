@@ -6,7 +6,7 @@ steps:
   - --filename=kubernets/k8pod.yml
   - --filename=kubernets/skaffold.yml
   - --filename=kubernets/gcloud.yml
-  - --location=us-central1-f
+  - --location=us-central1
   - --cluster=my-cluster-k8
   - --cluster=my-cluster-k8-devtest
   timeout: 1200s
