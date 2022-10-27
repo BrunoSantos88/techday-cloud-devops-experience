@@ -1,4 +1,4 @@
 provider "google" {
   project = "bootcamp-363315"
-  region  = "southamerica-east1"
+  region  = "us-central1"
 }
