@@ -6,6 +6,14 @@ resource "google_container_cluster" "cluster-k8" {
   network                  = "cluster-k8s-vpc"
   subnetwork               = "private"
   
+  addons_config {
+    http_load_balancing {
+      disabled = true
+    }
+    horizontal_pod_autoscaling {
+      disabled = false
+    }
+  }
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "k8s-pod-range"
