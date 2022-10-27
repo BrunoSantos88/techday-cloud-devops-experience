@@ -17,4 +17,4 @@ metadata:
  name: qsdev
 description: development cluster
 gke:
-cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8
+ cluster: projects/bootcamp-363315/locations/southamerica-east1/clusters/my-gke-cluster-devtest
