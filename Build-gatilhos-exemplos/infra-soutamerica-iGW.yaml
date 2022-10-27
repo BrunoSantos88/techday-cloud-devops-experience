@@ -16,3 +16,13 @@
    cd Build-firewall-IGW
    terraform init
    terraform apply -auto-approve
+
+- id: 'tf apply cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd build-Gke-devtest
+    terraform init
+    terraform apply -auto-approve
