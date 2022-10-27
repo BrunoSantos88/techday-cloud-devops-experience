@@ -1,14 +1,21 @@
-resource "google_container_cluster" "cluster-k8-dev" {
-  name                     = "dev-cluster-k8"
-  location                 = "southamerica-east1"
+resource "google_container_cluster" "cluster-dev-test" {
+  name     = "my-gke-cluster-devtest"
+  location = "southamerica-east1"
   remove_default_node_pool = true
   initial_node_count       = 1
   network                  = "vpc-america-sul-public"
   subnetwork               = "public-subnetwork"
+}
 
-  private_cluster_config {
-    enable_private_nodes    = true
-    enable_private_endpoint = false
-    master_ipv4_cidr_block  = "172.16.0.0/28"
+resource "google_container_node_pool" "primary_preemptible_nodes" {
+  name       = "my-node-devtest"
+  location   = "southamerica-east1"
+  cluster    = google_container_cluster.cluster-dev-test.name
+  node_count = 1
+
+  node_config {
+    preemptible  = true
+    machine_type = "e2-medium"
+
   }
 }
