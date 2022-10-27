@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
   - name: echoserver
-    image: gcr.io/bootcamp-363315/frontend:latest
+    image: my-app-image

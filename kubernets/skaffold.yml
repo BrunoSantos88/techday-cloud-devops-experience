@@ -1,14 +1,6 @@
-apiVersion: skaffold/v1
+apiVersion: skaffold/v2beta16
 kind: Config
-metadata:
-  name: cicd
-build:
-  artifacts:
-  - image: gcr.io/bootcamp-363315/frontend:latest
-    docker:
-      dockerfile: Dockerfile
 deploy:
   kubectl:
     manifests:
-    - k8-manifests/deployment-frontend.yml
-    - k8-manifests/service-frontend.yml
+      - k8s-*
