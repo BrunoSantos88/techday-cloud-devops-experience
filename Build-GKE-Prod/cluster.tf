@@ -1,19 +1,11 @@
 resource "google_container_cluster" "cluster-k8" {
   name                     = "my-cluster-k8"
-  location                 = ["us-central1-a","us-central1-b"]
+  location                 = ["us-central1-a","us-central1-b","us-central1-c"]
   remove_default_node_pool = true
-  initial_node_count       = 2
+  initial_node_count       = 1
   network                  = "cluster-k8s-vpc"
   subnetwork               = "private"
   
-  addons_config {
-    http_load_balancing {
-      disabled = true
-    }
-    horizontal_pod_autoscaling {
-      disabled = false
-    }
-  }
 
   ip_allocation_policy {
     cluster_secondary_range_name  = "k8s-pod-range"
