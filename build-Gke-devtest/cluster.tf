@@ -5,17 +5,20 @@ resource "google_container_cluster" "cluster-dev-test" {
   initial_node_count       = 1
   network                  = "vpc-america-sul-public"
   subnetwork               = "public-subnetwork"
-}
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "my-node-devtest"
-  location   = "southamerica-east1"
-  cluster    = google_container_cluster.cluster-dev-test.name
-  node_count = 1
+addons_config {
+    http_load_balancing {
+      disabled = true
+    }
+    horizontal_pod_autoscaling {
+      disabled = false
+    }
+  }
 
-  node_config {
-    preemptible  = true
-    machine_type = "e2-medium"
-
+   private_cluster_config {
+    enable_private_nodes    = true
+    enable_private_endpoint = false
+    master_ipv4_cidr_block  = "172.16.0.0/28"
   }
 }
+
