@@ -3,8 +3,7 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=kubernets/deployment-frontend.yml
-  - --filename=kubernets/service-frontend.yml
+  - --filename=kubernets/gcloud.yml
   - --location=us-central1
   - --cluster=my-cluster-k8
   timeout: 1200s
