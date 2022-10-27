@@ -1,4 +1,4 @@
-apiVersion: deploy.cloud.google.com/v1
+apiVersion: deploy.cloud.google.com/v1beta1
 kind: DeliveryPipeline
 metadata:
  name: my-gke-demo-app-1
@@ -11,7 +11,7 @@ serialPipeline:
    profiles: []
 ---
 
-apiVersion: deploy.cloud.google.com/v1
+apiVersion: deploy.cloud.google.com/v1beta1
 kind: Target
 metadata:
  name: my-cluster-k8-devtest
@@ -20,7 +20,7 @@ gke:
  cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8-devtest
 ---
 
-apiVersion: deploy.cloud.google.com/v1
+apiVersion: deploy.cloud.google.com/v1beta1
 kind: Target
 metadata:
  name: my-cluster-k8
