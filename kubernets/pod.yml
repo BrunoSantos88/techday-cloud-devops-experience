@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: getting-started
+spec:
+  containers:
+  - name: echoserver
+    image: gcr.io/bootcamp-363315/frontend:latest
