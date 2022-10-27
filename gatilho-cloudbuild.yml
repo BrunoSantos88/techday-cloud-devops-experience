@@ -7,7 +7,9 @@ steps:
   - --filename=kubernets/skaffold.yml
   - --filename=kubernets/gcloud.yml
   - --location=us-central1
-  -  --project=bootcamp-363315
+  - --project=bootcamp-363315
+  - --cluster=my-cluster-k8
+  - --cluster=my-cluster-k8-devtest
   timeout: 1200s
 
 
