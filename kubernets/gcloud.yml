@@ -1,22 +1,3 @@
-apiVersion: skaffold/v2beta16
-kind: Config
-deploy:
-  kubectl:
-    manifests:
-      - k8s-*
----
-apiVersion: v1
-kind: Deployment
-metadata:
-  name: getting-started
-spec:
-  containers:
-      - name: frontend
-        image: gcr.io/bootcamp-363315/frontend:latest
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 80
----
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
@@ -36,4 +17,4 @@ metadata:
  name: qsdev
 description: development cluster
 gke:
- cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8
+cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8
