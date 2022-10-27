@@ -3,7 +3,7 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=kubernets/pod.yml
+  - --filename=kubernets/gcloud.yml
   - --location=southamerica-east1
   - --cluster=my-gke-cluster-devtest
   timeout: 1200s
