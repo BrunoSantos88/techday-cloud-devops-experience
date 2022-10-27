@@ -1,29 +1,17 @@
-apiVersion: v1
-kind: Pod
-metadata:
-name: getting-started
-spec:
-containers:
-- name: echoserver
-image: frontend
----
-apiVersion: deploy.cloud.google.com/v1
-kind: DeliveryPipeline
-metadata:
- name: gcr.io/bootcamp-363315/frontend:latest
-description: main application pipeline
-serialPipeline:
- stages:
- - targetId: qsdev
-   profiles: []
- - targetId: qsprod
-   profiles: []
----
-
-apiVersion: deploy.cloud.google.com/v1
-kind: Target
-metadata:
- name: qsdev
-description: development cluster
-gke:
- cluster: projects/bootcamp-363315/locations/southamerica-east1/clusters/my-gke-cluster-devtest
+apiVersion: deploy.cloud.google.com/v1beta1 
+kind: DeliveryPipeline 
+metadata: 
+  name: frontend
+description: frontend Deployment Pipeline 
+serialPipeline: stage 
+  : 
+  - targetId: staging 
+  - targetId: produção
+--- 
+apiVersion: deploy.cloud.google.com/v1beta1 
+kind: 
+Metadados de destino: 
+  name: frontend
+description: Staging Environment 
+gke: 
+  cluster: projects/bootcamp-363315/locations/southamerica-east1/clusters/my-gke-cluster-devtest
