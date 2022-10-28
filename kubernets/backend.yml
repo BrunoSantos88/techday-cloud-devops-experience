@@ -1,3 +1,5 @@
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   labels:
     app: backend
@@ -17,5 +19,5 @@ spec:
       - name: backend
         image: gcr.io/bootcamp-363315/backend:latest
         ports:
-        - containerPort: 80
-          name: backend
+          - containerPort: 80
+            name: backend
