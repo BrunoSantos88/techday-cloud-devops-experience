@@ -1,9 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php
   labels:
     app: php
+  name: php
+  namespace: frontend
 spec:
   replicas: 3
   selector:
@@ -20,6 +21,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+          name: php
 
 ---
 
