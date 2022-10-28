@@ -6,13 +6,12 @@ steps:
 
   # apply -f deployements
   - --filename=kubernets/vote.yml
-  - --filename=kubernets/postgress.yml
 
 
   ## servidor gke-test - regiao F
 
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
-  timeout: 5200s # tempo de execução
+  timeout: 200s # tempo de execução
 
 
