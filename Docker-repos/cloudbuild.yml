@@ -5,8 +5,8 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t frontend:latest frontend/.
-    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
-    docker push gcr.io/bootcamp-363315/frontend:latest
+    docker build -t frontend:renew frontend/.
+    docker tag frontend:renew gcr.io/bootcamp-363315/frontend:renew
+    docker push gcr.io/bootcamp-363315/frontend:renew
 
 
