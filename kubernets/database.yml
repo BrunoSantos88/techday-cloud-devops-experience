@@ -1,7 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: database
   name: database
+  namespace: frontend
 spec:
   selector:
     matchLabels:
@@ -17,6 +20,12 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3306
+        volumeMounts:
+        - mountPath: /var/lib/mysql/data
+          name: db-data
+        volumes:
+        - name: db-data
+          emptyDir: {}
 
 ---
 apiVersion: v1
