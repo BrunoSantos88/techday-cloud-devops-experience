@@ -3,7 +3,7 @@ steps:
 
 - name: node
   entrypoint: npm
-  args: ['install', 'sonar:sonar','-Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=f4ed0705a463a25b15d85050459879b1026fde9d']
+  args: ['install','-Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=f4ed0705a463a25b15d85050459879b1026fde9d']
 
 
   #Analise Snyk (SCA security scan)
