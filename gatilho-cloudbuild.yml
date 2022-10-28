@@ -1,11 +1,14 @@
 steps:
-
-- id: 'Deploy application to cluster'
-  name: 'gcr.io/k8s-skaffold/skaffold:v1.0.0'
+- name: 'gcr.io/k8s-skaffold/pack'
+  entrypoint: 'pack'
+  args: ['build', '--builder=gcr.io/bootcamp-363315/frontend', '--publish', 'gcr.io/bootcamp-363315/frontend@sha256:35a5ad0cf89cafc1daf1223f46c642c4b07a79a8183315c900f895afb205b844']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
   args:
   - '-c'
-  - >
-   cd Skaffold
-   gcloud deploy apply --file gcloud.yaml --region=us-central1 --project=bootcamp-363315
-
+  - > 
+    gcloud deploy releases create release-0001
+    --delivery-pipeline=cd-cd-test
+    --region=us-central1
+    --source=./
+    --images=frontend=gcr.io/bootcamp-363315/frontend@sha256:35a5ad0cf89cafc1daf1223f46c642c4b07a79a8183315c900f895afb205b844
