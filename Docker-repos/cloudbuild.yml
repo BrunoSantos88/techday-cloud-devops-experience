@@ -18,7 +18,7 @@ steps:
       - |-
         apt-get update
         apt-get -y install node
-        SNYK_TOKEN=${_SNYK_TOKEN}
+        SNYK_TOKEN=bdcd1eda-7ef6-4ed7-aec7-68fbeaaee103
         export SNYK_TOKEN
         node snyk:test -fn
   id: Snyk SCA
