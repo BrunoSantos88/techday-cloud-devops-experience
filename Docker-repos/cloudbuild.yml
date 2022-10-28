@@ -5,7 +5,7 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t frontend:renew frontend/.
+    docker build -t frontend:renew Docker-repos/frontend/.
     docker tag frontend:renew gcr.io/bootcamp-363315/frontend:renew
     docker push gcr.io/bootcamp-363315/frontend:renew
 
