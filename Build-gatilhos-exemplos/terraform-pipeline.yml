@@ -1,0 +1,32 @@
+steps:
+
+- id: 'tf apply cluster-GKE-teste'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd build-terraform-Rede-NaTgatway
+    terraform init
+    terraform apply -auto-approve
+
+
+- id: 'tf apply cluster-GKE-teste'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Gke-devtest
+    terraform init
+    terraform apply -auto-approve
+
+- id: 'tf apply cluster-GKE-produçao'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd GKE-Prod
+    terraform init
+    terraform apply -auto-approve

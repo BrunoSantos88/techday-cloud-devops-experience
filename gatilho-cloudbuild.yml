@@ -1,23 +1,11 @@
 steps:
 
-- id: 'tf apply cluster-GKE-teste'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
+- id: 'Deploy application to cluster'
+  name: 'gcr.io/k8s-skaffold/skaffold:v2.0.0'
+  entrypoint: 'bash'
+  args:
   - '-c'
-  - | 
-    cd Gke-devtest
-    terraform init
-    terraform apply -auto-approve
-
-- id: 'tf apply cluster-GKE-produçao'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd GKE-Prod
-    terraform init
-    terraform apply -auto-approve
-
+  - >
+   cd Skaffold
+   gcloud deploy apply --file clouddeploy.yaml --region=us-central1 --project=bootcamp-363315
 

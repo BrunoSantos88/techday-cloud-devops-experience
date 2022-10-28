@@ -1,33 +1,17 @@
 steps:
 
 
-- id: 'tf apply cluster-GKE-teste'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd build-terraform-Rede-NaTgatway
-    terraform init
-    terraform apply -auto-approve
 
 
-- id: 'tf apply cluster-GKE-teste'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
+- id: 'Deploy application to cluster'
+  name: 'gcr.io/k8s-skaffold/skaffold:v2.0.0'
+  entrypoint: 'bash'
+  args:
   - '-c'
-  - | 
-    cd Gke-devtest
-    terraform init
-    terraform apply -auto-approve
-
-- id: 'tf apply cluster-GKE-produçao'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd GKE-Prod
-    terraform init
-    terraform apply -auto-approve
+  - >
+    gcloud container clusters get-credentials --zone=$_ZONE $_CLUSTER;
+    skaffold run -f=skaffold.yaml --default-repo=gcr.io/$PROJECT_ID;
+# Add more power, and more time, for heavy Skaffold build
+timeout: '3600s'
+options:
+  machineType: 'N1_HIGHCPU_8'
