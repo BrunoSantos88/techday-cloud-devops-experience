@@ -2,5 +2,4 @@ FROM nginx:stable
 COPY css.css/ /usr/share/nginx/html
 COPY index.html/ /usr/share/nginx/html
 COPY js.js /usr/share/nginx/html
-RUN sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
 EXPOSE 80
