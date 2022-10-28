@@ -5,11 +5,7 @@ steps:
   - run
 
   # apply -f deployements
-  - --filename=deployements/worker.yaml
-  - --filename=deployements/redis.yaml
-  - --filename=deployements/result.yaml
-  - --filename=deployements/vote.yaml
-  - --filename=deployements/db.yaml
+  - --filename=kubernets/postgress.yml
 
 
   ## servidor gke-test - regiao F
