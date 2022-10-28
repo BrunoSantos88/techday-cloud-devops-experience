@@ -5,7 +5,7 @@ steps:
   - run
 
   # apply -f deployements
-  - --filename=kubernets/postgress.yml
+  - --filename=kubernets/redis.yml
 
 
   ## servidor gke-test - regiao F
