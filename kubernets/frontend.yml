@@ -2,13 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  labels:
-    app: frontend
 spec:
-  replicas: 10
   selector:
     matchLabels:
-      app: fronrend
+      app: frontend
   template:
     metadata:
       labels:
@@ -17,7 +14,5 @@ spec:
       containers:
       - name: frontend
         image: gcr.io/bootcamp-363315/frontend:latest
-        imagePullPolicy: Always
         ports:
-        - containerPort: 80
-
+          - containerPort: 80
