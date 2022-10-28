@@ -7,7 +7,7 @@ steps:
   - '-c'
   - apt-get update
   - apt-get -y install node
-  - -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=f4ed0705a463a25b15d85050459879b1026fde9d'
+  - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
 
 
   #Analise Snyk (SCA security scan)
@@ -18,7 +18,7 @@ steps:
       - |-
        apt-get update
        apt-get -y install maven 
-       SNYK_TOKEN=bdcd1eda-7ef6-4ed7-aec7-68fbeaaee103
+       SNYK_TOKEN=${_SNYK_TOKEN}
        export SNYK_TOKEN
        mvn snyk:test -fn 
         
