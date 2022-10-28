@@ -1,6 +1,6 @@
 
 
-gcloud deploy apply --file clouddeploy.yaml --region=us-central1 --project=bootcamp-363315
+gcloud deploy apply --file gat.yaml --region=us-central1 --project=bootcamp-363315
 
 ### Executar uma release
 gcloud container clusters create-auto cluster-k8-devtest --project=bootcamp-363315 --region=us-central1 && gcloud container clusters create-auto cluster-staging --project=bootcamp-363315 --region=us-central1

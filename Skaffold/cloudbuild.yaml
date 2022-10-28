@@ -7,5 +7,5 @@ steps:
   - '-c'
   - >
    cd Skaffold
-   gcloud deploy apply --file gcloud.yaml --region=us-central1 --project=bootcamp-363315
+   gcloud deploy apply --file cloudbuild.yaml --region=us-central1 --project=bootcamp-363315
 
