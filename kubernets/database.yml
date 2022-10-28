@@ -25,7 +25,6 @@ spec:
           name: db-data
         volumes:
         - name: db-data
-          emptyDir: {}
 
 ---
 apiVersion: v1
