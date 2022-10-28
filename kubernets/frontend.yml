@@ -1,7 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    app: frontend
   name: frontend
+  namespace: frontend
 spec:
   replicas: 10
   selector:
@@ -17,3 +20,4 @@ spec:
         image: gcr.io/bootcamp-363315/frontend:latest
         ports:
           - containerPort: 80
+            name: frontend
