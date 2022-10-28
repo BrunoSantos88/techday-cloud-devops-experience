@@ -5,7 +5,7 @@ steps:
   - run
   - --filename=kubernets/backend.yml
   - --filename=kubernets/backend.yml
-  - --location=us-central1-a
+  - --location=us-central1-f
   - --cluster=my-cluster-k8
   timeout: 1200s
 
