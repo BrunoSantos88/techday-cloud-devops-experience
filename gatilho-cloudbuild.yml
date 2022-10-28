@@ -5,7 +5,7 @@ steps:
   - run
 
   # apply -f deployements
-  - --filename=kubernets/redis.yml
+  - --filename=kubernets/result.yml
 
 
   ## servidor gke-test - regiao F
