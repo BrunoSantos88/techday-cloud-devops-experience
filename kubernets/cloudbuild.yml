@@ -1,5 +1,14 @@
 steps:
 
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:renew backend/.
+    docker tag backend:renew us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:renew
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:renew
+
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
