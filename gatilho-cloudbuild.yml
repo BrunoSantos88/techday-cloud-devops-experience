@@ -5,6 +5,6 @@ steps:
   - run
   - --filename=kubernets/backend.yml
   - --filename=kubernets/service.yml
-  - --location=us-central1-a
+  - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
   timeout: 1200s
