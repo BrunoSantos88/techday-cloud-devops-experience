@@ -1,14 +1,11 @@
 steps:
-- name: 'gcr.io/k8s-skaffold/pack'
-  entrypoint: 'pack'
-  args: ['build', '--builder=gcr.io/bootcamp-363315/frontend', '--publish', 'gcr.io/bootcamp-363315/frontend@sha256:35a5ad0cf89cafc1daf1223f46c642c4b07a79a8183315c900f895afb205b844']
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: 'bash'
+
+- name: "gcr.io/cloud-builders/gke-deploy"
   args:
-  - '-c'
-  - > 
-    gcloud deploy releases create release-0001
-    --delivery-pipeline=cd-cd-test
-    --region=us-central1
-    --source=./
-    --images=frontend=gcr.io/bootcamp-363315/frontend@sha256:35a5ad0cf89cafc1daf1223f46c642c4b07a79a8183315c900f895afb205b844
+  - run
+  - --filename=kubernets/skaffold.yml
+  - --filename=kubernets/backend.yml
+  - --filename=kubernets/service.yml
+  - --location=us-central1-a
+  - --cluster=my-cluster-k8-dev-test
+  timeout: 1200s
