@@ -10,7 +10,7 @@ steps:
 
   # apply -f deployements
   - --filename=deployements/redis.yaml
-  - --filename=deployements/resut.yaml
+  - --filename=deployements/result.yaml
   - --filename=deployements/vote.yaml
   - --filename=deployements/db.yaml
 
@@ -19,7 +19,7 @@ steps:
   - --filename=services/db.yaml
   - --filename=services/redis.yaml
   - --filename=services/vote.yaml
-  - --filename=services/resut.yaml
+  - --filename=services/result.yaml
 
   ## servidor gke-test - regiao F
 
