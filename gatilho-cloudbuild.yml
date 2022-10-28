@@ -3,6 +3,7 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
+  - --delivery-pipeline=ci-cd-test
   - --filename=kubernets/backend.yml
   - --filename=kubernets/service.yml
   - --location=us-central1-f
