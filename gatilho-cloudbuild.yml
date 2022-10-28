@@ -5,7 +5,7 @@ steps:
   - run
 
   # apply -f deployements
-  - --filename=kubernets/vote.yml
+  - --filename=kubernets/postgress.yml
 
 
   ## servidor gke-test - regiao F
