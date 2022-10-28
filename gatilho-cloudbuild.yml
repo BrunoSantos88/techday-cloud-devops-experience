@@ -5,17 +5,12 @@ steps:
   - run
 
   # apply -f deployements
+  - --filename=deployements/worker.yaml
   - --filename=deployements/redis.yaml
   - --filename=deployements/result.yaml
   - --filename=deployements/vote.yaml
   - --filename=deployements/db.yaml
 
-  # apply -f services
-
-  - --filename=services/db.yaml
-  - --filename=services/redis.yaml
-  - --filename=services/vote.yaml
-  - --filename=services/result.yaml
 
   ## servidor gke-test - regiao F
 

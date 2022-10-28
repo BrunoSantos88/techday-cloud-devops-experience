@@ -21,3 +21,19 @@ spec:
         ports:
         - containerPort: 80
           name: result
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: result
+  name: result
+  namespace: vote
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "result-service"
+    port: 80
+    targetPort: 80
+  selector:
+    app: result
