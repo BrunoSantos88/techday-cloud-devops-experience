@@ -1,12 +1,13 @@
 steps:
 
-- name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/frontend.yml
-  - --filename=kubernets/service.yml
-  - --location=us-central1-f
-  - --cluster=my-cluster-k8-devtest
-  timeout: 1200s
+- id: 'tf apply cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd build-Gke-devtest
+    terraform init
+    terraform apply -auto-approve
 
 
