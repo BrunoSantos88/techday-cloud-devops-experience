@@ -6,20 +6,20 @@ steps:
   
   ### apply -f namespaces
 
-  - --filename=aplicacao-voto/namespaces/vote.yaml
+  - --filename=namespaces/vote.yaml
 
   # apply -f deployements
-  - --filename=aplicacao-voto/deployements/redis.yaml
-  - --filename=aplicacao-voto/deployements/resut.yaml
-  - --filename=aplicacao-voto/deployements/vote.yaml
-  - --filename=aplicacao-voto/deployements/db.yaml
+  - --filename=deployements/redis.yaml
+  - --filename=deployements/resut.yaml
+  - --filename=deployements/vote.yaml
+  - --filename=deployements/db.yaml
 
   # apply -f services
 
-  - --filename=aplicacao-voto/services/db.yaml
-  - --filename=aplicacao-voto/services/redis.yaml
-  - --filename=aplicacao-voto/services/vote.yaml
-  - --filename=aplicacao-voto/services/resut.yaml
+  - --filename=services/db.yaml
+  - --filename=services/redis.yaml
+  - --filename=services/vote.yaml
+  - --filename=services/resut.yaml
 
   ## servidor gke-test - regiao F
 
