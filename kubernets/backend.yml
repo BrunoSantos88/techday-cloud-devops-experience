@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: gcr.io/bootcamp-363315/backend:renew
+        image: gcr.io/bootcamp-363315/backend/backend:renew
         imagePullPolicy: Always
         ports:
         - containerPort: 80
