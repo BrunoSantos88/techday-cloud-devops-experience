@@ -1,30 +1,12 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t frontend:loja Docker-repos/Loja-online/.
-    docker tag frontend:loja gcr.io/bootcamp-363315/frontend:loja
-    docker push gcr.io/bootcamp-363315/frontend:loja
-
-- id: 'tf apply cluster-GKE'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd Gke-devtest
-    terraform init
-    terraform apply -auto-approve
-
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=kubernets/frontend.yml
+  - --filename=kubernets/app-loja-online/aplicacao.yaml
+  - --filename=kubernets/app-loja-online/deployment.yaml
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
-  timeout: 1200s
+  timeout: 2200s
 
 

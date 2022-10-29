@@ -1,15 +1,35 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aplicacao-deployment
+  labels:
+    app: frontend-loja
+  name: frontend-loja
+  namespace: loja-online
 spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: frontend-loja
   template:
     metadata:
       labels:
-       name: aplicacao-pod
+        app: frontend-loja
     spec:
       containers:
-        - name: container-aplicacao-loja
-          image: rafanercessian/aplicacao-loja:v1
-          ports:
-            - containerPort: 80
+      - name: frontend-loja
+        image: gcr.io/bootcamp-363315/frontend:loja
+        ports:
+          - containerPort: 80
+            name: loja-online
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-loja
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    name: frontend-loja
