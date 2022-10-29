@@ -5,9 +5,19 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t frontend:renew Docker-repos/frontend/.
-    docker tag frontend:renew gcr.io/bootcamp-363315/frontend:renew
-    docker push gcr.io/bootcamp-363315/frontend:renew
+    docker build -t frontend:loja Docker-repos/Loja-online/.
+    docker tag frontend:loja gcr.io/bootcamp-363315/frontend:loja
+    docker push gcr.io/bootcamp-363315/frontend:loja
+
+- id: 'tf apply cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Gke-devtest
+    terraform init
+    terraform apply -auto-approve
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
