@@ -1,3 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loja-online
+  
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
