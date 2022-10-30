@@ -1,9 +1,10 @@
 steps:
 
-- name: "gcr.io/cloud-builders/gke-deploy"
+- id: deploy to gke
+  name: gcr.io/cloud-builders/kubectl
+  entrypoint: kubectl
   args:
-  - run
-  - --filename=kubernets/frontend.yml
+  - cluster-info
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
   timeout: 2200s
