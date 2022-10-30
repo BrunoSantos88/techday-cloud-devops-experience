@@ -4,6 +4,6 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   entrypoint: kubectl
   args:
-  - --cluster-info
+  - cluster-info
 
 
