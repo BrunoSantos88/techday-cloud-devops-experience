@@ -1,8 +1,7 @@
-apiVersion: app/v1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: statefulset-mysql
-spec:
   serviceName: db
   template:
     metadata:
