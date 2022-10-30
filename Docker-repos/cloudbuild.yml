@@ -3,7 +3,7 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=kubernets/pod-banco.yaml
+  - --filename=kubernets/permissoes.yaml
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
   timeout: 2200s
