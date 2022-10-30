@@ -4,9 +4,6 @@ steps:
   args:
   - run
   - --filename=kubernets/pod-banco.yaml
-  - --filename=kubernets/permissoes.yaml
-  - --filename=kubernets/servico-banco.yaml
-  - --filename=kubernets/statefulset.yaml
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
   timeout: 2200s
