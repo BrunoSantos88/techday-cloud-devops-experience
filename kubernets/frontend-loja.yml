@@ -2,34 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: frontend-loja
-  name: frontend-loja
+    app: frontend
+  name: frontend
   namespace: loja-online
 spec:
-  replicas: 10
+  replicas: 15
   selector:
     matchLabels:
-      app: frontend-loja
+      app: frontend
   template:
     metadata:
       labels:
-        app: frontend-loja
+        app: frontend
     spec:
       containers:
-      - name: frontend-loja
+      - name: frontend
         image: gcr.io/bootcamp-363315/frontend:loja
         ports:
           - containerPort: 80
-            name: loja-online
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-loja
-spec:
-  type: LoadBalancer
-  ports:
-    - port: 80
-  selector:
-    name: frontend-loja
+            name: frontend
