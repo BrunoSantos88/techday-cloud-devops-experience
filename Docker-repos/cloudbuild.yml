@@ -5,8 +5,5 @@ steps:
   entrypoint: kubectl
   args:
   - --cluster-info
-  - --location=us-central1-f
-  - --cluster=my-cluster-k8-dev-test
-  timeout: 2200s
 
 
