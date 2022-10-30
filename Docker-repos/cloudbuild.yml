@@ -1,18 +1,6 @@
 steps:
 
 
-- id: get credentials for cluster
-  name: gcr.io/cloud-builders/gcloud
-  entrypoint: gcloud
-  args: [
-        "container", "clusters",
-        "get-credentials", "my-cluster-k8-dev-test",
-        "--internal-ip",
-        "--zone", "-central1-f"
-    ]
-  timeout: 2200s
-
-
 - id: setup kubectl to use proxy
   name: gcr.io/cloud-builders/kubectl
   entrypoint: /bin/sh
@@ -20,5 +8,3 @@ steps:
       - -c
       - kubectl get pod
   timeout: 2200s
-
-
