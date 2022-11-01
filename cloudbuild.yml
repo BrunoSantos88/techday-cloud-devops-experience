@@ -6,8 +6,8 @@ steps:
   - '-c'
   - | 
     docker build -t backend backend-1.0/.
-    docker tag backend gcr/images/bootcamp-363315?project=bootcamp-363315/backend
-    docker push gcr/images/bootcamp-363315?project=bootcamp-363315/backend
+    docker tag backend gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/backend
   timeout: 1200s
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -16,8 +16,8 @@ steps:
   - '-c'
   - | 
     docker build -t database database-1.0/.
-    docker tag database gcr/images/bootcamp-363315?project=bootcamp-363315/database
-    docker push gcr/images/bootcamp-363315?project=bootcamp-363315/database
+    docker tag database gcr.io/bootcamp-363315/database
+    docker push gcr.io/bootcamp-363315/database
   timeout: 1200s
   
 
