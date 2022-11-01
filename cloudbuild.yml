@@ -1,25 +1,5 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t backend backend-1.0/.
-    docker tag backend gcr.io/bootcamp-363315/backend
-    docker push gcr.io/bootcamp-363315/backend
-  timeout: 1200s
-
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t database database-1.0/.
-    docker tag database gcr.io/bootcamp-363315/database
-    docker push gcr.io/bootcamp-363315/database
-  timeout: 1200s
-  
 
 - id: 'tf apply cluster-GKE'
   name: 'hashicorp/terraform:1.0.0'
@@ -27,7 +7,7 @@ steps:
   args: 
   - '-c'
   - | 
-    cd 
+    cd Gke-devtest
     terraform init
     terraform apply -auto-approve
   timeout: 1200s
@@ -35,8 +15,8 @@ steps:
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=/backend-1.0/php-deployment.yml
-  - --filename=/database-1.0/db-deployment.yml
-  - --location=us-central1-a
-  - --cluster=my-cluster-k8
+  - --filename=backend-1.0/php-deployment.yml
+  - --filename=database-1.0/db-deployment.yml
+  - --location=us-central1-f
+  - --cluster=my-cluster-k8-dev-test
   timeout: 1200s
