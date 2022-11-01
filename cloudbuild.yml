@@ -14,18 +14,9 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t database database/.
-    docker tag database gcr.io/bootcamp-363315/database
-    docker push gcr.io/bootcamp-363315/database
-
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
     docker build -t backend backend/.
     docker tag backend gcr.io/bootcamp-363315/backend
-    docker push gcr.io/bootcamp-363315/frontend
+    docker push gcr.io/bootcamp-363315/backend
 
 
 - name: "gcr.io/cloud-builders/gke-deploy"
