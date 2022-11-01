@@ -2,28 +2,34 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: database
-  name: database
+    app: mysql
+  name: mysql
 spec:
   selector:
     matchLabels:
-      app: database
+      app: mysql
   template:
     metadata:
       labels:
-        app: database
+        app: mysql
     spec:
       containers:
-      - name: database
+      - name: mysql
         image: gcr.io/bootcamp-363315/database:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3306
           name: mysql
-        env:
-        - name: MYSQL_DATABASE
-          value: "meubanco"
-        - name: MYSQL_USER
-          value: "root"
-        - name: MYSQL_ALLOW_EMPTY_PASSWORD
-          value: "Senha123"
+        
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-connection
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
