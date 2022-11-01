@@ -15,5 +15,3 @@ if ($link->query($query) === TRUE) {
   echo "Error: " . $link->error;
 }
 ?>
-
-

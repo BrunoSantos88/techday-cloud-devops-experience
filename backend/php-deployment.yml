@@ -5,7 +5,7 @@ metadata:
   labels:
     app: php
 spec:
-  replicas: 10
+  replicas: 3
   selector:
     matchLabels:
       app: php
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: gcr.io/bootcamp-363315/backend:latest
+        image: denilsonbonatti/php:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
