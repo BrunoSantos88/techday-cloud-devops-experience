@@ -4,9 +4,8 @@ metadata:
   labels:
     app: php
   name: php
-  namespace: frontend
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: php
@@ -17,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: gcr.io/bootcamp-363315/backend/backend:renew
+        image: gcr.io/bootcamp-363315/backend:renew
         imagePullPolicy: Always
         ports:
         - containerPort: 80

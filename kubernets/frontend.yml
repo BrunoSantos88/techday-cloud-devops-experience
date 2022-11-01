@@ -4,7 +4,6 @@ metadata:
   labels:
     app: frontend
   name: frontend
-  namespace: loja-online
 spec:
   replicas: 15
   selector:
@@ -17,7 +16,19 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/bootcamp-363315/frontend:latest
+        image: gcr.io/bootcamp-363315/frontend:renew
         ports:
           - containerPort: 80
             name: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
+  selector:
+    app: frontend

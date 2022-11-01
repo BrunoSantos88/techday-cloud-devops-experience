@@ -4,7 +4,6 @@ metadata:
   labels:
     app: database
   name: database
-  namespace: frontend
 spec:
   selector:
     matchLabels:
@@ -16,7 +15,7 @@ spec:
     spec:
       containers:
       - name: database
-        image: gcr.io/bootcamp-363315/database:latest
+        image: gcr.io/bootcamp-363315/database:renew
         imagePullPolicy: Always
         ports:
         - containerPort: 3306
