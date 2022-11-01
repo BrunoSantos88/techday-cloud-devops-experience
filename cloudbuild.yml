@@ -1,23 +1,14 @@
 steps:
 
-- id: 'tf apply security-rede'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-   cd Build-firewal-nat-gaytway
-   terraform init
-   terraform apply -auto-approve
-
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
     docker build -t backend-1.0/.
-    docker tag backend:latest gcr.io/bootcamp-363315/backend:latest
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+  timeout: 1200s
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
@@ -27,6 +18,8 @@ steps:
     docker build -t database:latest database-1.0/.
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+  timeout: 1200s
+  
 
 - id: 'tf apply cluster-GKE'
   name: 'hashicorp/terraform:1.0.0'
@@ -37,6 +30,7 @@ steps:
     cd 
     terraform init
     terraform apply -auto-approve
+  timeout: 1200s
 
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
