@@ -1,9 +1,18 @@
 steps:
 
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend frontend-1.0/.
+    docker tag frontend gcr.io/bootcamp-363315/frontend
+    docker push gcr.io/bootcamp-363315/frontend
+
 - name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
-  - --filename=backend-1.0/php-deployment.yml
+  - --filename=frontend-1.0/deployment.frontend.yml
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
   timeout: 1200s

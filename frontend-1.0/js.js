@@ -4,7 +4,7 @@ $("#btn_salvar").on("click", function() {
     var txt_mensagem = $("#mensagem").val(); 
 
     $.ajax({
-        url: "http://35.224.5.250:30005/",
+        url: "http://10.67.252.151:30005/",
         type: "post",
         data: {nome: txt_nome, mensagem: txt_mensagem},
         beforeSend: function() {
