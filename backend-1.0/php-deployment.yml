@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: denilsonbonatti/php:1.0
+        image: gcr.io/bootcamp-363315/backend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80
