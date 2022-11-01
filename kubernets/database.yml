@@ -20,15 +20,10 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql-connection
-spec:
-  ports:
-  - port: 3306
-  selector:
-    app: database
-  clusterIP: None
+        env:
+        - name: MYSQL_DATABASE
+          value: "meubanco"
+        - name: MYSQL_USER
+          value: ""
+        - name: MYSQL_ALLOW_EMPTY_PASSWORD
+          value: "Senha123"
