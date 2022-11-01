@@ -7,7 +7,7 @@ steps:
   - | 
     docker build -t backend:latest backend-1.0/.
     docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend:lates
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
   timeout: 1200s
 
 - name: 'gcr.io/cloud-builders/docker'
