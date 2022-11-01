@@ -6,7 +6,7 @@ steps:
   args: 
   - '-c'
   - | 
-   cd Build-Terraform-Firewall
+   cd Build-firewal-nat-gaytway
    terraform init
    terraform apply -auto-approve
 
