@@ -5,9 +5,9 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t frontend frontend/.
-    docker tag frontend gcr.io/bootcamp-363315/frontend
-    docker push gcr.io/bootcamp-363315/frontend
+    docker build -t backend backend/.
+    docker tag backend gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/backend
 
 
 - name: "gcr.io/cloud-builders/gke-deploy"

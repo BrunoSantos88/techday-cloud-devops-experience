@@ -24,6 +24,6 @@ spec:
         - name: MYSQL_DATABASE
           value: "meubanco"
         - name: MYSQL_USER
-          value: ""
+          value: "root"
         - name: MYSQL_ALLOW_EMPTY_PASSWORD
           value: "Senha123"
