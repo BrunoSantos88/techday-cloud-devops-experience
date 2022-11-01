@@ -5,9 +5,9 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t frontend frontend/.
-    docker tag frontend gcr.io/bootcamp-363315/frontend
-    docker push gcr.io/bootcamp-363315/frontend
+    docker build -t database database/.
+    docker tag database gcr.io/bootcamp-363315/database
+    docker push gcr.io/bootcamp-363315/database
 
 
 - name: "gcr.io/cloud-builders/gke-deploy"
@@ -15,7 +15,7 @@ steps:
   - run
 
   # Frontend
-  - --filename=kubernets/frontend.yml
+  - --filename=kubernets/database.yml
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
   timeout: 1200s
