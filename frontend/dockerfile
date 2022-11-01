@@ -1,0 +1,9 @@
+FROM nginx
+WORKDIR /var/www/html
+COPY css.css /var/www/html/
+COPY index.html /var/www/html/
+COPY js.js /var/www/html/
+
+EXPOSE 80
+
+
