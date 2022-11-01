@@ -4,7 +4,6 @@ steps:
   args:
   - run
   - --filename=backend-1.0/php-deployment.yml
-  - --filename=database-1.0/db-deployment.yml
   - --location=us-central1-f
   - --cluster=my-cluster-k8-dev-test
   timeout: 1200s
