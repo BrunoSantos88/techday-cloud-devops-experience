@@ -5,7 +5,7 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t backeend:latest backend-1.0/.
+    docker build -t backend backend-1.0/.
     docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
   timeout: 1200s
@@ -15,7 +15,7 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t database:latest database-1.0/.
+    docker build -t database database-1.0/.
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database:latest
   timeout: 1200s
