@@ -1,8 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: mysql
   name: mysql
 spec:
   selector:
@@ -19,10 +17,9 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3306
-          name: mysql
-        
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
