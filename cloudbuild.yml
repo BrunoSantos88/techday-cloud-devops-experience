@@ -5,27 +5,27 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t frontend frontend/.
-    docker tag frontend:renew gcr.io/bootcamp-363315/frontend:renew
-    docker push gcr.io/bootcamp-363315/frontend:renew
+    docker build -t frontend:renew frontend/.
+    docker tag frontend:renew gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/frontend
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t database database/.
-    docker tag database:renew gcr.io/bootcamp-363315/database:renew
-    docker push gcr.io/bootcamp-363315/database:renew
+    docker build -t database:renew database/.
+    docker tag database:renew gcr.io/bootcamp-363315/database
+    docker push gcr.io/bootcamp-363315/database
 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t backend backend/.
-    docker tag backend:renew gcr.io/bootcamp-363315/backend:renew
-    docker push gcr.io/bootcamp-363315/backend:renew
+    docker build -t backend:renew backend/.
+    docker tag backend:renew gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/backend
 
 
 - name: "gcr.io/cloud-builders/gke-deploy"
