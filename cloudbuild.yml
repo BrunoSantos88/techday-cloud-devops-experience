@@ -33,7 +33,6 @@ steps:
      docker build -t frontend:latest Docker-Projetos/frontend/.
      docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
      docker push gcr.io/bootcamp-363315/frontend:latest
-  id: Frontend
 
 
 ### docker compilaçao do cointainer database
@@ -45,7 +44,7 @@ steps:
      docker build -t database:latest Docker-Projetos/database/.
      docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
      docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
-  id: Database
+
 ### docker compilaçao do cointainer backend
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
@@ -55,7 +54,7 @@ steps:
      docker build -t backend:latest Docker-Projetos/backend/.
      docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
      docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
-  id: Backend
+ 
 
 # Criaçao da infra Nat gatway ip valido.
 - id: 'tf apply Rede-NaTgatway'
