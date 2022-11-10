@@ -10,6 +10,7 @@ steps:
     cd Rede-NaTgatway
     terraform init
     terraform apply -auto-approve
+
 - id: 'tf apply security-rede'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
@@ -33,7 +34,7 @@ steps:
 
 
 - id: Deploy kubernets apply
-- name: "gcr.io/cloud-builders/gke-deploy"
+  name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
   - --filename=kubernets/backend.yml
