@@ -7,16 +7,10 @@ steps:
   - --filename=kubernets/database.yml
   - --location=us-central1
   - --cluster=my-cluster-k8
-  
-- args:
-  - run
-  - --filename=kubernets/frontend.yml
+  - --filename=kubernets/backend.yml
   - --location=us-central1
   - --cluster=my-cluster-k8
-
-- args:
-  - run
-  - --filename=kubernets/backend.yml
+  - --filename=kubernets/frontend.yml
   - --location=us-central1
   - --cluster=my-cluster-k8
   timeout: 2200s
