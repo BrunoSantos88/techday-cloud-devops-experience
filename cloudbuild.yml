@@ -1,17 +1,5 @@
 steps:
 
-## criaçao do cluster gke 
-- id: 'cluster-GKE'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd GKE-Prod
-    terraform init
-    terraform apply -auto-approve
-
-
 - id: Deploy kubernets apply
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -20,8 +8,31 @@ steps:
   - --filename=kubernets/frontend.yml
   - --filename=kubernets/database.yml
   - --location=us-central1
-  - --cluster=my-cluster-k8-produção
+  - --cluster=my-cluster-k8
   timeout: 1200s
+
+
+  #Run DAST scan using OWASP ZAP in GCP DevSecOps Pipeline
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+    - '-c'
+    - |-
+      apt-get update
+      apt-get -y install wget
+      apt-get -y install default-jdk
+      wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
+      mkdir zap
+      tar -xvf ZAP_2.11.1_Linux.tar.gz
+      cd ZAP_2.11.1
+      ./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout ../zap_report.html 
+  id: DAST Scan using OWASP ZAP
+artifacts:
+  objects:
+    location: 'gs://securityguro'
+    paths:
+      - zap_report.html
+
 
 
 

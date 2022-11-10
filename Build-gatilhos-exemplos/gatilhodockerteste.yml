@@ -77,3 +77,25 @@
    cd Build-Terraform-Firewall
    terraform init
    terraform apply -auto-approve
+
+## criaçao do cluster gke 
+- id: 'cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd GKE-Prod
+    terraform init
+    terraform apply -auto-approve
+
+## criaçao do cluster gke 
+- id: 'cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd GKE-Prod
+    terraform init
+    terraform apply -auto-approve
