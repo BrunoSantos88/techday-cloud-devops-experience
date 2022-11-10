@@ -66,3 +66,14 @@
     cd Rede-NaTgatway
     terraform init
     terraform apply -auto-approve
+
+# Criaçao firewall
+- id: 'tf apply security-rede'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Build-Terraform-Firewall
+   terraform init
+   terraform apply -auto-approve
