@@ -6,9 +6,9 @@ steps:
   args: 
   - '-c'
   - | 
-    cd Build-Terraform-Rede
-    terraform init
-    terraform apply -auto-approve
+   cd Build-Terraform-Rede
+   terraform init
+   terraform apply -auto-approve
 - id: 'tf apply security-rede'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
