@@ -72,7 +72,7 @@ steps:
   entrypoint: 'sh'
   args: 
   - '-c'
-  - | s
+  - | 
    cd Firewal-Nat-Prod
    terraform init
    terraform apply -auto-approve
