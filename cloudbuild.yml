@@ -1,22 +1,10 @@
 steps:
 
-- id: 'Deploy kubernetes'
-  name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/database.yml
-  - --location=us-central1
-  - --cluster=my-cluster-k8
-  - --filename=kubernets/backend.yml
-  - --location=us-central1
-  - --cluster=my-cluster-k8
-  - --filename=kubernets/frontend.yml
-  - --location=us-central1
-  - --cluster=my-cluster-k8
-  timeout: 2200s
-
-
-
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/database.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=us-central1'
 
 
 
