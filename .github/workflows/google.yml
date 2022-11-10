@@ -39,12 +39,12 @@ jobs:
         run: ${{ secrets.GKE_TOKEN }}
  
       - name: Deploy frontend
-        run: kubectl apply -f frontend.yml
+        run: kubectl apply -f kubernets/forntend.yml
 
   # Deploy GKE deploy bancodados cluster
       - name: Deploy banco-dados
-        run: kubectl apply -f backend.yml
+        run: kubectl apply -f kubernets/backend.yml
 
   # Deploy GKE deploy LoadBalancer FrontEnd
       - name: Deploy database
-        run: kubectl apply -f database.yml
+        run: kubectl apply -f kubernets/database.yml
