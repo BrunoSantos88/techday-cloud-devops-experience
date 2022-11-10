@@ -39,7 +39,7 @@ steps:
   timeout: 1200s
 
 - id: 'Backend'
-- name: 'gcr.io/cloud-builders/docker'
+  name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
