@@ -7,18 +7,18 @@ steps:
   args: 
   - '-c'
   - | 
-   cd Rede-NaTgatway
-   terraform init
-   terraform apply -auto-approve
+    cd Rede-NaTgatway
+    terraform init
+    terraform apply -auto-approve
 - id: 'tf apply security-rede'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-   cd Firewal-Nat-Prod
-   terraform init
-   terraform apply -auto-approve
+    cd Firewal-Nat-Prod
+    terraform init
+    terraform apply -auto-approve
 
 ## criaçao do cluster gke 
 - id: 'cluster-GKE'
@@ -27,9 +27,9 @@ steps:
   args: 
   - '-c'
   - | 
-    cd GKE-Prod
-    terraform init
-    terraform apply -auto-approve
+     cd GKE-Prod
+     terraform init
+     terraform apply -auto-approve
 
 
 - id: Deploy kubernets apply
@@ -42,27 +42,6 @@ steps:
   - --location=us-central1
   - --cluster=my-cluster-k8-produção
   timeout: 1200s
-
-## upload arquivo OWASP ZAP para bucket
-- name: 'ubuntu'
-  entrypoint: bash
-  args: 
-    - '-c'
-    - |-
-      apt-get update
-      apt-get -y install wget
-      apt-get -y install default-jdk
-      wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
-      mkdir zap
-      tar -xvf ZAP_2.11.1_Linux.tar.gz
-      cd ZAP_2.11.1
-      ./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout ../zap_report.html 
-  id: DAST OWASP ZAP Deploy Bucket
-artifacts:
-  objects:
-    location: 'gs://securityguro'
-    paths:
-      - zap_report.html
 
 
 
