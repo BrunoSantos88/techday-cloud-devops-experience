@@ -8,6 +8,7 @@ steps:
     - apt-get update
     - apt-get -y install node
     - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
+  id: SonarCloud
 
   #Analise Snyk (SCA security scan)
 - name: 'ubuntu'
@@ -27,33 +28,32 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
-   - '-c'
-   - | 
-     docker build -t frontend:latest Docker-Projetos/frontend/.
-     docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
-     docker push gcr.io/bootcamp-363315/frontend:latest
+  - '-c'
+  - | 
+    docker build -t frontend:latest Docker-Projetos/frontend/.
+    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
+    docker push gcr.io/bootcamp-363315/frontend:latest
 
 
 ### docker compilaçao do cointainer database
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
-   - '-c'
-   - | 
-     docker build -t database:latest Docker-Projetos/database/.
-     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
-     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+  - '-c'
+  - | 
+    docker build -t database:latest Docker-Projetos/database/.
+    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
 
 ### docker compilaçao do cointainer backend
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
-   - '-c'
-   - | 
-     docker build -t backend:latest Docker-Projetos/backend/.
-     docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
-     docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
- 
+  - '-c'
+  - | 
+    docker build -t backend:latest Docker-Projetos/backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
 
 # Criaçao da infra Nat gatway ip valido.
 - id: 'tf apply Rede-NaTgatway'
@@ -62,9 +62,9 @@ steps:
   args: 
   - '-c'
   - | 
-   cd Rede-NaTgatway
-   terraform init
-   terraform apply -auto-approve
+    cd Build-Terraform-Rede
+    terraform init
+    terraform apply -auto-approve
 
 # criaçao do firewall e regras para Kubernetes
 - id: 'tf apply Firewal-Nat-prod'
@@ -72,7 +72,7 @@ steps:
   entrypoint: 'sh'
   args: 
   - '-c'
-  - | 
+  - | s
    cd Firewal-Nat-Prod
    terraform init
    terraform apply -auto-approve
@@ -97,7 +97,6 @@ steps:
   - --location=us-central1
   - --cluster=my-cluster-k8-produção
   timeout: 1200s
-- id: Deploy services kubernet
 
 ## upload arquivo OWASP ZAP para bucket
 - name: 'ubuntu'
