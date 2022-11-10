@@ -1,0 +1,51 @@
+name: Deploy CLUSTER GKE
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GAR_LOCATION: us-central1  
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}   # TODO: update to cluster name
+  GKE_ZONE: us-central1   # TODO: update to cluster zone
+  
+jobs:
+
+ build:
+
+    runs-on: ubuntu-latest
+
+ deploy:
+  name: Deploy kubernetes GKE 
+  runs-on: ubuntu-latest
+
+  steps:
+      # Git checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+  
+   # Login to GCP
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+         project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+  # Get the GKE token acesso ao cluster
+      - name: Token acesso ao cluster
+        run: ${{ secrets.GKE_TOKEN }}
+ 
+      - name: Deploy frontend
+        run: kubectl apply -f kubernets/forntend.yml
+
+  # Deploy GKE deploy bancodados cluster
+      - name: Deploy banco-dados
+        run: kubectl apply -f kubernets/backend.yml
+
+  # Deploy GKE deploy LoadBalancer FrontEnd
+      - name: Deploy database
+        run: kubectl apply -f kubernets/database.yml
+      
