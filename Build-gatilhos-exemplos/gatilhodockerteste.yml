@@ -1,0 +1,57 @@
+#Analise no SonarCloud
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+    - '-c'
+    - apt-get update
+    - apt-get -y install node
+    - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
+  id: SonarCloud
+
+  #Analise Snyk (SCA security scan)
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+      - '-c'
+      - |-
+       apt-get update
+       apt-get -y install maven 
+       SNYK_TOKEN=${_SNYK_TOKEN}
+       export SNYK_TOKEN
+       mvn snyk:test -fn  
+  id: Snyk SCA
+
+
+### docker compilaçao do cointainer frontend
+- id: Frontend
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend:latest Docker-Projetos/frontend/.
+    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
+    docker push gcr.io/bootcamp-363315/frontend:latest
+
+
+### docker compilaçao do cointainer database
+- id: Database
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t database:latest Docker-Projetos/database/.
+    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+
+### docker compilaçao do cointainer backend
+- id: backend
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:latest Docker-Projetos/backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest

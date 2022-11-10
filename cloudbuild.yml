@@ -7,9 +7,9 @@ steps:
   args: 
   - '-c'
   - | 
-   cd Rede-NaTgatway
-   terraform init
-   terraform apply -auto-approve
+    cd Rede-NaTgatway
+    terraform init
+    terraform apply -auto-approve
 
 # criaçao do firewall e regras para Kubernetes
 - id: 'Firewal-Nat-prod'
@@ -18,9 +18,9 @@ steps:
   args: 
   - '-c'
   - | 
-   cd Firewal-Nat-Prod
-   terraform init
-   terraform apply -auto-approve
+    cd Firewal-Nat-Prod
+    terraform init
+    terraform apply -auto-approve
 
 ## criaçao do cluster gke 
 - id: 'cluster-GKE'
