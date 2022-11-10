@@ -1,14 +1,5 @@
 steps:
 
-- id: 'Deploy frontend'
-  name: "gcr.io/cloud-builders/gke-deploy"
-  args:
-  - run
-  - --filename=kubernets/frontend.yml
-  - --location=us-central1
-  - --cluster=my-cluster-k8
-  timeout: 1200s
-
 - id: 'Deploy database'
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -18,7 +9,16 @@ steps:
   - --cluster=my-cluster-k8
   timeout: 1200s
 
-- id: "Deploy backend"
+- id: 'Deploy frontend'
+  name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/frontend.yml
+  - --location=us-central1
+  - --cluster=my-cluster-k8
+  timeout: 1200s
+
+- id: 'Deploy backend'
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
   - run
