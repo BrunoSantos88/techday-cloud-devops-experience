@@ -1,5 +1,30 @@
 steps:
 
+#Analise no SonarCloud
+
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+  - '-c'
+  - apt-get update
+  - apt-get -y install node
+  - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
+
+  #Analise Snyk (SCA security scan)
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+      - '-c'
+      - |-
+       apt-get update
+       apt-get -y install maven 
+       SNYK_TOKEN=${_SNYK_TOKEN}
+       export SNYK_TOKEN
+       mvn snyk:test -fn  
+  id: Snyk SCA
+
+
+### docker compilaçao do cointainer frontend
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -9,6 +34,8 @@ steps:
     docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
     docker push gcr.io/bootcamp-363315/frontend:latest
 
+
+### docker compilaçao do cointainer database
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -18,6 +45,7 @@ steps:
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
 
+### docker compilaçao do cointainer backend
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -26,3 +54,73 @@ steps:
     docker build -t backend:latest Docker-Projetos/backend/.
     docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+
+# Criaçao da infra Nat gatway ip valido.
+- id: 'tf apply Rede-NaTgatway'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Build-Terraform-Rede
+    terraform init
+    terraform apply -auto-approve
+
+# criaçao do firewall e regras para Kubernetes
+- id: 'tf apply Firewal-Nat-prod'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Firewal-Nat-prod
+   terraform init
+   terraform apply -auto-approve
+
+## criaçao do cluster gke 
+- id: 'tf apply cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd GKE-Prod
+    terraform init
+    terraform apply -auto-approve
+
+- name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernets/backend.yml
+  - --filename=kubernets/frontend.yml
+  - --filename=kubernets/database.yml
+  - --location=us-central1
+  - --cluster=my-cluster-k8-produção
+  timeout: 1200s
+
+## upload arquivo OWASP ZAP para bucket
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+    - '-c'
+    - |-
+      apt-get update
+      apt-get -y install wget
+      apt-get -y install default-jdk
+      wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
+      mkdir zap
+      tar -xvf ZAP_2.11.1_Linux.tar.gz
+      cd ZAP_2.11.1
+      ./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout ../zap_report.html 
+  id: DAST Scan using OWASP ZAP
+artifacts:
+  objects:
+    location: 'gs://securityguro'
+    paths:
+      - zap_report.html
+
+
+
+
+
+
