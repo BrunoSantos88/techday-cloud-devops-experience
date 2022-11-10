@@ -48,3 +48,4 @@ jobs:
   # Deploy GKE deploy LoadBalancer FrontEnd
       - name: Deploy database
         run: kubectl apply -f kubernets/database.yml
+      
