@@ -6,9 +6,9 @@ steps:
   args: 
   - '-c'
   - | 
-    cd Firewal-Nat-Prod
-    terraform init
-    terraform apply -auto-approve
+   cd Firewal-Nat-Prod
+   terraform init
+   terraform apply -auto-approve
 
 ## criaçao do cluster gke 
 - id: 'cluster-GKE'
@@ -17,9 +17,9 @@ steps:
   args: 
   - '-c'
   - | 
-     cd GKE-Prod
-     terraform init
-     terraform apply -auto-approve
+   cd GKE-Prod
+   terraform init
+   terraform apply -auto-approve
 
 
 - id: Deploy kubernets apply

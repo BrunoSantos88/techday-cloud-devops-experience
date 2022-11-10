@@ -55,3 +55,14 @@
     docker build -t backend:latest Docker-Projetos/backend/.
     docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+
+# Criaçao da infra Nat gatway ip valido.
+- id: 'tf apply infraestrutura-rede'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Rede-NaTgatway
+    terraform init
+    terraform apply -auto-approve
