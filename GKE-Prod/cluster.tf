@@ -4,7 +4,7 @@ resource "google_container_cluster" "cluster-k8-produção" {
   remove_default_node_pool = true
   initial_node_count       = 1
   network                  = "cluster-k8s-vpc"
-  subnetwork               = "private"
+  subnetwork               = "k8-private"
   
   addons_config {
     http_load_balancing {
