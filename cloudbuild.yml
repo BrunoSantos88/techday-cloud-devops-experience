@@ -1,5 +1,15 @@
 steps:
 
+- id: 'Database'
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t database:latest database/.
+    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+
 - id: 'Deploy database'
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -9,6 +19,16 @@ steps:
   - --cluster=my-cluster-k8
   timeout: 1200s
 
+- id: 'Frontend'
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend:latest frontend/.
+    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
+    docker push gcr.io/bootcamp-363315/frontend:latest
+
 - id: 'Deploy frontend'
   name: "gcr.io/cloud-builders/gke-deploy"
   args:
@@ -17,6 +37,16 @@ steps:
   - --location=us-central1
   - --cluster=my-cluster-k8
   timeout: 1200s
+
+- id: 'Backend'
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:latest backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
 
 - id: 'Deploy backend'
   name: "gcr.io/cloud-builders/gke-deploy"
@@ -28,26 +58,7 @@ steps:
   timeout: 1200s
 
 
-  #Run DAST scan using OWASP ZAP in GCP DevSecOps Pipeline
-- name: 'ubuntu'
-  entrypoint: bash
-  args: 
-    - '-c'
-    - |-
-      apt-get update
-      apt-get -y install wget
-      apt-get -y install default-jdk
-      wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
-      mkdir zap
-      tar -xvf ZAP_2.11.1_Linux.tar.gz
-      cd ZAP_2.11.1
-      ./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout ../zap_report.html 
-  id: DAST Scan using OWASP ZAP
-artifacts:
-  objects:
-    location: 'gs://securityguro'
-    paths:
-      - zap_report.html
+
 
 
 
