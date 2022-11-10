@@ -1,14 +1,14 @@
 steps:
 
-- id: 'tf apply infraestrutura-firewall'
+- id: 'tf apply security-rede'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd Firewal-Nat-Prod
-    terraform init
-    terraform apply -auto-approve
+   cd Build-Terraform-Firewall
+   terraform init
+   terraform apply -auto-approve
 
 ## criaçao do cluster gke 
 - id: 'cluster-GKE'
@@ -17,9 +17,9 @@ steps:
   args: 
   - '-c'
   - | 
-   cd GKE-Prod
-   terraform init
-   terraform apply -auto-approve
+    cd GKE-Prod
+    terraform init
+    terraform apply -auto-approve
 
 
 - id: Deploy kubernets apply
