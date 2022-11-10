@@ -1,20 +1,21 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/kubectl'
+- id: 'Frontend'
+  name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/frontend.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8'
 
-
-- name: 'gcr.io/cloud-builders/kubectl'
+- id: 'Backend'
+  name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/backend.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8'
 
-
-- name: 'gcr.io/cloud-builders/kubectl'
+- id: ' Database'
+  name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/database.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
