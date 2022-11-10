@@ -1,6 +1,6 @@
 resource "google_container_node_pool" "primary_preemptible_nodes-dev-test" {
-  name       = "produção-node-pool"
-  location   = "us-central1"
+  name       = "node-pool"
+  location   = "us-central"
   cluster    = google_container_cluster.cluster-k8-produção.id
   node_count = 3
 
