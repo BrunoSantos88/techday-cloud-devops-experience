@@ -2,7 +2,7 @@ steps:
 
 # Build --- TAG ----- PUSH Docker Repositorio.
 
-- id: "Docker image Frontend"
+- id: 'Docker image Frontend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -12,7 +12,7 @@ steps:
     docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
     docker push gcr.io/bootcamp-363315/frontend:latest
 
-- id: "Docker Image Database"
+- id: 'Docker Image Database'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -22,7 +22,7 @@ steps:
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
 
-- id: "Docker image Backend"
+- id: 'Docker image Backend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
