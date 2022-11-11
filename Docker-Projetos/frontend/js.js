@@ -1,17 +1,21 @@
-$("#btn_salvar").on("click", function() {
+$("#button-blue").on("click", function() {
     
-    var txt_nome = $("#nome").val();
-    var txt_mensagem = $("#mensagem").val(); 
+    var txt_nome = $("#name").val();
+    var txt_email = $("#email").val();
+    var txt_comentario = $("#comment").val();
 
     $.ajax({
-        url: "http://34.132.166.188:30005/",
+        url: "http://34.69.8.42",
+        
         type: "post",
-        data: {nome: txt_nome, mensagem: txt_mensagem},
+        data: {nome: txt_nome, comentario: txt_comentario, email: txt_email},
         beforeSend: function() {
-            $("#resposta").html("Enviando......");
+        
+            console.log("Tentando enviar os dados....");
+
         }
     }).done(function(e) {
-        $("#resposta").html("Dados salvos......");
+        alert("Dados Salvos");
     })
 
-})
+});
