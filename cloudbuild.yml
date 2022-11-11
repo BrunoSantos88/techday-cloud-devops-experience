@@ -1,7 +1,6 @@
 steps:
 
-### docker compilaçao do cointainer frontend
-- id: Frontend
+- id: 'Docker image frontend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -11,7 +10,7 @@ steps:
     docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
     docker push gcr.io/bootcamp-363315/frontend:latest
 
-- id: 'Frontend'
+- id: 'Deploy cluster aplicaçao Frontend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/frontend.yml']
   env:
