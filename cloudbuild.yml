@@ -1,18 +1,56 @@
 steps:
 
-- id: 'Docker image frontend'
+# Build --- TAG ----- PUSH Docker Repositorio.
+
+- id: "Docker image Frontend"
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t frontend:latest Docker-Projetos/frontend/.
+    docker build -t frontend:latest /.
     docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
     docker push gcr.io/bootcamp-363315/frontend:latest
 
-- id: 'Deploy cluster aplicaçao Frontend'
+- id: "Docker Image Database"
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t database:latest Docker-Projetos/database/.
+    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+
+- id: "Docker image Backend"
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:latest Docker-Projetos/backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+
+## Deploy arquivos YML
+
+- id: 'Deploy GKE Frontend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/frontend.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8'
+
+- id: 'Deploy GKE Backend'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/backend.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8'
+
+- id: 'Deploy GKE Database'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/database.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8'
