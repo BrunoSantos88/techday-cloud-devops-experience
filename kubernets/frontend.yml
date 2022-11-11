@@ -5,7 +5,7 @@ metadata:
     app: frontend
   name: frontend
 spec:
-  replicas: 15
+  replicas: 10
   selector:
     matchLabels:
       app: frontend
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gcr.io/bootcamp-363315/backend:latest
+        image: gcr.io/bootcamp-363315/frontend:latest
         ports:
           - containerPort: 80
             name: frontend
