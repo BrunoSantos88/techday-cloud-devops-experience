@@ -1,4 +1,28 @@
 steps:
+
+
+### docker compilaçao do cointainer database
+- id: Database
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t database:latest Docker-Projetos/database/.
+    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+
+### docker compilaçao do cointainer backend
+- id: backend
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:latest Docker-Projetos/backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    
 ## Deploy arquivos YML
 - id: 'Deploy GKE namespaces'
   name: 'gcr.io/cloud-builders/kubectl'
