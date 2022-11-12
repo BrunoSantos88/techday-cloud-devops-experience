@@ -1,31 +1,27 @@
 steps:
 
-- name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t frontend:latest frontend/.
-    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
-    docker push gcr.io/bootcamp-363315/frontend:latest
 
-- name: 'gcr.io/cloud-builders/docker'
+### docker compilaçao do cointainer database
+- id: Database
+  name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t database:latest database/.
-    docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
+    docker build -t database Docker-Projetos/database/.
+    docker tag database gcr.io/bootcamp-363315/database
+    docker push gcr.io/bootcamp-363315/database
 
-- name: 'gcr.io/cloud-builders/docker'
+### docker compilaçao do cointainer backend
+- id: backend
+  name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t backend:latest backend/.
-    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
+    docker build -t backend Docker-Projetos/backend/.
+    docker tag backend gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/backend
 
 
 
