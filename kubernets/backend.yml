@@ -1,26 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: backend
   labels:
-    app: php
-  name: php
+    app: backend
 spec:
   replicas: 10
   selector:
     matchLabels:
-      app: php
+      app: backend
   template:
     metadata:
       labels:
-        app: php
+        app: backend
     spec:
       containers:
-      - name: php
+      - name: backend
         image: gcr.io/bootcamp-363315/backend:latest
-        imagePullPolicy: Always
         ports:
-        - containerPort: 80
-          name: php
+          - containerPort: 80
+            name: backend
 
 ---
 
