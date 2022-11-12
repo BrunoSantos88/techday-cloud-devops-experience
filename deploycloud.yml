@@ -1,0 +1,37 @@
+steps:
+
+- id: 'luster-GKE-devteste'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Gke-devtest
+    terraform init
+    terraform apply -auto-approve
+
+
+
+
+
+## Deploy arquivos YML
+- id: 'Deploy GKE Frontend'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/frontend.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'
+
+- id: 'Deploy GKE Backend'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/backend.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'
+
+- id: 'Deploy GKE Database'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/database.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central-f'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'
