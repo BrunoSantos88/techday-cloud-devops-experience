@@ -1,7 +1,32 @@
 steps:
 
+ #Analise no SonarCloud Scan
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+  - '-c'
+  - apt-get update
+  - apt-get -y install node
+  - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
+
+
+  #Analise Snyk (SCA security scan)
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+      - '-c'
+      - |-
+       apt-get update
+       apt-get -y install maven 
+       SNYK_TOKEN=${_SNYK_TOKEN}
+       export SNYK_TOKEN
+       mvn snyk:test -fn 
+        
+  id: Snyk SCA
+
 # Build --- TAG ----- PUSH Docker Repositorio.
 
+# frontend
 - id: 'Docker image Frontend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
@@ -12,6 +37,7 @@ steps:
     docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
     docker push gcr.io/bootcamp-363315/frontend:latest
 
+#database
 - id: 'Docker Image Database'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
@@ -22,6 +48,7 @@ steps:
     docker tag database:latest us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database:latest
 
+#backend
 - id: 'Docker image Backend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
@@ -32,8 +59,41 @@ steps:
     docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
     docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
 
-## Deploy arquivos YML
+## Rede Nat Ip e router 
+- id: 'tf apply infraestrutura-rede'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Rede-NaTgatway
+   terraform init
+   terraform apply -auto-approve
 
+  # Firewall 
+- id: 'tf apply security-rede'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Build-Terraform-Firewall
+   terraform init
+   terraform apply -auto-approve
+
+
+### cluster GKE
+- id: 'tf apply cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd GKE-Prod
+    terraform init
+    terraform apply -auto-approve
+
+## Deploy arquivos YML
 - id: 'Deploy GKE Frontend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/frontend.yml']
