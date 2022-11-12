@@ -9,8 +9,8 @@ steps:
   - '-c'
   - | 
     docker build -t database Docker-Projetos/database/.
-    docker tag database us-central1-docker.pkg.dev/bootcamp-363315/database/database
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/database/database
+    docker tag database gcr.io/bootcamp-363315/database
+    docker push gcr.io/bootcamp-363315/database
 
 ### docker compilaçao do cointainer backend
 - id: backend
@@ -20,5 +20,5 @@ steps:
   - '-c'
   - | 
     docker build -t backend Docker-Projetos/backend/.
-    docker tag backend us-central1-docker.pkg.dev/bootcamp-363315/backend/backend
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend
+    docker tag backend gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/backend
