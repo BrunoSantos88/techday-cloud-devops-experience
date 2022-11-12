@@ -19,5 +19,5 @@ steps:
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/database.yml']
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=us-central-f'
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-f'
   - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'
