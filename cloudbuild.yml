@@ -8,7 +8,7 @@ steps:
   - apt-get update
   - apt-get -y install node
   - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
-
+  id: SonarCloud
 
   #Analise Snyk (SCA security scan)
 - name: 'ubuntu'
@@ -60,7 +60,7 @@ steps:
     docker push us-central1-docker.pkg.dev/bootcamp-363315/backend/backend:latest
 
 ## Rede Nat Ip e router 
-- id: 'tf apply infraestrutura-rede'
+- id: 'infraestrutura rede nat ip'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
@@ -71,7 +71,7 @@ steps:
    terraform apply -auto-approve
 
   # Firewall 
-- id: 'tf apply security-rede'
+- id: 'infraestrura security-firewall'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
@@ -83,7 +83,7 @@ steps:
 
 
 ### cluster GKE
-- id: 'tf apply cluster-GKE'
+- id: 'cluster-GKE'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
