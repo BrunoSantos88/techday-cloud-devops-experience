@@ -4,6 +4,7 @@ metadata:
   labels:
     app: php
   name: php
+  namespace: app-carrefour
 spec:
   replicas: 10
   selector:
