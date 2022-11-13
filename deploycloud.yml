@@ -6,6 +6,6 @@ steps:
   args: 
   - '-c'
   - | 
-    cd GKE-Prod
+    cd Gke-devtest
     terraform init
     terraform apply -auto-approve
