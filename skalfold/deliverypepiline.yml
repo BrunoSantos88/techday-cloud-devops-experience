@@ -1,28 +1,29 @@
 apiVersion: deploy.cloud.google.com/v1
 kind: DeliveryPipeline
 metadata:
-  name: delivery-skaffold-gke
-description: Delivery Pipeline for a sample java app
+ name: my-run-demo-app-1
+description: main application pipeline
 serialPipeline:
-  stages:
-    - targetId: my-cluster-k8-dev-test
-    - targetId: my-cluster-k8
-
+ stages:
+ - targetId: run-qsdev
+   profiles: [dev]
+ - targetId: run-qsprod
+   profiles: [prod]
 ---
+
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: my-cluster-k8-dev-test
-description: A Dev cluster
-gke:
-  cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8-dev-test
-
+ name: run-qsdev
+description: Cloud Run development service
+run:
+ location: projects/PROJECT_ID/locations/us-central1
 ---
+
 apiVersion: deploy.cloud.google.com/v1
 kind: Target
 metadata:
-  name: my-cluster-k8
-description: A Prod cluster
-requireApproval: true
-gke:
-  cluster: projects/bootcamp-363315/locations/us-central1/clusters/my-cluster-k8
+ name: run-qsprod
+description: Cloud Run production service
+run:
+ location: projects/PROJECT_ID/locations/us-central1

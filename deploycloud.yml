@@ -1,11 +1,16 @@
 steps:
 
-- id: 'cluster-GKE'
-  name: 'hashicorp/terraform:1.0.0'
+steps:
+
+
+### docker compilaçao do cointainer database
+- id: 'leeroy-app'
+  name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd Gke-devtest
-    terraform init
-    terraform apply -auto-approve
+    docker build -t database Docker-Projetos/leeroy-app/.
+    docker tag leeroy-app gcr.io/bootcamp-363315/leeroy-app
+    docker push gcr.io/bootcamp-363315/leeroy-app
+    
