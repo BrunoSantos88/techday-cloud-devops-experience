@@ -1,39 +1,23 @@
-output "Cluster Dev-Test" {
-  # This may seem redundant with the `name` input, but it serves an important
-  # purpose. Terraform won't establish a dependency graph without this to interpolate on.
-  description = "The name of the cluster master. This output is used for interpolation with node pools, other modules."
-
-  value = var.resourse_group_name_cluster_dev_test
-}
-
 output "endpoint" {
-  description = "The IP address of the cluster master."
+  description = "ip cluste devteste"
   sensitive   = true
-  value       = var.resourse_group_name_cluster_dev_test
+  value       = var.kubernetes_cluster_name.teste
 }
 
 output "kubernetes_cluster_host" {
-  value       = var.resourse_group_name_cluster_dev_test
-  description = "Host do cluster GKE"
+  value       = var.kubernetes_cluster_name.teste
+  description = "Nome de Cluster Dev"
   sensitive   = false
 }
 
-output "Cluster Prod" {
-  # This may seem redundant with the `name` input, but it serves an important
-  # purpose. Terraform won't establish a dependency graph without this to interpolate on.
-  description = "The name of the cluster master. This output is used for interpolation with node pools, other modules."
-
-  value = var.resourse_group_name_cluster_dev_test
-}
-
 output "endpoint" {
-  description = "The IP address of the cluster master."
+  description = "Ip cluster Produçao"
   sensitive   = true
-  value       = var.resourse_group_name_cluster_prod
+  value       =var.kubernetes_cluster_name.pro
 }
 
 output "kubernetes_cluster_host" {
-  value       = var.resourse_group_name_cluster_prod
-  description = "Host do cluster GKE"
+  value       = var.kubernetes_cluster_name.pro
+  description = "Nome do cluster Produçao"
   sensitive   = false
 }

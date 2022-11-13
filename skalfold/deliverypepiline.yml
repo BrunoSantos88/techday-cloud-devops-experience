@@ -1,0 +1,28 @@
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: DeliveryPipeline
+metadata:
+name: my-cloud-deploy-app
+description: our main application pipeline
+serialPipeline:
+- targetId: dev
+profiles: []
+- targetId: prod
+profiles: []
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+name: dev
+description: This is Staging cluster
+gke:
+cluster: projects/<your project name >/locations/<region>/clusters/staging-k8s-cluster
+---
+
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+name: prod
+description: This is production cluster
+gke:
+cluster: projects/<your project name >/locations/<region>/clusters/production-k8s-cluster
