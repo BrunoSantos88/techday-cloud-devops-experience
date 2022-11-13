@@ -10,7 +10,7 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t database Docker-Projetos/leeroy-app/.
+    docker build -t leeroy-app Docker-Projetos/leeroy-app/.
     docker tag leeroy-app gcr.io/bootcamp-363315/leeroy-app
     docker push gcr.io/bootcamp-363315/leeroy-app
     
