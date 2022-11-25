@@ -1,7 +1,7 @@
 <?php
-$servername = "mysql-connection";
+$servername ="bootcamp-363315:us-central1:mysql94251"
 $username = "root";
-$password = "Senha123";
+$password = "mypassw0rd";
 $database = "meubanco";
 
 // Criar conexão
