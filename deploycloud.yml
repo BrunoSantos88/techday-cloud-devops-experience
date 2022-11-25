@@ -1,16 +1,13 @@
 steps:
 
-steps:
 
-
-### docker compilaçao do cointainer database
-- id: 'leeroy-app'
-  name: 'gcr.io/cloud-builders/docker'
+- id: 'database'
+  name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t leeroy-app Docker-Projetos/leeroy-app/.
-    docker tag leeroy-app gcr.io/bootcamp-363315/leeroy-app
-    docker push gcr.io/bootcamp-363315/leeroy-app
+    cd Build-database
+    terraform init
+    terraform apply -auto-approve
     
