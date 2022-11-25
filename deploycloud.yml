@@ -3,9 +3,8 @@ steps:
 
 - id: 'Deploy GKE Backend'
   name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'kubernets/backend.yml']
+  args: ['apply', '-f', 'kubernets/frontend.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
-
     
