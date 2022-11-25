@@ -1,13 +1,13 @@
 steps:
 
 
-- id: 'database'
+- id: 'rede-publica e pering conection'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd Build-database
+    cd Rede-publica
     terraform init
     terraform apply -auto-approve
     
