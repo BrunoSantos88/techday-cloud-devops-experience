@@ -1,16 +1,5 @@
 steps:
 
-
-- id: backend
-  name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t backend Docker-Projetos/backend/.
-    docker tag backend gcr.io/bootcamp-363315/backend
-    docker push gcr.io/bootcamp-363315/backend
-
 - id: 'tf apply cluster-GKE'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'

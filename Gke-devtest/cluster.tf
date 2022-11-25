@@ -1,5 +1,5 @@
-resource "google_container_cluster" "cluster-k8-dev-test" {
-  name                     = "cluster-k8-dev-test"
+resource "google_container_cluster" "cluster-k8-dev-test2" {
+  name                     = "cluster-k8-dev-test2"
   location                 = "us-central1-f"
   remove_default_node_pool = true
   initial_node_count       = 1
