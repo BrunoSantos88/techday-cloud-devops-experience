@@ -4,25 +4,20 @@ resource "google_sql_database" "database" {
 }
 
 # See versions at https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#database_version
-resource "google_sql_database_instance" "instance" {
-  name             = "my-database-instance"
-  region           = "us-central1"
+resource "google_sql_database_instance" "master" {
+  name             = "mysql94251"
   database_version = "MYSQL_5_7"
-  settings{
-    tier = "db-f1-micro"
-    user_labels = {
-      "environment" = "development"
-    }
-  }
-
-
-ip_configuration {
+  region           = "us-central1"
+ settings {
+    tier = "db-n1-standard-1"
+    
+    ip_configuration {
       ipv4_enabled    = true
       authorized_networks{
         value = "0.0.0.0/0"
     }
   }
-
+}
   
 
   deletion_protection  = "false"
@@ -30,11 +25,11 @@ ip_configuration {
 
 resource "google_sql_user" "users" {
 name = "root"
-instance = "${google_sql_database_instance.instance.name}"
+instance = "${google_sql_database_instance.master.name}"
 host = "%"
 password = "mypassw0rd"
 }
 
 output "connection_name" {
-  value = google_sql_database_instance.instance.connection_name
+  value = google_sql_database_instance.master.connection_name
 }
