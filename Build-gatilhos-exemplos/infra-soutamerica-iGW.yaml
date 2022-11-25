@@ -1,28 +1,20 @@
-- id: 'tf apply infraestrutura-rede'
+
+- id: 'infraestrutura'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd Rede-NaTgatway
+    cd Rede-infraestrutura
     terraform init
     terraform apply -auto-approve
-- id: 'tf apply security-rede'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-   cd Firewal-Nat-prod
-   terraform init
-   terraform apply -auto-approve
 
-- id: 'tf apply cluster-GKE'
+- id: 'Security-Group'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd GKE-Prod
+    cd Build-Terraform-Firewall
     terraform init
     terraform apply -auto-approve

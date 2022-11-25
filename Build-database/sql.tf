@@ -30,6 +30,7 @@ host = "%"
 password = "mypassw0rd"
 }
 
-output "connection_name" {
-  value = google_sql_database_instance.master.connection_name
+output "Db-IP" {
+  value = google_sql_database_instance.master.first_ip_address
+  depends_on=[google_sql_database_instance.master]
 }

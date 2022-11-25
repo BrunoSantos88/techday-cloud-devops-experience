@@ -1,23 +1,15 @@
 steps:
 
 
-- id: 'infraestrutura'
+- id: 'bancodedados'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd Rede-infraestrutura
+    cd Build-database
     terraform init
     terraform apply -auto-approve
 
-- id: 'Security-Group'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd Build-Terraform-Firewall
-    terraform init
-    terraform apply -auto-approve
+
     
