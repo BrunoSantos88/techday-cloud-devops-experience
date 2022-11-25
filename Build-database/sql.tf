@@ -17,10 +17,12 @@ resource "google_sql_database_instance" "instance" {
 
 
 ip_configuration {
-      ipv4_enabled = false
-      # private_network = var.vpc_name
-      private_network = "cluster-k8s-vpc"
+      ipv4_enabled    = true
+      authorized_networks{
+        value = "0.0.0.0/0"
     }
+  }
+
   
 
   deletion_protection  = "false"
