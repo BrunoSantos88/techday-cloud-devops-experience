@@ -1,5 +1,15 @@
 steps:
 
+- id: 'frontend'
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t frontend Docker-Projetos/frontend/.
+    docker tag frontend gcr.io/bootcamp-363315/frontend
+    docker push gcr.io/bootcamp-363315/frontend
+
 
 - id: 'Deploy GKE Backend'
   name: 'gcr.io/cloud-builders/kubectl'

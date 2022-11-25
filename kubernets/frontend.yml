@@ -4,7 +4,6 @@ metadata:
   labels:
     app: frontend
   name: frontend
-  namespace: app-carrefour
 spec:
   replicas: 10
   selector:
