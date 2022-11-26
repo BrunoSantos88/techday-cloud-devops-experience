@@ -2,7 +2,7 @@ steps:
 
 - id: 'Deploy GKE App-voto'
   name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'kubernets/appvoto.yml']
+  args: ['apply', '-f', 'kubernets/backend.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-k8-dev-test'
