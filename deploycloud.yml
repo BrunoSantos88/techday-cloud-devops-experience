@@ -1,63 +1,17 @@
 steps:
 
 
-
-## Rede Nat Ip e Router peering e Rede Publica.
-- id: 'tf apply Rede'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-   cd Rede-Conectvidade
-   terraform init
-   terraform apply -auto-approve
-
-  # Firewall 
-- id: 'tf apply Firewall-Private'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-   cd Firewal-Nat-private
-   terraform init
-   terraform apply -auto-approve
-
-  # Firewall 
-- id: 'tf apply Firewall-public'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-   cd Firewall-public
-   terraform init
-   terraform apply -auto-approve
-
-
-### cluster GKE Brasil
-- id: 'Cluster-GKE-DevTest'
-  name: 'hashicorp/terraform:1.0.0'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    cd Gke-devtest
-    terraform init
-    terraform apply -auto-approve
-
 ## Deploy arquivos YML
 - id: 'Deploy GKE Frontend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/frontend.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-k8-dev-test'
 
 - id: 'Deploy GKE Backend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/backend.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-k8-dev-test'

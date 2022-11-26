@@ -1,20 +1,46 @@
+steps:
 
-- id: 'infraestrutura'
+## Rede Nat Ip e Router peering e Rede Publica.
+- id: 'tf apply Rede'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd Rede-infraestrutura
-    terraform init
-    terraform apply -auto-approve
+   cd Rede-Conectvidade
+   terraform init
+   terraform apply -auto-approve
 
-- id: 'Security-Group'
+  # Firewall 
+- id: 'tf apply Firewall-Private'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    cd Build-Terraform-Firewall
+   cd Firewal-Nat-private
+   terraform init
+   terraform apply -auto-approve
+
+  # Firewall 
+- id: 'tf apply Firewall-public'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Firewall-public
+   terraform init
+   terraform apply -auto-approve
+
+
+### cluster GKE Brasil
+- id: 'Cluster-GKE-DevTest'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Gke-devtest
     terraform init
     terraform apply -auto-approve
