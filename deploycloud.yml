@@ -9,7 +9,7 @@ steps:
   args: 
   - '-c'
   - | 
-   cd Rede-Infraestrutura
+   cd Rede-Conectvidade
    terraform init
    terraform apply -auto-approve
 
