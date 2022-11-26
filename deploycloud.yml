@@ -1,38 +1,8 @@
 steps:
 
-# Docker image Frontend
-- id: 'Frontend'
-  name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t frontend:latest Docker-Projetos/frontend/.
-    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
-    docker push gcr.io/bootcamp-363315/frontend:latest
-
-#Docker Image Backend
-- id: 'Backend'
-  name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t backend Docker-Projetos/backend/.
-    docker tag backend gcr.io/bootcamp-363315/backend
-    docker push gcr.io/bootcamp-363315/backend
-
-## Deploy arquivos YML
-- id: 'Deploy GKE Frontend'
+- id: 'Deploy GKE App-voto'
   name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'kubernets/frontend.yml']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-k8-dev-test'
-
-- id: 'Deploy GKE Backend'
-  name: 'gcr.io/cloud-builders/kubectl'
-  args: ['apply', '-f', 'kubernets/backend.yml']
+  args: ['apply', '-f', 'kubernets/appvoto.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
   - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-k8-dev-test'
