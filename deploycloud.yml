@@ -1,6 +1,6 @@
 steps:
 
-- id: 'Deploy GKE App-voto'
+- id: 'Deploy GKE Backend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/backend.yml']
   env:
