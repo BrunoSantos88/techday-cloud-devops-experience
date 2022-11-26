@@ -18,9 +18,9 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t backend:latest Docker-Projetos/backend/.
-    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
+    docker build -t backend Docker-Projetos/backend/.
+    docker tag backend us-central1-docker.pkg.dev/bootcamp-363315/backend
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend
 
 ## Rede Nat Ip e Router peering e Rede Publica.
 - id: 'INFRA REDE'
