@@ -1,7 +1,7 @@
 steps:
 
-# Frontend
-- id: 'Docker image Frontend'
+# Docker image Frontend
+- id: 'Frontend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
@@ -11,16 +11,16 @@ steps:
     docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
     docker push gcr.io/bootcamp-363315/frontend:latest
 
-#backend
-- id: 'Docker image Backend'
+#Docker Image Backend
+- id: 'Backend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
     docker build -t backend Docker-Projetos/backend/.
-    docker tag backend us-central1-docker.pkg.dev/bootcamp-363315/backend
-    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend
+    docker tag backend gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/backend
 
 ## Rede Nat Ip e Router peering e Rede Publica.
 - id: 'INFRA REDE'
