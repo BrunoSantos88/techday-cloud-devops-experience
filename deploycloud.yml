@@ -3,7 +3,7 @@ steps:
 
 
 ## Rede Nat Ip e Router peering e Rede Publica.
-- id: 'INFRA REDE'
+- id: 'tf apply Rede'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
@@ -14,7 +14,7 @@ steps:
    terraform apply -auto-approve
 
   # Firewall 
-- id: 'FIREWALL PRIVATE'
+- id: 'tf apply Firewall-Private'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
@@ -25,7 +25,7 @@ steps:
    terraform apply -auto-approve
 
   # Firewall 
-- id: 'FIREWALL PUBLIC'
+- id: 'tf apply Firewall-public'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
