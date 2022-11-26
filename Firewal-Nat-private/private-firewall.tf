@@ -1,7 +1,7 @@
 resource "google_compute_firewall" "k8s-cluster" {
   project = "bootcamp-363315"
   name    = "cluster-k8-firewall-devtest"
-  network = "cluster-k8s-vpc"
+  network = "vpc-private"
   allow {
     protocol = "icmp"
   }

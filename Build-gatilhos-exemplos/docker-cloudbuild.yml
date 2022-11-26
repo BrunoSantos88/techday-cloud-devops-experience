@@ -1,19 +1,17 @@
 steps:
 
-
-### docker compilaçao do cointainer database
-- id: Database
+### docker compilaçao do cointainer backend
+- id: 'Backend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t database Docker-Projetos/database/.
-    docker tag database gcr.io/bootcamp-363315/database
-    docker push gcr.io/bootcamp-363315/database
+    docker build -t backend Docker-Projetos/backend/.
+    docker tag backend gcr.io/bootcamp-363315/backend
+    docker push gcr.io/bootcamp-363315/backend
 
-### docker compilaçao do cointainer backend
-- id: backend
+- id: 'Frontend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 

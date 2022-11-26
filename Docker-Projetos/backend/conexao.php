@@ -1,5 +1,6 @@
 <?php
-$servername ="bootcamp-363315:us-central1:mysql94251"
+
+$servername ="34.136.172.168";
 $username = "root";
 $password = "mypassw0rd";
 $database = "meubanco";

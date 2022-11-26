@@ -17,7 +17,29 @@ output "endpoint" {
 }
 
 output "kubernetes_cluster_host" {
-  value       = var.kubernetes_cluster_name.pro
+  value       = ""
   description = "Nome do cluster Produçao"
   sensitive   = false
 }
+
+output "vpc_priavate_name" {
+  value       = ""
+  description = "Nome do cluster Produçao"
+  sensitive   = false
+}
+
+output "vpc_public_name" {
+  value       = ""
+  description = "Nome do cluster Produçao"
+  sensitive   = false
+}
+
+output "bancodados_name" {
+  value       = ""
+  description = "Nome do cluster Produçao"
+  sensitive   = false
+}
+
+
+
+

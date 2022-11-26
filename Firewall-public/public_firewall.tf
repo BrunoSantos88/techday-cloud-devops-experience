@@ -1,7 +1,7 @@
-resource "google_compute_firewall" "k8s-cluster" {
+resource "google_compute_firewall" "public-firewall" {
   project = "bootcamp-363315"
-  name    = "cluster-k8-gw-public"
-  network = "cluster-k8s-vpc"
+  name    = "public-rede"
+  network = "public-vpc"
   allow {
     protocol = "icmp"
   }

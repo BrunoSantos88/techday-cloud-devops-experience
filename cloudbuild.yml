@@ -27,7 +27,7 @@ steps:
 
 # Build --- TAG ----- PUSH Docker Repositorio.
 
-# frontend
+# Frontend
 - id: 'Docker image Frontend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'

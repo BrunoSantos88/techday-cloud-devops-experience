@@ -1,20 +1,83 @@
 steps:
 
-- id: 'frontend'
+# Frontend
+- id: 'Docker image Frontend'
   name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'sh'
   args: 
   - '-c'
   - | 
-    docker build -t frontend Docker-Projetos/frontend/.
-    docker tag frontend gcr.io/bootcamp-363315/frontend
-    docker push gcr.io/bootcamp-363315/frontend
+    docker build -t frontend:latest Docker-Projetos/frontend/.
+    docker tag frontend:latest gcr.io/bootcamp-363315/frontend:latest
+    docker push gcr.io/bootcamp-363315/frontend:latest
+
+#backend
+- id: 'Docker image Backend'
+  name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    docker build -t backend:latest Docker-Projetos/backend/.
+    docker tag backend:latest us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
+    docker push us-central1-docker.pkg.dev/bootcamp-363315/backend:latest
+
+## Rede Nat Ip e Router peering e Rede Publica.
+- id: 'INFRA REDE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Rede-Infraestrutura
+   terraform init
+   terraform apply -auto-approve
+
+  # Firewall 
+- id: 'FIREWALL PRIVATE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Firewal-Nat-private
+   terraform init
+   terraform apply -auto-approve
+
+  # Firewall 
+- id: 'FIREWALL PUBLIC'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+   cd Firewall-public
+   terraform init
+   terraform apply -auto-approve
 
 
-- id: 'Deploy GKE Backend'
+### cluster GKE Brasil
+- id: 'Cluster-GKE-DevTest'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Gke-devtest
+    terraform init
+    terraform apply -auto-approve
+
+## Deploy arquivos YML
+- id: 'Deploy GKE Frontend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/frontend.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
-    
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'
+
+- id: 'Deploy GKE Backend'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/backend.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster-k8-dev-test'

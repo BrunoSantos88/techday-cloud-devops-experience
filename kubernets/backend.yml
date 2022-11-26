@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend
 spec:
-  replicas: 10
+  replicas: 20
   selector:
     matchLabels:
       app: backend
@@ -19,7 +19,30 @@ spec:
         image: gcr.io/bootcamp-363315/backend:latest
         ports:
           - containerPort: 80
-            name: backend
+            name: frontend 
+  
+        # ... other container configuration
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: root
+              key: username
+        - name: DB_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mypassw0rd
+              key: password
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: meubanco
+              key: database
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: 34.136.172.168
+              key: db_host
 
 ---
 
