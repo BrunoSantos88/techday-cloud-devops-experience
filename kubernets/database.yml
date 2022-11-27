@@ -28,6 +28,7 @@ metadata:
 spec:
   ports:
   - port: 3306
+    targetPort: 3306
+  type: LoadBalancer
   selector:
-    app: mysql
-  clusterIP: None
+    app: mysql-connection
