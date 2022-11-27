@@ -1,5 +1,5 @@
 resource "google_container_cluster" "cluster-prod" {
-  name                     = "$_CLUSTER_PROD"
+  name                     = "mycluster-prod"
   location                 = "southamerica-east1"
   node_locations           = ["southamerica-east1-a","southamerica-east1-b","southamerica-east1-c"]
   remove_default_node_pool = true
