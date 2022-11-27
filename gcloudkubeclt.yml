@@ -1,28 +1,28 @@
 steps:
 
-## Deploy arquivos YML
-- id: 'Deploy GKE Mysql-volume'
+## Deploy arquivos msyql YML
+- id: 'Deploy GKE Mysql-Volume'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/mysql-pv.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
   
-- id: 'Deploy GKE persistemvolume'
+- id: 'Deploy GKE persistem-volume'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/mysql-pvc.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
 
-- id: 'Deploy GKE persistemvolume'
+- id: 'Deploy GKE myql deployment'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/mysql-deployment.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
 
-- id: 'Deploy GKE persistemvolume'
+- id: 'Deploy GKE mysql-service'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/mysql-service.yml']
   env:
