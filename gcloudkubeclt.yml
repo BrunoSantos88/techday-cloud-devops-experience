@@ -19,7 +19,7 @@ steps:
   args: 
   - '-c'
   - | 
-    docker build -t frontend Docker-Projetos/front/.
+    docker build -t frontend Docker-Projetos/frontend/.
     docker tag frontend gcr.io/bootcamp-363315/frontend
     docker push gcr.io/bootcamp-363315/frontend
 
