@@ -19,17 +19,16 @@ spec:
         image: gcr.io/bootcamp-363315/backend:latest
         ports:
           - containerPort: 80
-            name: frontend 
+            name: backend
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: php-service
+  name: backend
 spec:
-  type: NodePort
   ports:
-    - targetPort: 80
-      port: 80
-      nodePort: 30005
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
   selector:
-    app: php
+    app: backend
