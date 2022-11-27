@@ -5,7 +5,7 @@ resource "google_sql_database" "database" {
 
 # See versions at https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#database_version
 resource "google_sql_database_instance" "master" {
-  name             = "mydatabase"
+  name             = "$_BANCO_NAME"
   database_version = "MYSQL_5_7"
   region           = "southamerica-east1"
  settings {
