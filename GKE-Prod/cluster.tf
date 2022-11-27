@@ -1,10 +1,12 @@
-resource "google_container_cluster" "cluster-k8-produção" {
+resource "google_container_cluster" "cluster-prod" {
   name                     = "my-cluster-k8"
-  location                 = "us-central1"
+  location                 = "southamerica-east1"
+  node_locations           = ["southamerica-east1-a","southamerica-east1-b","southamerica-east1-c"]
   remove_default_node_pool = true
   initial_node_count       = 1
-  network                  = "cluster-k8s-vpc"
+  network                  = "vpc-private"
   subnetwork               = "k8-private"
+
   
   addons_config {
     http_load_balancing {

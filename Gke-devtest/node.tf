@@ -1,6 +1,6 @@
 resource "google_container_node_pool" "primary_preemptible_nodes-dev-test" {
   name       = "my-node-pool-dev-test"
-  location   = "southamerica-east1-a"
+  location   = "southamerica-east1"
   cluster    = google_container_cluster.cluster-k8-dev-test.id
   node_count = 1
 
