@@ -5,12 +5,12 @@ steps:
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/frontend.yml']
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
+  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
   
 - id: 'Deploy GKE Backend'
   name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'kubernets/backend.yml']
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1-a'
+  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
