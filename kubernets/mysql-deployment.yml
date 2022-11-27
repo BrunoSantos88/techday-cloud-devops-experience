@@ -6,26 +6,28 @@ spec:
   selector:
     matchLabels:
       app: mysql
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
         app: mysql
     spec:
       containers:
-        - image: gcr.io/bootcamp-363315/database:latest
-          name: mysql
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: SENHA123
-          ports:
-            - containerPort: 3306
-              name: mysql
-          volumeMounts:
-            - name: mysql-persistent-storage
-              mountPath: /var/lib/mysql
-      volumes:
-        - name: mysql-persistent-storage
-          persistentVolumeClaim:
-            claimName: mysql-pv-claim
+      - name: mysql
+        image: gcr.io/bootcamp-363315/database:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3306
+          name: database
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-connection
+spec:
+  ports:
+  - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
