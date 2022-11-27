@@ -1,0 +1,45 @@
+steps:
+
+#Analise no SonarCloud
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+    - '-c'
+    - apt-get update
+    - apt-get -y install node
+    - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io','-Dsonar.organization=BrunoSantos','-Dsonar.projectKey=-Tech-Day---Cloud-DevOps-Experience','-Dsonar.login=${_SONAR_TOKEN}'
+  id: SonarCloud
+
+  #Analise Snyk (SCA security scan)
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+      - '-c'
+      - |-
+       apt-get update
+       apt-get -y install maven 
+       SNYK_TOKEN=${_SNYK_TOKEN}
+       export SNYK_TOKEN
+       mvn snyk:test -fn  
+  id: Snyk SCA
+
+  #Run DAST scan using OWASP ZAP in GCP DevSecOps Pipeline
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+    - '-c'
+    - |-
+      apt-get update
+      apt-get -y install wget
+      apt-get -y install default-jdk
+      wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
+      mkdir zap
+      tar -xvf ZAP_2.11.1_Linux.tar.gz
+      cd ZAP_2.11.1
+      ./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout ../zap_report.html 
+  id: DAST Scan using OWASP ZAP
+artifacts:
+  objects:
+    location: '$_BUCKET_NAME'
+    paths:
+      - zap_report.html
