@@ -2,7 +2,7 @@ steps:
 
 
 # Cluster Prodution#
-- id: 'tf apply cluster-GKE'
+- id: 'tf apply cluster-Dev-Prod'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
@@ -14,7 +14,7 @@ steps:
 
 
 # Cluster Dev-test#
-- id: 'tf apply cluster-GKE'
+- id: 'tf apply cluster-Dev-Test'
   name: 'hashicorp/terraform:1.0.0'
   entrypoint: 'sh'
   args: 
