@@ -1,6 +1,6 @@
 <?php
 
-$servername ="34.151.207.31";
+$servername ="10.96.208.3";
 $username = "root";
 $password = "mysql94251";
 $database = "meubanco";
