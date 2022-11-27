@@ -1,0 +1,25 @@
+steps:
+
+
+# Cluster Prodution#
+- id: 'tf apply cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd GKE-Prod
+    terraform init
+    terraform apply -auto-approve
+
+
+# Cluster Dev-test#
+- id: 'tf apply cluster-GKE'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+    cd Gke-devtest
+    terraform init
+    terraform apply -auto-approve
