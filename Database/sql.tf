@@ -24,10 +24,10 @@ resource "google_sql_database_instance" "master" {
 }
 
 resource "google_sql_user" "users" {
-name = "${_ADIM_LOGIN}"
+name = "$_ADIM_LOGIN"
 instance = "${google_sql_database_instance.master.name}"
 host = "%"
-password = "${_ADMIN_SECRET}"
+password = "$_ADMIN_SECRET"
 }
 
 output "Db-IP" {
