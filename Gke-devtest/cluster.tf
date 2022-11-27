@@ -1,5 +1,5 @@
 resource "google_container_cluster" "cluster-k8-dev-test" {
-  name                     = "cluster-k8-dev-test"
+  name                     = "$_CLUSTER_DEV"
   location                 = "southamerica-east1"
   node_locations           = ["southamerica-east1-a"]
   remove_default_node_pool = true
