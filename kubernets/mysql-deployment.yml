@@ -6,13 +6,14 @@ spec:
   selector:
     matchLabels:
       app: mysql
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
         app: mysql
     spec:
       containers:
-        - name: mysql
         - image: gcr.io/bootcamp-363315/database:latest
           name: mysql
           env:
