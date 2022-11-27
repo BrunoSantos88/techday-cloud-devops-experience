@@ -1,9 +1,9 @@
 <?php
 
-$servername ="$_BANCO_HOST";
-$username = "$_BANCO_ADMIN";
-$password = "$_ADMIN_SECRET";
-$database = "$_BANCO_TABELA";
+$servername ="34.151.207.31";
+$username = "root";
+$password = "mysql94251";
+$database = "meubanco";
 
 // Criar conexão
 

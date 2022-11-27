@@ -5,7 +5,7 @@ $("#button-blue").on("click", function() {
     var txt_comentario = $("#comment").val();
 
     $.ajax({
-        url: "http://$_GKE_CLUSTER_HOST",
+        url: "http://35.247.244.189",
         
         type: "post",
         data: {nome: txt_nome, comentario: txt_comentario, email: txt_email},
