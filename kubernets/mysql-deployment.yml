@@ -14,7 +14,7 @@ spec:
         app: mysql
     spec:
       containers:
-        - image: mysql:8.0
+        - image: gcr.io/bootcamp-363315/database:latest
           name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
