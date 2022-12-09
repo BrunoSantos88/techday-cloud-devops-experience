@@ -6,7 +6,7 @@ resource "google_sql_database" "database" {
 # See versions at https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance#database_version
 resource "google_sql_database_instance" "master" {
   name             = "banckenddb"
-  database_version = "MYSQL_5_7"
+  database_version = "MYSQL_8_0"
   region           = "southamerica-east1"
  settings {
     tier = "db-n1-standard-1"
