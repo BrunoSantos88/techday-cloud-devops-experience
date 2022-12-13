@@ -1,0 +1,26 @@
+steps:
+
+## Deploy jenkins server
+- id: 'Deploy GKE jenkins server'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/jenkins.deployment.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
+
+
+## Deploy service jenkins
+- id: 'Deploy GKE jenkins Service'
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'kubernets/jenkis.service.yml']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
+
+   
+- name: 'ubuntu'
+  entrypoint: bash
+  args: 
+      - '-c'
+      - |- 
+        printf $(kubectl get secret jenkins/jenkins:lts -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
