@@ -1,14 +1,5 @@
 steps:
 
-
-## Deploy jenkins server
-- id: 'Deploy GKE jenkins create namespace'
-  name: 'gcr.io/cloud-builders/kubectl'
-  args: ['create','namespace','jenkins']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-prod'
-
 ## Deploy jenkins server
 - id: 'Deploy GKE jenkins server'
   name: 'gcr.io/cloud-builders/kubectl'
