@@ -16,11 +16,3 @@ steps:
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
   - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-prod'
-
-- id: 'output jenkins password'
-  name: 'ubuntu'
-  entrypoint: bash
-  args: 
-      - '-c'
-      - |- 
-        printf $(kubectl get secret jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
