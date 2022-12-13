@@ -1,28 +1,5 @@
 steps:
 
-#Docker Image Backend
-- id: 'Backend'
-  name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t backend Docker-Projetos/backend/.
-    docker tag backend gcr.io/bootcamp-363315/backend
-    docker push gcr.io/bootcamp-363315/backend
-
-
-#Docker Image Backend
-- id: 'Frontend'
-  name: 'gcr.io/cloud-builders/docker'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-    docker build -t frontend Docker-Projetos/frontend/.
-    docker tag frontend gcr.io/bootcamp-363315/frontend
-    docker push gcr.io/bootcamp-363315/frontend
-
 ## Deploy arquivos baclend YML
 - id: 'Deploy GKE backend'
   name: 'gcr.io/cloud-builders/kubectl'
