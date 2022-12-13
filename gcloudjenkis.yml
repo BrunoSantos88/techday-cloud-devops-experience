@@ -6,7 +6,7 @@ steps:
   args: ['apply', '-f', 'kubernets/jenkins.deployment.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-prod'
 
 
 ## Deploy service jenkins
@@ -15,10 +15,10 @@ steps:
   args: ['apply', '-f', 'kubernets/jenkis.service.yml']
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=southamerica-east1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-dev'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=mycluster-prod'
 
-   
-- name: 'ubuntu'
+- id: 'output jenkins password'
+  name: 'ubuntu'
   entrypoint: bash
   args: 
       - '-c'
