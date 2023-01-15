@@ -1,21 +1,50 @@
 pipeline {
     agent any
+    environment {
+        PROJECT_ID = 'qwiklabs-gcp-04-15179ed14b7b'
+        CLUSTER_NAME = 'mycluster-dev'
+        LOCATION = 'southamerica-east1'
+        CREDENTIALS_ID = 'qwiklabs-gcp-04-15179ed14b7b'
 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
     }
+  tools { 
+        ///depentencias 
+        maven 'Maven 3.6.3' 
+        terraform 'Terraform 1.3.7' 
+    }
+
+// Stages.
+  stages {   
+
+stage('GIT CLONE') {
+  steps {
+                // Get code from a GitHub repository
+    git url: 'https://github.com/BrunoSantos88/-Tech-Day---Cloud-DevOps-Experience.git', branch: 'main',
+    credentialsId: 'jenkins-server_local'
+          }
+  }
+
+
+
+///INFRA iS CODE 
+    stage('TF INICIAR') {
+            steps {
+                sh 'terraform init '
+                
+            }
+        }
+
+        stage('TF FMT') {
+            steps {
+                sh 'terraform fmt '
+                
+            }
+        }
+
+        stage('TF Apply') {
+            steps {
+          sh 'terraform apply -auto-approve'
+            }
+        }
+}
 }
