@@ -9,14 +9,13 @@ resource "google_compute_instance" "my_instance" {
       image = "ubuntu-os-cloud/ubuntu-2004-lts"
       size =  100
     }
-
+  }
   network_interface {
     network = "default"
     
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
-}
  metadata_startup_script = "echo 'BASE64_SCRIPT' | base64 -d > /tmp/myscript.sh && chmod +x /tmp/myscript.sh && /tmp/myscript.sh"
 }
 
