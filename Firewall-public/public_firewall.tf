@@ -1,5 +1,5 @@
 resource "google_compute_firewall" "public-firewall" {
-  project = "bootcamp-363315"
+  project = "devops-399217"
   name    = "public-rede"
   network = "public-vpc"
   allow {
