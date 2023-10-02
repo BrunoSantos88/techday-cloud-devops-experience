@@ -7,15 +7,8 @@ resource "google_compute_instance" "my_instance" {
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2004-lts"
+      size =  100
     }
-
-# Crie um disco de 100 GB
-resource "google_compute_disk" "my_disk" {
-  name  = "my-disk"
-  size  = "250"
-  type  = "pd-standard"  # Pode ser pd-standard ou pd-ssd dependendo do tipo de disco desejado
-  zone  = "us-central1-a" # A mesma zona da instância
-}
 
   network_interface {
     network = "default"
