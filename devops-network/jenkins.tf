@@ -7,7 +7,7 @@ resource "google_compute_instance" "my_instance" {
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2004-lts"
-      size =  100
+      size =  250
     }
   }
   network_interface {
