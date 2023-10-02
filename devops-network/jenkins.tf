@@ -9,6 +9,18 @@ resource "google_compute_instance" "my_instance" {
       image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
+attached_disk {
+    source = google_compute_disk.my_disk.name
+    type   = "pd-standard"  # Pode ser pd-standard ou pd-ssd dependendo do tipo de disco desejado
+  }
+
+# Crie um disco de 100 GB
+resource "google_compute_disk" "my_disk" {
+  name  = "my-disk"
+  size  = "250"
+  type  = "pd-standard"  # Pode ser pd-standard ou pd-ssd dependendo do tipo de disco desejado
+  zone  = "us-central1-a" # A mesma zona da instância
+}
 
   network_interface {
     network = "default"
