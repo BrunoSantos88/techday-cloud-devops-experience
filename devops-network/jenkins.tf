@@ -12,10 +12,10 @@ resource "google_compute_instance" "my_instance" {
 
   network_interface {
     network = "default"
+    
+       # Associe um endereço IP público padrão à instância
+    access_config {}
   }
-
-
-    # Crie e execute o script codificado em base64 no início da inicialização
   metadata_startup_script = "echo 'BASE64_SCRIPT' | base64 -d > /tmp/myscript.sh && chmod +x /tmp/myscript.sh && /tmp/myscript.sh"
 }
 
