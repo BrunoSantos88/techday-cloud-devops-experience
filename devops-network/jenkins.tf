@@ -16,9 +16,10 @@ resource "google_compute_instance" "my_instance" {
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
-  metadata_startup_script = "echo 'BASE64_SCRIPT' | base64 -d > /tmp/myscript.sh && chmod +x /tmp/myscript.sh && /tmp/myscript.sh"
 }
+ metadata_startup_script = "echo 'BASE64_SCRIPT' | base64 -d > /tmp/myscript.sh && chmod +x /tmp/myscript.sh && /tmp/myscript.sh"
 }
+
 
 
 resource "google_compute_firewall" "jenkins-vm" {
