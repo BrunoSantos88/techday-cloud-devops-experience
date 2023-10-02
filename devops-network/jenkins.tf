@@ -22,7 +22,7 @@ resource "google_compute_instance" "my_instance" {
 
 
 resource "google_compute_firewall" "jenkins-vm" {
-  name    = "allow-8080"
+  name    = "jenkins-8080"
   network = "default"
 
   allow {
