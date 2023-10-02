@@ -20,7 +20,7 @@ resource "google_compute_instance" "my_instance" {
 }
 
 
-resource "google_compute_firewall" "allow_8080" {
+resource "google_compute_firewall" "jenkins-vm" {
   name    = "allow-8080"
   network = "default"
 
@@ -29,6 +29,6 @@ resource "google_compute_firewall" "allow_8080" {
     ports    = ["8080"]
   }
 
-  source_ranges = ["0.0.0.0/0"]
+  source_ranges = ["0.0.0.0/0"]  # Permite o tráfego de qualquer endereço IP (não recomendado para produção)
 }
 }
