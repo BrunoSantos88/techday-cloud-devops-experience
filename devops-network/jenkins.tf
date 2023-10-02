@@ -18,6 +18,7 @@ resource "google_compute_instance" "my_instance" {
   }
   metadata_startup_script = "echo 'BASE64_SCRIPT' | base64 -d > /tmp/myscript.sh && chmod +x /tmp/myscript.sh && /tmp/myscript.sh"
 }
+}
 
 
 resource "google_compute_firewall" "jenkins-vm" {
@@ -30,5 +31,4 @@ resource "google_compute_firewall" "jenkins-vm" {
   }
 
   source_ranges = ["0.0.0.0/0"]  # Permite o tráfego de qualquer endereço IP (não recomendado para produção)
-}
 }
