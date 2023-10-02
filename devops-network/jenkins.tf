@@ -8,11 +8,6 @@ resource "google_compute_instance" "my_instance" {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
-  }
-attached_disk {
-    source = google_compute_disk.my_disk.name
-    type   = "pd-standard"  # Pode ser pd-standard ou pd-ssd dependendo do tipo de disco desejado
-  }
 
 # Crie um disco de 100 GB
 resource "google_compute_disk" "my_disk" {
@@ -42,4 +37,5 @@ resource "google_compute_firewall" "allow_8080" {
   }
 
   source_ranges = ["0.0.0.0/0"]
+}
 }
