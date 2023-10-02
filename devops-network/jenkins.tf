@@ -29,6 +29,10 @@ resource "google_compute_firewall" "jenkins-vm" {
     protocol = "tcp"
     ports    = ["8080"]
   }
+   allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
 
   source_ranges = ["0.0.0.0/0"]  # Permite o tráfego de qualquer endereço IP (não recomendado para produção)
 }
