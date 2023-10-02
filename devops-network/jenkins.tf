@@ -19,3 +19,15 @@ resource "google_compute_instance" "my_instance" {
   metadata_startup_script = "echo 'BASE64_SCRIPT' | base64 -d > /tmp/myscript.sh && chmod +x /tmp/myscript.sh && /tmp/myscript.sh"
 }
 
+
+resource "google_compute_firewall" "allow_8080" {
+  name    = "allow-8080"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+}
