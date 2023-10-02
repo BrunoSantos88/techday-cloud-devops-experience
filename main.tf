@@ -1,12 +1,3 @@
-module "gke0-public-networking" {
-  source       = "./Rede-Conectvidade"
+module "projetodevops" {
+  source       = "./devops-network"
 }
-
-module "gke0-firewall" {
-  source       = "./Firewall-public"
-}
-
-module "gke" {
-  source       = "./Gke-devtest"
-}
-
