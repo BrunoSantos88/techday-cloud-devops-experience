@@ -16,7 +16,7 @@ resource "google_compute_instance" "my_instance" {
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
- metadata_startup_script = file("/myscript.sh")
+ metadata_startup_script = file("myscript.sh")
 }
 
 
