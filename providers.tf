@@ -2,7 +2,7 @@ terraform {
 }
 
 provider "google" {
-  project = "devops-399217"
+  project     = var.gcp_project_id
   region  = "us-central1"
   zone    = "us-central1-c"
 }
