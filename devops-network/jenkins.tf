@@ -3,7 +3,6 @@ resource "google_compute_instance" "my_instance" {
   name         = "jenkins"
   machine_type = "n2-standard-2"
   zone         = "us-central1-a"
-  #
 
   boot_disk {
     initialize_params {
@@ -17,7 +16,7 @@ resource "google_compute_instance" "my_instance" {
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
- metadata_startup_script = "echo 'BASE64_SCRIPT' | base64 -d > /tmp/myscript.sh && chmod +x /tmp/myscript.sh && /tmp/myscript.sh"
+ metadata_startup_script = metadata_startup_script = "${file("/myscript.sh")}"
 }
 
 
