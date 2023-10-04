@@ -1,7 +1,7 @@
 
 resource "google_compute_instance" "my_instance" {
   name         = "jenkins"
-  machine_type = "n2-standard-2"
+  machine_type = "e2-standard-8"
   zone         = "us-central1-a"
 
   boot_disk {
