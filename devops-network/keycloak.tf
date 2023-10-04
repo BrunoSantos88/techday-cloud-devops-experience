@@ -19,7 +19,7 @@ resource "google_compute_instance" "my_instance1" {
 
 
 
-resource "google_compute_firewall" "jenkins-vm" {
+resource "google_compute_firewall" "keycloak-vm" {
   name    = "keycloak"
   network = "default"
 
