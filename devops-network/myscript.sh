@@ -35,6 +35,5 @@ sudo apt-get update
 sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 sudo apt-get install npm -y
 sudo npm install snyk -g
-#installAnsible
 sudo apt-get install ansible -y
 sudo apt-get install python -y
