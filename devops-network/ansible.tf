@@ -27,3 +27,20 @@ EOF
 output "instance_ip" {
   value = google_compute_instance.ansible_instance.network_interface[0].access_config[0].nat_ip
 }
+
+
+resource "google_compute_firewall" "ansible-vm" {
+  name    = "ansible-8080"
+  network = "default"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080"]
+  }
+   allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]  # Permite o tráfego de qualquer endereço IP (não recomendado para produção)
+}
