@@ -1,7 +1,7 @@
 resource "google_compute_instance" "ansible_instance" {
   name         = "Ansible"
   machine_type = "e2-medium"
-  zone         = "us-east-a"
+  zone         = "us-east1-b"
 
   boot_disk {
     initialize_params {
