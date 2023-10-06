@@ -1,5 +1,5 @@
 resource "google_compute_instance" "ansible_instance" {
-  name         = "Ansible"
+  name         = "ansible"
   machine_type = "e2-medium"
   zone         = "us-east1-b"
 
