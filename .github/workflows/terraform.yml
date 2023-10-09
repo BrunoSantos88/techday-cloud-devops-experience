@@ -16,8 +16,11 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Configure Google Cloud Credentials
-        run: echo "$GOOGLE_CLOUD_KEY" > key.json
+        # Login to GCP
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Initialize Terraform
         run: terraform init -reconfigure
