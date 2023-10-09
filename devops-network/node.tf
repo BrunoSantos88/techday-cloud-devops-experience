@@ -1,5 +1,5 @@
 resource "google_compute_instance" "node_instance" {
-  name         = "nodejs"
+  name         = "node-agent"
   machine_type = "e2-medium"
   zone         = "us-east1-b"
 
@@ -23,7 +23,7 @@ resource "google_compute_instance" "node_instance" {
 
 }
 
-resource "google_compute_firewall" "node-vm" {
+resource "google_compute_firewall" "node-nsg" {
   name    = "node"
   network = "default"
 
