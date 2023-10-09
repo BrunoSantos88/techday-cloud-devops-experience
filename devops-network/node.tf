@@ -10,7 +10,7 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
-   metadata_startup_script = file("node.sh")
+    metadata_startup_script = base64encode(file("node.sh"))
 
   network_interface {
     network = "default"

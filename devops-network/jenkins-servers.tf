@@ -11,7 +11,7 @@ resource "google_compute_instance" "jenkins_instance" {
     }
   }
 
-   metadata_startup_script = file("jenkins.sh")
+     metadata_startup_script = base64encode(file("jenkins.sh"))
 
   network_interface {
     network = "default"
