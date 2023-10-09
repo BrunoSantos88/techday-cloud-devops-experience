@@ -10,7 +10,7 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
-  metadata_startup_script = file("./node.sh")
+  metadata_startup_script = file("node.sh")
 
   scheduling {
     preemptible       = true
