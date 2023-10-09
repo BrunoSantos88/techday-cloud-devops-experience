@@ -17,5 +17,7 @@ resource "google_compute_instance" "node_instance" {
     access_config {}
   }
 
-  metadata_startup_script = base64encode(file("node.sh"))
+     metadata = {
+    startup-script = file("node.sh")
+  }
 }

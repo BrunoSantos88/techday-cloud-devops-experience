@@ -18,6 +18,8 @@ resource "google_compute_instance" "jenkins_instance" {
     access_config {}
   }
 
-   metadata_startup_script = base64encode(file("jenkins.sh"))
+    metadata = {
+    startup-script = file("jenkins.sh")
+  }
 
 }
