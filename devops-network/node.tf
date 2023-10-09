@@ -10,8 +10,8 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
-  metadata = {
-  ssh-keys = "myuser:${file("~/.ssh/id_rsa.pub")}"
+   metadata = {
+  ssh-keys = "username:${file("myssh.pub")}"
 }
 
 
