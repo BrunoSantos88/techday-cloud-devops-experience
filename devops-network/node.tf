@@ -23,12 +23,7 @@ resource "google_compute_instance" "node_instance" {
 
 }
 
-output "instance_ip" {
-  value = google_compute_instance.node_instance.network_interface[0].access_config[0].nat_ip
-}
-
-
-resource "google_compute_firewall" "ansible-vm" {
+resource "google_compute_firewall" "node-vm" {
   name    = "node"
   network = "default"
 

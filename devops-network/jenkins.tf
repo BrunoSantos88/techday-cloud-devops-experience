@@ -22,14 +22,10 @@ resource "google_compute_instance" "jenkins_instance" {
 
 }
 
-output "instance_ip" {
-  value = google_compute_instance.jenkins_instance.network_interface[0].access_config[0].nat_ip
-}
 
 
-
-resource "google_compute_firewall" "jenkins-vm" {
-  name    = "jenkins-8080"
+resource "google_compute_firewall" "jenkins-nsg" {
+  name    = "jenkins-security"
   network = "default"
 
   allow {
