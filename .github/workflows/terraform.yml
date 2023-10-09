@@ -23,7 +23,7 @@ jobs:
          project_id: ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Initialize Terraform
-        run: terraform init -reconfigure
+        run: terraform init
 
       - name: Format Terraform
         run: terraform fmt
