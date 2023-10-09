@@ -20,7 +20,7 @@ jobs:
         run: echo "$GOOGLE_CLOUD_KEY" > key.json
 
       - name: Initialize Terraform
-        run: terraform init -reconfigure
+        run: terraform init
 
       - name: Format Terraform
         run: terraform fmt
