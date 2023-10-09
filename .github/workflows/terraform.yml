@@ -23,7 +23,7 @@ jobs:
           GOOGLE CREDENTIAL: ${{ secrets.GOOGLE_CLOUD_KEY }}
 
       - name: Format Terraform
-        run: terraform fmt -check
+        run: terraform fmt
         env:
           GOOGLE CREDENTIAL: ${{ secrets.GOOGLE_CLOUD_KEY }}
 
