@@ -30,3 +30,7 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+      - name: Terraform outputs
+        run: terraform output tls_public_key
+

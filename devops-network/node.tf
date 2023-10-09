@@ -10,6 +10,11 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
+     metadata = {
+    ssh-keys = google_compute_project_metadata_item.ssh_key.id
+  }
+
+
   metadata_startup_script = file("./node.sh")
 
   scheduling {

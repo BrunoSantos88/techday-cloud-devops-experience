@@ -10,6 +10,9 @@ resource "google_compute_instance" "jenkins_instance" {
       size =  250
     }
   }
+   metadata = {
+    ssh-keys = google_compute_project_metadata_item.ssh_key.id
+  }
 
    metadata_startup_script = file("./jenkins.sh")
 
