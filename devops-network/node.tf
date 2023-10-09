@@ -22,19 +22,3 @@ resource "google_compute_instance" "node_instance" {
 
 
 }
-
-resource "google_compute_firewall" "node-nsg" {
-  name    = "node"
-  network = "default"
-
-  allow {
-    protocol = "tcp"
-    ports    = ["5000"]
-  }
-   allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-
-  source_ranges = ["0.0.0.0/0"]  # Permite o tráfego de qualquer endereço IP (não recomendado para produção)
-}
