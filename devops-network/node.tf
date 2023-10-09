@@ -16,4 +16,19 @@ resource "google_compute_instance" "node_instance" {
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
+
+     metadata = {
+    startup-script = file("node.sh")
+  }
+}
+
+resource "google_compute_firewall" "node-firewall" {
+  name          = "node-firewall"
+  network       = "default"  # Replace with your network name if not using the default network.
+  allow {
+    protocol = "tcp"
+    ports    = ["22","8080", "50000"]  # Assuming Jenkins uses these ports.
+  }
+  source_ranges = ["0.0.0.0/0"]  # Restrict this to specific IP ranges for security.
+  target_tags   = ["agent-node"]    # Assuming your Jenkins instance has the tag "jenkins".
 }
