@@ -11,10 +11,6 @@ resource "google_compute_instance" "jenkins_instance" {
     }
   }
 
-     metadata = {
-    startup-script = file("jenkins.sh")
-  }
-
 
   network_interface {
     network = "default"

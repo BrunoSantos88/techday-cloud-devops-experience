@@ -10,9 +10,6 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
-   metadata = {
-    startup-script = file("node.sh")
-   }
 
   network_interface {
     network = "default"
