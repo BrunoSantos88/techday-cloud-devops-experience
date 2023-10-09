@@ -1,10 +1,10 @@
-resource "google_filestore_instance" "instance" {
-  name     = "test-instance"
+resource "google_filestore_instance" "jekinsfile" {
+  name     = "jenkins-file"
   location = "us-central1-b"
   tier     = "BASIC_HDD"
 
   file_shares {
-    capacity_gb = 1024
+    capacity_gb = 250
     name        = "share1"
   }
 
@@ -15,5 +15,5 @@ resource "google_filestore_instance" "instance" {
 }
 
 output "filestore_instance_ip" {
-  value = google_filestore_instance.instance.id
+  value = google_filestore_instance.jekinsfile.id
 }
