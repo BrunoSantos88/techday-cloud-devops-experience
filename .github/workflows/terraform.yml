@@ -18,7 +18,7 @@ jobs:
 
   
       - name: Initialize Terraform
-        run: terraform init -upgrade
+        run: terraform init
         env:
           GOOGLE CREDENTIAL: ${{ secrets.GOOGLE_CLOUD_KEY }}
 
