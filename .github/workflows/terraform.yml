@@ -19,9 +19,6 @@ jobs:
       - name: Configure Google Cloud Credentials
         run: echo "$GOOGLE_CLOUD_KEY" > key.json
 
-      - name: Authenticate with Google Cloud
-        run: gcloud auth activate-service-account --key-file=key.json
-
       - name: Initialize Terraform
         run: terraform init
 
