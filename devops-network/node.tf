@@ -19,6 +19,4 @@ resource "google_compute_instance" "node_instance" {
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
-
-
 }
