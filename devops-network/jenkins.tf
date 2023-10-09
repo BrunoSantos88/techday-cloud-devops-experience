@@ -1,7 +1,7 @@
 
-resource "google_compute_instance" "my_instance" {
+resource "google_compute_instance" "jenkins_instance" {
   name         = "jenkins"
-  machine_type = "e2-standard-8"
+  machine_type = "e2-medium"
   zone         = "us-central1-a"
 
   boot_disk {
@@ -10,12 +10,20 @@ resource "google_compute_instance" "my_instance" {
       size =  250
     }
   }
+
+  metadata_startup_script = base64encode(file("jenkins.sh"))
+
   network_interface {
     network = "default"
     
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
+
+}
+
+output "instance_ip" {
+  value = google_compute_instance.jenkins_instance.network_interface[0].access_config[0].nat_ip
 }
 
 
