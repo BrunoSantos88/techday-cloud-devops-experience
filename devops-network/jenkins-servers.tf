@@ -11,7 +11,6 @@ resource "google_compute_instance" "jenkins_instance" {
     }
   }
 
-
   network_interface {
     network = "default"
     
