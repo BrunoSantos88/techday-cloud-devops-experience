@@ -11,15 +11,14 @@ resource "google_compute_instance" "jenkins_instance" {
     }
   }
 
+   metadata_startup_script = file("jenkins.sh")
+
   network_interface {
     network = "default"
     
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
-
-   metadata_startup_script = base64encode(file("jenkins.sh"))
-
 }
 
 

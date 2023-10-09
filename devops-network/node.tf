@@ -10,6 +10,8 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
+   metadata_startup_script = file("node.sh")
+
   network_interface {
     network = "default"
     
@@ -17,10 +19,7 @@ resource "google_compute_instance" "node_instance" {
     access_config {}
   }
 
-     metadata = {
-    startup-script = file("node.sh")
   }
-}
 
 resource "google_compute_firewall" "node-firewall" {
   name          = "node-firewall"
