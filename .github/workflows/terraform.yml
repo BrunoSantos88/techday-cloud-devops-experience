@@ -19,13 +19,12 @@ jobs:
           credentials_json: ${{ secrets.GOOGLE_CLOUD_KEY }}
           cleanup_credentials: false
 
-  
-      - name: Initialize Terraform
+      - name: Terraform Iniciar
         run: terraform init
-
 
       - name: Format Terraform
         run: terraform fmt
 
       - name: Terraform destroy
         run: terraform destroy -auto-approve
+
