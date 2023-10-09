@@ -10,14 +10,20 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
+  metadata_startup_script = file("./node.sh")
+
+  scheduling {
+    preemptible       = true
+    automatic_restart = false
+  }
+
+
   network_interface {
     network = "default"
     
        # Associe um endereço IP público padrão à instância
     access_config {}
   }
-  
-  metadata_startup_script = base64encode(file("node.sh"))
 
   }
 
