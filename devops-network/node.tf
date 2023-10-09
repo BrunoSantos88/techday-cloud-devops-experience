@@ -10,9 +10,10 @@ resource "google_compute_instance" "node_instance" {
     }
   }
 
-     metadata = {
-    ssh-keys = google_compute_project_metadata_item.ssh_key.id
-  }
+  metadata = {
+  ssh-keys = "myuser:${file("~/.ssh/id_rsa.pub")}"
+}
+
 
 
   metadata_startup_script = file("./node.sh")
