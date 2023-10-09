@@ -23,7 +23,7 @@ jobs:
   
 
       - name: Authenticate with Google Cloud
-        run: gcloud auth application-default revoke
+        run: 	gcloud auth application-default login
 
   
       - name: Initialize Terraform
