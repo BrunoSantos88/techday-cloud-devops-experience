@@ -27,6 +27,5 @@ jobs:
       - name: Format Terraform
         run: terraform fmt
 
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Terraform destroy
+        run: terraform destroy -auto-approve
