@@ -20,7 +20,10 @@ jobs:
         run: echo "$GOOGLE_CLOUD_KEY" > key.json
 
       - name: Initialize Terraform
-        run: terraform init
+        run: terraform init -reconfigure
+
+      - name: Format Terraform
+        run: terraform fmt
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
