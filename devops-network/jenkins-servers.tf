@@ -30,8 +30,8 @@ resource "google_compute_instance" "jenkins_instance" {
 }
 
 
-resource "google_compute_firewall" "jenkins-firewall" {
-  name          = "jenkins-firewall"
+resource "google_compute_firewall" "js-firewall" {
+  name          = "js-firewall"
   network       = "default"  # Replace with your network name if not using the default network.
   allow {
     protocol = "tcp"

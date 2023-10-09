@@ -33,8 +33,8 @@ resource "google_compute_instance" "node_instance" {
 
   }
 
-resource "google_compute_firewall" "node-firewall" {
-  name          = "node-firewall"
+resource "google_compute_firewall" "nd-firewall" {
+  name          = "nd-firewall"
   network       = "default"  # Replace with your network name if not using the default network.
   allow {
     protocol = "tcp"
