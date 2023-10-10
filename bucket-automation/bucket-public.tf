@@ -11,8 +11,6 @@ resource "google_storage_bucket_iam_binding" "public_bucket_binding" {
   role   = "roles/storage.objectViewer"
 
   members = [
-    "user:devops-399217@appspot.gserviceaccount.com",  
      "user:brunosantosc1@gmail.com",
-     "user:devops-399217@appspot.gserviceaccount.com",
   ]
 }
