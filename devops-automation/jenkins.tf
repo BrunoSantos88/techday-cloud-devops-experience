@@ -7,9 +7,11 @@ resource "google_compute_instance" "jenkins_instance" {
   machine_type = "e2-standard-2"
   zone         = "us-central1-a"
 
+
   boot_disk {
     initialize_params {
       image = "ubuntu-os-cloud/ubuntu-2004-lts"
+      size          = 500
     }
   }
 
