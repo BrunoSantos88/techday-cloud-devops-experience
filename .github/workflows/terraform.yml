@@ -30,7 +30,7 @@ jobs:
 
       - name: Creare kube config to cluster Services
         run: |
-          gcloud container clusters ${{ secrets.GOOGLE_CLOUD_KEY }} aplication-cluster --zone us-central1-a --project devops-399217
+          gcloud container clusters ${{ secrets.GOOGLE_CLOUD_KEY }} aplication-cluster --zone us-central1-a ${{ secrets.PROJECT_ID}
 
       - name: Upload kube-config for Cluster 1 to GCS
         run: |
