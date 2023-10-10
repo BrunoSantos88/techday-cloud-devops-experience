@@ -11,6 +11,6 @@
   //source       = "./database-automation"
 //}
 
-module "projetobucket" {
-  source       = "./bucket-automation"
-}
+//module "projetobucket" {
+  //source       = "./bucket-automation"
+//}
