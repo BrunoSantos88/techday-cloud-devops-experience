@@ -7,8 +7,8 @@ resource "google_container_cluster" "services-cluster" {
   }
 }
 
-output "cluster_name" {
-  value = google_container_cluster.services-cluster.name
+output "services_cluster_name" {
+  value = google_container_cluster.services-cluster.id
 }
 
 

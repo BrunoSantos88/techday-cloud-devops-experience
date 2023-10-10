@@ -7,8 +7,8 @@ resource "google_container_cluster" "aplication-cluster" {
   }
 }
 
-output "cluster_name" {
-  value = google_container_cluster.aplication-cluster.name
+output "application_cluster_name" {
+  value = google_container_cluster.aplication-cluster.id
 }
 
 
