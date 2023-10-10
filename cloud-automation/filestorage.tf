@@ -4,7 +4,7 @@ resource "google_filestore_instance" "servicesfile" {
   tier     = "BASIC_HDD"
 
   file_shares {
-    capacity_gb = 250
+    capacity_gb = 1024
     name        = "share"
   }
 
