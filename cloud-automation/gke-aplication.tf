@@ -7,11 +7,6 @@ resource "google_container_cluster" "aplication-cluster" {
   }
 }
 
-output "application_cluster_name" {
-  value = google_container_cluster.aplication-cluster.id
-}
-
-
 resource "google_compute_firewall" "gkeaplication_firewall" {
   name    = "gkeaplication-cluster-firewall"
   network = "default"  # You can change this to the desired network name
