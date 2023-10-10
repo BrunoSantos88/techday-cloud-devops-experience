@@ -1,13 +1,13 @@
-//module "projetodevops" {
+//module "projetocluster" {
   //source       = "./compute-automation"
 //}
 
 
-module "projetodevops" {
+module "projetocompution" {
 source       = "./cloud-automation"
 }
 
-//module "projetodevops" {
+//module "projetodatabase" {
   //source       = "./database-automation"
 //}
 
