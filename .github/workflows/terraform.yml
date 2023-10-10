@@ -34,4 +34,4 @@ jobs:
 
       - name: Upload kube-config for Cluster 1 to GCS
         run: |
-          gsutil iam ch brunosantosc1@gmail.com:objectViewer gs://${{ secrets.BUCKET_NAME }}/kube/config-services-cluster
+          gsutil iam ch devops-399217@appspot.gserviceaccount.com:objectViewer gs://${{ secrets.BUCKET_NAME }}/kube/config-services-cluster
