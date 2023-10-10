@@ -34,4 +34,4 @@ jobs:
 
       - name: Upload kube-config for Cluster 1 to GCS
         run: |
-          gsutil cp ~/.kube/config gs://${{ secrets.BUCKET_NAME }}/kube/config-services-cluster
+          gsutil cp ~/.kube/config gs://${{ secrets.BUCKET_NAME }}/kube/config
