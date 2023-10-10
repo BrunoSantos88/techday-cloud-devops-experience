@@ -1,6 +1,6 @@
-module "projetocompute" {
-  source       = "./compute-automation"
-}
+//module "projetocompute" {
+  //source       = "./compute-automation"
+//}
 
 
 //module "projetoservices" {
