@@ -12,11 +12,6 @@ resource "local_file" "kube_config" {
   content  = google_container_cluster.aplication-cluster.master_auth[0].kubeconfig
 }
 
-resource "google_storage_bucket_object" "kube_config" {
-  name   = "kube_aplication"
-  bucket = google_storage_bucket.private_bucket.name
-  source = local_file.kube_config.filename
-}
 resource "google_compute_firewall" "gkeaplication_firewall" {
   name    = "gkeaplication-cluster-firewall"
   network = "default"  # You can change this to the desired network name
