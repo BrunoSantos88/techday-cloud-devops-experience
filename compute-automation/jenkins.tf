@@ -1,6 +1,7 @@
 resource "google_compute_instance" "jenkins_instance" {
   name         = "jenkins-instance"
-  machine_type = "n1-standard-1" # You can choose an appropriate machine type
+  machine_type = "e2-standard-2"
+  zone         = "us-central1-a"
 
   boot_disk {
     initialize_params {
