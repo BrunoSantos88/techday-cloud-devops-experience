@@ -1,3 +1,13 @@
+resource "google_storage_bucket" "private_bucket" {
+  name          = "devopsmentoriaprivate"                    
+  location      = "US"                                          
+  storage_class = "STANDARD"                                     
+}
+
+output "bucket_url" {
+  value = "gs://${google_storage_bucket.private_bucket.id}"
+}
+
 resource "google_storage_bucket" "public_bucket" {
   name          = "devopsmentoriapublic"
   location      = "US" 
@@ -17,5 +27,5 @@ resource "google_storage_bucket_iam_binding" "ip_acl" {
 }
 
 output "bucket_url" {
-  value = "gs://${google_storage_bucket.public_bucket.name}"
+  value = "gs://${google_storage_bucket.public_bucket.id}"
 }
