@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "public_bucket" {
-  name          = "publicbucketmentoria"
+  name          = "devopsmentoriapublic"
   location      = "US" 
   storage_class = "STANDARD" 
 

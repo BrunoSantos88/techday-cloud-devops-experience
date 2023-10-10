@@ -1,4 +1,4 @@
-name: Terraform Deployment
+name: Terraform gcloud 
 
 on:
   push:
