@@ -1,9 +1,13 @@
-resource "google_container_registry_repository" "frontend" {
-  name = "frontend"
-  region = "us-central1" 
+resource "google_artifact_registry_repository" "frontend" {
+  location      = "us-central1"
+  repository_id = "frontend"
+  description   = "example docker repository"
+  format        = "DOCKER"
 }
 
-resource "google_container_registry_repository" "backend" {
-  name = "backend"
-  region = "us-central1" 
+resource "google_artifact_registry_repository" "backend" {
+  location      = "us-central1"
+  repository_id = "backend"
+  description   = "example docker repository"
+  format        = "DOCKER"
 }
