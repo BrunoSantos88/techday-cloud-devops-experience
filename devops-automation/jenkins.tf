@@ -22,10 +22,5 @@ resource "google_compute_instance" "jenkins_instance" {
 
   tags = ["jenkins-instance"]
 
-attached_disk {
-    source = google_compute_disk.my_disk.self_link
-    mode   = "READ_WRITE"  # Read-write mode
-  }
-
     metadata_startup_script = data.template_file.startup_script.rendered
 }
