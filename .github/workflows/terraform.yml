@@ -25,5 +25,13 @@ jobs:
       - name: Format Terraform
         run: terraform fmt
 
-      - name: Terraform apply
-        run: terraform apply -auto-approve
+      #- name: Terraform apply
+      #  run: terraform apply -auto-approve
+
+      - name: Creare kube config to cluster Services
+        run: |
+          gcloud container clusters get-credentials services-cluster --zone us-central1-b --project devops-399217
+
+      - name: Upload kube-config for Cluster 1 to GCS
+        run: |
+          gsutil cp ~/.kube/config gs://${{ secrets.BUCKET_NAME }}/kube/config-services-cluster
