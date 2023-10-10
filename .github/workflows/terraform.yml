@@ -35,12 +35,3 @@ jobs:
       - name: Upload kube-config for Cluster 1 to GCS
         run: |
           gsutil cp ~/.kube/config gs://${{ secrets.BUCKET_NAME }}/kube/config-services-cluster
-
-      - name: Creare kube config to cluster Services
-        run: |
-           gcloud container clusters get-credentials aplication-cluster --region us-central1
-
-      - name: Upload kube-config for Cluster 1 to GCS
-        run: |
-          gsutil cp ~/.kube/config gs://${{ secrets.BUCKET_NAME }}/kube/config-aplication-cluster
-
