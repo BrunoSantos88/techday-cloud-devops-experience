@@ -7,11 +7,6 @@ resource "google_container_cluster" "aplication-cluster" {
   }
 }
 
-resource "local_file" "kube_config" {
-  filename = "${path.module}/kube_config"
-  content  = google_container_cluster.aplication-cluster.master_auth[0].kubeconfig
-}
-
 resource "google_compute_firewall" "gkeaplication_firewall" {
   name    = "gkeaplication-cluster-firewall"
   network = "default"  # You can change this to the desired network name
