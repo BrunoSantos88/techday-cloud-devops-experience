@@ -28,3 +28,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
 
+      - name: Copy kube config to GCS
+        run: |
+          gsutil cp ~/.kube/config gs://${{ secrets.BUCKET_NAME }}/kube-config/config
+
