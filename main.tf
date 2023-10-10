@@ -1,5 +1,5 @@
 module "projetodevops" {
-  source       = "./cloud-automation"
+  source       = "./compute-automation"
 }
 
 
