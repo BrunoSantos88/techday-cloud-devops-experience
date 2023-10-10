@@ -13,11 +13,3 @@ resource "google_storage_bucket" "public_bucket" {
     enabled = true
   }
 }
-
-resource "google_storage_bucket_iam_binding" "ip_acl" {
-  bucket = google_storage_bucket.public_bucket.name
-  role   = "roles/storage.objectViewer"
-  members = [
-    "user:187.10.145.102",
-  ]
-}
