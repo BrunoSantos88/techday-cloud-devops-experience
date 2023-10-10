@@ -1,3 +1,8 @@
 module "projetodevops" {
-  source       = "./devops-network"
+  source       = "./cloud-automation"
 }
+
+
+//module "projetodevops" {
+  //source       = "./compute-automation"
+//}

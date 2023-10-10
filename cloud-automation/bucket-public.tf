@@ -12,7 +12,7 @@ resource "google_storage_bucket_iam_binding" "ip_acl" {
   bucket = google_storage_bucket.public_bucket.id
   role   = "roles/storage.objectViewer"
   members = [
-    "user:<IP_ADDRESS_OR_RANGE>",
+    "user:187.10.145.102",
   ]
 }
 
