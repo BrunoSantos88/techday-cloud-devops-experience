@@ -11,6 +11,6 @@ resource "google_storage_bucket_iam_binding" "public_bucket_binding" {
   role   = "roles/storage.objectViewer"
 
   members = [
-     "user:devopsmanager@devops-399217.iam.gserviceaccount.com",
+     "user:brunosantosc1@gmail.com",
   ]
 }
