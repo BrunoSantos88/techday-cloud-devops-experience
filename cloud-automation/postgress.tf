@@ -1,5 +1,5 @@
 resource "google_sql_database_instance" "example_instance" {
-  name             = "example-instance"
+  name             = "postgress-server"
   database_version = "POSTGRES_13"
   region           = "us-central1"
 
