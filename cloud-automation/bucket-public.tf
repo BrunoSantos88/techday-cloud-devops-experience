@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "example_bucket" {
-  name     = "mentoriabucketpublic"
+  name     = "publicbucketdevops"
   location = "US" # Change to your desired location
 
   # Enable uniform bucket-level access
