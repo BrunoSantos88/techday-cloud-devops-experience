@@ -30,9 +30,9 @@ resource "google_compute_firewall" "jenkins" {
 
   allow {
     protocol = "tcp"
-    ports    = ["8080"]
+    ports    = ["22","8080"]
   }
 
-  target_tags = ["jenkins-instance"]  # Tag(s) associated with your instance
+  
   source_ranges = ["0.0.0.0/0"]  # Be cautious with this; restrict the source IP range if possible
 }
