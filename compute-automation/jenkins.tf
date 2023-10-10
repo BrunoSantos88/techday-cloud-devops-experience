@@ -14,6 +14,13 @@ resource "google_compute_instance" "jenkins_instance" {
     access_config {}
   }
 
+  tags = ["jenkins-instance"]
+
+attached_disk {
+    source = google_compute_disk.my_disk.self_link
+    mode   = "READ_WRITE"  # Read-write mode
+  }
+
   metadata_startup_script = file("jenkins.sh")
 }
 
@@ -26,5 +33,6 @@ resource "google_compute_firewall" "jenkins" {
     ports    = ["8080"]
   }
 
+  target_tags = ["jenkins-instance"]  # Tag(s) associated with your instance
   source_ranges = ["0.0.0.0/0"]  # Be cautious with this; restrict the source IP range if possible
 }
