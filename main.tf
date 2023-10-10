@@ -1,3 +1,3 @@
 module "automaçao" {
-  source       = "./devops-automation"
+  source       = "./compute-automation"
 }
