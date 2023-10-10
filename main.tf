@@ -1,9 +1,9 @@
-module "projetocluster" {
+module "projetocompute" {
   source       = "./compute-automation"
 }
 
 
-//module "projetocompution" {
+//module "projetoservices" {
 //source       = "./cloud-automation"
 //}
 

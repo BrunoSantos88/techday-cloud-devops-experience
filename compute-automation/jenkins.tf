@@ -16,7 +16,7 @@ resource "google_compute_instance" "jenkins_instance" {
   metadata_startup_script = file("jenkins.sh")
 }
 
-resource "google_compute_firewall" "allow_8080" {
+resource "google_compute_firewall" "jenkins" {
   name    = "allow-8080"
   network = "default"
 
@@ -26,5 +26,4 @@ resource "google_compute_firewall" "allow_8080" {
   }
 
   source_ranges = ["0.0.0.0/0"]  # Be cautious with this; restrict the source IP range if possible
-  target_tags   = [google_compute_instance.jenkins_instance.tags[0]]
 }
