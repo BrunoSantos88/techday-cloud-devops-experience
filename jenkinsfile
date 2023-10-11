@@ -7,6 +7,7 @@ pipeline {
     DOCKERFILE_FOLDER = './docker-projetos/sonarquebe'
   }
 
+
   stages {
     stage('Verify version') {
       steps {
@@ -15,7 +16,6 @@ pipeline {
         '''
       }
     }
-
     stage('Authenticate') {
       steps {
         sh '''
@@ -23,13 +23,15 @@ pipeline {
         '''
       }
     }
-
-  stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
+    
+    stage('Install service') {
+      steps {
+        sh '''
+          gcloud run services replace cloudrun/service.yaml --platform='managed' --region='us-central1'
+        '''
+      }
+    }
+    
         stage('Build and Push Docker Image') {
             steps {
                 script {
