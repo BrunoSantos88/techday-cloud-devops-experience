@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     // Aplicar os recursos do Kubernetes (YAML) para implantar no GKE
-                    sh "kubectl apply -f frontend.yml"
+                    sh "kubectl get nodes"
                 }
             }
         }
