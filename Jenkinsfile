@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                    sh'''
-                   docker build -t sonarquebe:latest /docker-projetos/sonarquebe/.
+                   docker build -t sonarquebe:latest /docker/sonarquebe/.
                    docker tag sonarquebe:latest us-central1-docker.pkg.dev/devops-399217/sonarquebe:latest
                    docker push us-central1-docker.pkg.dev/devops-399217/sonarquebe:latest
                    '''
