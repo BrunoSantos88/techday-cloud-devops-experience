@@ -6,10 +6,10 @@ spec:
   template:
     spec:
       containers:
-        - image: gcr.io/seu-projeto/sonarqube-image:latest
+        - image: us-central1-docker.pkg.dev/devops-399217/sonarquebe:latest
           ports:
             - containerPort: 9000 # Porta do SonarQube
           resources:
             limits:
-              memory: "2Gi" # Limite de memória
-              cpu: "1" # Limite de CPU
+              memory: "4Gi" # Limite de memória
+              cpu: "2" # Limite de CPU

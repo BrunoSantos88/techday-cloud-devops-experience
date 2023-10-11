@@ -3,7 +3,7 @@ pipeline {
   environment {
     CLOUDSDK_CORE_PROJECT=('PROJECT_ID')
     GCLOUD_CREDS=credentials('googlecloud-creds')
-    GCR_IMAGE = ""
+    GCR_IMAGE = "us-central1-docker.pkg.dev/devops-399217/sonarquebe"
   }
   stages {
     stage('Verify version') {
