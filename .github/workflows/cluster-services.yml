@@ -2,19 +2,19 @@ name: PIPELINE DEPLOY DOCKER E CLUSTER GKE
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [master ]
+    branches: [main ]
   workflow_dispatch:
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GAR_LOCATION: us-central1  
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}   # TODO: update to cluster name
-  GKE_ZONE: us-central1-b  # TODO: update to cluster zone
+  GKE_ZONE: us-central1-c	   # TODO: update to cluster zone
   
 jobs:
- 
+
  deploy:
   name: Deploy kubernetes GKE 
   runs-on: ubuntu-latest
@@ -45,4 +45,3 @@ jobs:
   # Deploy GKE deploy LoadBalancer FrontEnd
       - name: Deploy Loadbalncer FrontEnd
         run: kubectl apply -f load-balancer.yml
-
