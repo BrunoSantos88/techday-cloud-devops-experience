@@ -11,6 +11,15 @@ pipeline {
       steps {
         sh '''
           gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
+          gcloud container clusters get-credentials services-cluster --zone us-central1-b --project devops-399217
+        '''
+      }
+    }
+
+    stage('Cluster GKE') {
+      steps {
+        sh '''
+          kubectl get nodes
         '''
       }
     }
