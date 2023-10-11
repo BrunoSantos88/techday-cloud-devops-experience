@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    CLOUDSDK_CORE_PROJECT=('PROJECT_ID')
+    CLOUDSDK_CORE_PROJECT='devops-399217'
     GCLOUD_CREDS=credentials('googlecloud-creds')
   }
 
