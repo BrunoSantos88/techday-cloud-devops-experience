@@ -1,5 +1,6 @@
 pipeline {
   agent any
+
   environment {
     CLOUDSDK_CORE_PROJECT=('PROJECT_ID')
     GCLOUD_CREDS=credentials('googlecloud-creds')
@@ -15,25 +16,6 @@ pipeline {
                 checkout scm
             }
         }
-    
-        stage('Build and Push Docker Image') {
-            steps {
-                script {
-                    docker.build("${GCR_IMAGE}:${BUILD_NUMBER}")
-                    docker.withRegistry('https://gcr.io', 'googlecloud-creds') {
-                        docker.image("${GCR_IMAGE}:${BUILD_NUMBER}").push()
-                    }
-                }
-            }
-
-    stage('Install sonarqube') {
-      steps {
-        sh '''
-          gcloud run services replace cloudrun/sonarquebe.yaml --platform='managed' --region='us-central1'
-        '''
-      }
-    }
-  }
   
 }
 }
