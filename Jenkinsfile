@@ -1,28 +1,23 @@
 pipeline {
-  agent any
-  environment {
-    CLOUDSDK_CORE_PROJECT='devops-399217'
-    GCLOUD_CREDS=credentials('googlecloud-creds')
-  }
-
-
-  stages {
-    stage('Authenticate') {
-      steps {
-        sh '''
-          gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
-          gcloud container clusters get-credentials services-cluster --zone us-central1-b --project devops-399217
-        '''
-      }
+    agent any
+    environment {
+        PROJECT_ID = 'devops-399217'
+        CLUSTER_NAME = 'services-cluster'
+        LOCATION = 'us-central1-b'
+        CREDENTIALS_ID = 'googlecloud-creds'
     }
-
-    stage('Cluster GKE') {
-      steps {
-        sh '''
-          kubectl get nodes
-        '''
-      }
+    stages {
+        stage("Checkout code") {
+            steps {
+                checkout scm
+            }
+        }
+       
+        stage('Deploy to GKE') {
+            steps{
+                sh "sed -i 's/hello:latest/hello:${env.BUILD_ID}/g' kubenerts/frontend.yml"
+                step([$class: 'KubernetesEngineBuilder', projectId: env.PROJECT_ID, clusterName: env.CLUSTER_NAME, location: env.LOCATION, manifestPattern: 'deployment.yaml', credentialsId: env.CREDENTIALS_ID, verifyDeployments: true])
+            }
+        }
     }
-  }
-  
 }

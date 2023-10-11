@@ -2,7 +2,7 @@ name: PIPELINE DEPLOY DOCKER E CLUSTER GKE
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
     branches: [master ]
   workflow_dispatch:
@@ -35,13 +35,13 @@ jobs:
       - name: Token acesso ao cluster
         run: ${{ secrets.GKE_TOKEN }}
  
-      - name: Deploy frontend
-        run: kubectl apply -f app-deployment.yml
+      - name: Deploy argocd namespcace
+        run: kubectl apply -f argocd2/namespace.yml
 
   # Deploy GKE deploy bancodados cluster
-      - name: Deploy banco-dados
-        run: kubectl apply -f mysql-deployment.yml
+      - name: Deploy argocd install
+        run: kubectl apply -f /argocd2/install.yml
 
   # Deploy GKE deploy LoadBalancer FrontEnd
-      - name: Deploy Loadbalncer FrontEnd
-        run: kubectl apply -f load-balancer.yml
+      - name: Deploy argocd deployment
+        run: kubectl apply -f argocd2/deployment.yml
