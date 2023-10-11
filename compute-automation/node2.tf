@@ -1,4 +1,4 @@
-resource "google_compute_instance" "node_instance" {
+resource "google_compute_instance" "node2_instance" {
   name         = "node2-instance"
   machine_type = "e2-medium"
   zone         = "southamerica-east1-b"
