@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        GCLOUD_CREDS=credentials('gke')
+        GCLOUD_CREDS=credentials('googlecloudkey')
        PROJECT_ID = 'devops-399217'
         CLUSTER_NAME = 'services-cluster'
         LOCATION = 'us-central1-b'
