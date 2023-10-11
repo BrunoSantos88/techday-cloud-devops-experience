@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: sonarsource/sonar-scanner-cli01
+        - image: sonarqube
           ports:
             - containerPort: 9000 # Porta do SonarQube
           resources:
