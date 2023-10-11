@@ -1,27 +1,48 @@
-name: Deploy Gke services
+name: PIPELINE DEPLOY DOCKER E CLUSTER GKE
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
+  pull_request:
+    branches: [master ]
+  workflow_dispatch:
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GAR_LOCATION: us-central1  
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}   # TODO: update to cluster name
+  GKE_ZONE: us-central1-c	   # TODO: update to cluster zone
+  
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+ 
+ deploy:
+  name: Deploy kubernetes GKE 
+  runs-on: ubuntu-latest
+  environment: hw-prod
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+  steps:
+      # Git checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+  
+   # Login to GCP
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+         service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v0
-      with:
-        service_account_key: ${{ secrets.GKE_SA_KEY }}
-        project_id: devops-399217
-        export_default_credentials: false
+  # Get the GKE token acesso ao cluster
+      - name: Token acesso ao cluster
+        run: ${{ secrets.GKE_TOKEN }}
+ 
+      - name: Deploy frontend
+        run: kubectl apply -f app-deployment.yml
 
-    - name: Configure kubectl
-      run: gcloud container clusters get-credentials services-cluster --zone us-central1-b --devops-399217
+  # Deploy GKE deploy bancodados cluster
+      - name: Deploy banco-dados
+        run: kubectl apply -f mysql-deployment.yml
 
-    - name: Deploy to GKE
-      run: kubectl apply -f k8s-deployment.yaml
+  # Deploy GKE deploy LoadBalancer FrontEnd
+      - name: Deploy Loadbalncer FrontEnd
+        run: kubectl apply -f load-balancer.yml
 
