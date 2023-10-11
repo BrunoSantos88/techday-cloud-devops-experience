@@ -22,13 +22,13 @@ pipeline {
                 }
             }
         }
-        stage('Implantar no GKE') {
-            steps {
-                script {
-                    // Aplicar os recursos do Kubernetes (YAML) para implantar no GKE
-                    sh "kubectl get nodes"
-                }
-            }
-        }
+       stage('Kubernetes Deployment of ASG Bugg Web Application') {
+	   steps {
+	      withKubeConfig([credentialsId: 'kubelogin']) {
+		  sh('kubectl delete all --all -n devsecops')
+		  sh ('kubectl apply -f frontend.yml --namespace=devsecops')
+		}
+	      }
+   	}
     }
 }
