@@ -3,8 +3,6 @@ pipeline {
   environment {
     CLOUDSDK_CORE_PROJECT=('PROJECT_ID')
     GCLOUD_CREDS=credentials('googlecloud-creds')
-    GCR_IMAGE = "us-central1-docker.pkg.dev/devops-399217/sonarquebe"
-    DOCKERFILE_FOLDER = './docker-projetos/sonarquebe'
   }
 
 
@@ -24,12 +22,23 @@ pipeline {
       }
     }
     
+
+    stage('GIT CLONE') {
+    steps {
+                  // Get code from a GitHub repository1
+      git url: 'https://github.com/BrunoSantos88/techday-cloud-devops-experience.git', branch: 'master'
+
+    }
+    }
+    
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    docker.build("${GCR_IMAGE}:${BUILD_NUMBER}")
-                    docker.withRegistry('https://gcr.io', 'googlecloud-creds') {
-                        docker.image("${GCR_IMAGE}:${BUILD_NUMBER}").push()
+                   sh'''
+                   docker build -t sonarquebe:latest docker-Projetos/sonarquebe/.
+                   docker tag sonarquebe:latest us-central1-docker.pkg.dev/devops-399217/sonarquebe:latest
+                   docker push us-central1-docker.pkg.dev/devops-399217/sonarquebe:latest
+                   '''
                     }
                 }
             }
@@ -43,5 +52,4 @@ pipeline {
     }
   }
   
-}
 }
