@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-        - image: us-central1-docker.pkg.dev/devops-399217/sonarquebe:latest
+        - image: sonarsource/sonar-scanner-cli01
           ports:
             - containerPort: 9000 # Porta do SonarQube
           resources:
