@@ -1,24 +1,20 @@
 pipeline {
     agent any
     environment {
+        GCLOUD_CREDS=credentials('gke')
        PROJECT_ID = 'devops-399217'
         CLUSTER_NAME = 'services-cluster'
         LOCATION = 'us-central1-b'
     }
+
     stages {
-        stage('Autenticação no Google Cloud') {
-            steps {
-                script {
-                    // Autenticação usando o token de serviço
-                    withCredentials([string(credentialsId: 'multi-k8s', variable: 'GCLOUD_KEY')]) {
-                        sh "echo '$GCLOUD_KEY' | base64 --decode > /tmp/key.json"
-                        withEnv(['CLOUDSDK_CORE_PROJECT=$PROJECT_ID']) {
-                            sh "gcloud auth activate-service-account --key-file=/tmp/key.json"
-                        }
-                    }
-                }
-            }
-        }
+         stage('Authenticate') {
+      steps {
+        sh '''
+          gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
+        '''
+      }
+    }
         stage('Configurar kubectl') {
             steps {
                 script {
