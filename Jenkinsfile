@@ -7,15 +7,21 @@ pipeline {
 
 
   stages {
-
-    stage('GIT CLONE') {
-    steps {
-                  // Get code from a GitHub repository1
-      git url: 'https://github.com/BrunoSantos88/techday-cloud-devops-experience.git', branch: 'master'
-
+    stage('Verify version') {
+      steps {
+        sh '''
+          gcloud version
+        '''
+      }
     }
+    stage('Authenticate') {
+      steps {
+        sh '''
+          gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
+        '''
+      }
     }
-
+    
     stage('Install sonarqube') {
       steps {
         sh '''
