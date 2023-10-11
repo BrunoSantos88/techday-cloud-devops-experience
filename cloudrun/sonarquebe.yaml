@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: sonarqube-service
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/seu-projeto/sonarqube-image:latest
+          ports:
+            - containerPort: 9000 # Porta do SonarQube
+          resources:
+            limits:
+              memory: "2Gi" # Limite de memória
+              cpu: "1" # Limite de CPU
