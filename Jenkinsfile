@@ -4,7 +4,7 @@ pipeline {
         PROJECT_ID = 'devops-399217'
         CLUSTER_NAME = 'services-cluster'
         LOCATION = 'us-central1-b'
-        CREDENTIALS_ID = 'googlecloud-creds'
+        CREDENTIALS_ID = 'gke'
     }
     stages {
         stage("Checkout code") {
