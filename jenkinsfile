@@ -6,6 +6,7 @@ pipeline {
     GCR_IMAGE = "us-central1-docker.pkg.dev/devops-399217/sonarquebe"
     DOCKERFILE_FOLDER = './docker-projetos/sonarquebe'
   }
+
   stages {
     stage('Verify version') {
       steps {
@@ -14,6 +15,7 @@ pipeline {
         '''
       }
     }
+
     stage('Authenticate') {
       steps {
         sh '''
@@ -37,7 +39,6 @@ pipeline {
                     }
                 }
             }
-        }
 
     stage('Install sonarqube') {
       steps {
@@ -47,4 +48,6 @@ pipeline {
       }
     }
   }
+  
+}
 }
