@@ -4,7 +4,6 @@ pipeline {
     CLOUDSDK_CORE_PROJECT=('PROJECT_ID')
     GCLOUD_CREDS=credentials('googlecloud-creds')
     GCR_IMAGE = "us-central1-docker.pkg.dev/devops-399217/sonarquebe"
-    DOCKERFILE_FOLDER = './docker-projetos/sonarquebe'
   }
 
 
