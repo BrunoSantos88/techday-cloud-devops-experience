@@ -4,32 +4,17 @@ pipeline {
     CLOUDSDK_CORE_PROJECT=('PROJECT_ID')
     GCLOUD_CREDS=credentials('googlecloud-creds')
     GCR_IMAGE = "us-central1-docker.pkg.dev/devops-399217/sonarquebe"
+    DOCKERFILE_FOLDER = './docker-projetos/sonarquebe'
   }
 
 
   stages {
-    stage('Verify version') {
-      steps {
-        sh '''
-          gcloud version
-        '''
-      }
-    }
-    stage('Authenticate') {
-      steps {
-        sh '''
-          gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
-        '''
-      }
-    }
-    
-    stage('Install service') {
-      steps {
-        sh '''
-          gcloud run services replace cloudrun/service.yaml --platform='managed' --region='us-central1'
-        '''
-      }
-    }
+
+     stage('Clonar repositorio') {
+            steps {
+                checkout scm
+            }
+        }
     
         stage('Build and Push Docker Image') {
             steps {
