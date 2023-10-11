@@ -17,7 +17,7 @@ jobs:
       with:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         project_id: ${{ secrets.PROJECT_ID }}
-        export_default_credentials: false
+        export_default_credentials: yes
 
     - name: Configure kubectl
       run: gcloud container clusters get-credentials services-cluster --zone us-central1-b --${{ secrets.PROJECT_ID }}
