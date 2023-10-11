@@ -1,11 +1,7 @@
-data "template_file" "startup_script" {
-  template = file("jenkins.sh")
-}
-
-resource "google_compute_instance" "jenkins_instance" {
-  name         = "jenkins-instance"
-  machine_type = "e2-standard-2"
-  zone         = "us-central1-a"
+resource "google_compute_instance" "node_instance" {
+  name         = "node2-instance"
+  machine_type = "e2-medium"
+  zone         = "southamerica-east1-b"
 
 
   boot_disk {
@@ -20,7 +16,7 @@ resource "google_compute_instance" "jenkins_instance" {
     access_config {}
   }
 
-  tags = ["jenkins-instance"]
+  tags = ["node2-instance"]
 
     metadata_startup_script = data.template_file.startup_script.rendered
 }
