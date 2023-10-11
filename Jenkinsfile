@@ -14,14 +14,7 @@ pipeline {
         '''
       }
     }
-        stage('Configurar kubectl') {
-            steps {
-                script {
-                    // Configurar o kubectl para acessar o cluster
-                    sh "gcloud container clusters get-credentials services-cluster --zone us-central1-b --project devops-399217"
-                }
-            }
-        }
+
        stage('Kubernetes Deployment of ASG Bugg Web Application') {
 	   steps {
 	      withKubeConfig([credentialsId: 'kubelogin']) {
