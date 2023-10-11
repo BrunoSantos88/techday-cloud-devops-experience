@@ -3,8 +3,7 @@ pipeline {
     environment {
        GCLOUD_CREDS=credentials('googlecloudkey')
        PROJECT_ID = 'devops-399217'
-       CLUSTER_NAME = 'services-cluster'
-       LOCATION = 'us-central1-b'
+
     }
 
     stages {
@@ -19,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Configurar o kubectl para acessar o cluster
-                    sh "gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE"
+                    sh "gcloud container clusters get-credentials services-cluster --zone us-central1-b --project devops-399217"
                 }
             }
         }
