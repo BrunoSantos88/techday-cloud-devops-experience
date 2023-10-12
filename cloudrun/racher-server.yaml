@@ -6,9 +6,9 @@ spec:
   template:
     spec:
       containers:
-        - image: rancher/rancher
+        - image: rancher/server:stable
           ports:
-            - containerPort: 9000 # Porta do SonarQube
+            - containerPort: 8080 # Porta do SonarQube
           resources:
             limits:
               memory: "4Gi" # Limite de memória
