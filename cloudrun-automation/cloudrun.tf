@@ -7,7 +7,7 @@ resource "google_cloud_run_service" "rancher" {
       containers {
         image = "sonarqube"
         ports {
-          container_port = 80  # Porta que o contêiner escuta
+          container_port = 9000  # Porta que o contêiner escuta
         }
         resources {
           limits = {
