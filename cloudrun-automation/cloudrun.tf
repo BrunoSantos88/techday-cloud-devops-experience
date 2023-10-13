@@ -5,7 +5,7 @@ resource "google_cloud_run_service" "rancher" {
   template {
     spec {
       containers {
-        image = "rancher/rancher:latest"
+        image = "sonarqube"
         ports {
           container_port = 80  # Porta que o contêiner escuta
         }
