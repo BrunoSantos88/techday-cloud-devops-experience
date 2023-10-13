@@ -5,7 +5,7 @@ resource "google_cloud_run_service" "Sonarquebe" {
   template {
     spec {
       containers {
-        image = "brunosantos88/awssonarqube:lastest"
+        image = "brunosantos88/awssonarqube:latest"
         ports {
           container_port = 9000  # Porta que o contêiner escuta
         }
