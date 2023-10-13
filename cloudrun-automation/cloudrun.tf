@@ -5,7 +5,7 @@ resource "google_cloud_run_service" "rancher" {
   template {
     spec {
       containers {
-        image = "rancher/server:latest"
+        image = "rancher/rancher:latest"
         ports {
           container_port = 8080  # Porta que o contêiner escuta
         }
