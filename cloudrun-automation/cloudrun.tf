@@ -11,8 +11,8 @@ resource "google_cloud_run_service" "rancher" {
         }
         resources {
           limits = {
-            cpu    = "4"   # 0.5 núcleos de CPU
-             memory = "4Mi" 
+            cpu    = "2"   # 0.5 núcleos de CPU
+             memory = "2Mi" 
           }
         }
       }
