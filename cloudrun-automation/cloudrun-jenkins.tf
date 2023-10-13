@@ -1,13 +1,13 @@
-resource "google_cloud_run_service" "rancher" {
-  name     = "my-cloud-run-service"
+resource "google_cloud_run_service" "jenkins" {
+  name     = "jenkinserver"
   location = "us-central1"
 
   template {
     spec {
       containers {
-        image = "sonarqube"
+        image = "brunosantos88/jenkinserver:31"
         ports {
-          container_port = 9000  # Porta que o contêiner escuta
+          container_port = 8080  # Porta que o contêiner escuta
         }
         resources {
           limits = {
