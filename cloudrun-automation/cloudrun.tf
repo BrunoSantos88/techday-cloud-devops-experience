@@ -7,7 +7,7 @@ resource "google_cloud_run_service" "rancher" {
       containers {
         image = "rancher/rancher:latest"
         ports {
-          container_port = 8080  # Porta que o contêiner escuta
+          container_port = 80  # Porta que o contêiner escuta
         }
         resources {
           limits = {
