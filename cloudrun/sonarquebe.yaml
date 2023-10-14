@@ -1,12 +1,12 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: rancher-server
+  name: sonarqube-service
 spec:
   template:
     spec:
       containers:
-        - image: rancher/rancher
+        - image: sonarqube
           ports:
             - containerPort: 9000 # Porta do SonarQube
           resources:
