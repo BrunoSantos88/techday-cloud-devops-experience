@@ -2,8 +2,8 @@ data "template_file" "startup_script" {
   template = file("jenkins.sh")
 }
 
-resource "google_compute_instance" "cluster_instance" {
-  name         = "cluster-instance"
+resource "google_compute_instance" "jenkins_instance" {
+  name         = "jenkins-instance"
   machine_type = "e2-medium"
   zone         = "us-central1-a"
 
