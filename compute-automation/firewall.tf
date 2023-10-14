@@ -1,5 +1,5 @@
-resource "google_compute_firewall" "allow-instance" {
-  name          = "clusterk8s"
+resource "google_compute_firewall" "jenkins" {
+  name          = "jenkins"
   network       = "default"  # Change to your network if needed
   priority      = 1000       # Adjust the priority as needed
 
@@ -8,9 +8,9 @@ resource "google_compute_firewall" "allow-instance" {
   # Define the allowed ports
   allow {
     protocol = "tcp"
-    ports    = ["30000-32800", "22"]  # Example ports (customize as needed)
+    ports    = ["8080", "22"]  # Example ports (customize as needed)
   }
 
   # Specify the target tags to associate this rule with instances
-  target_tags   = ["cluster-instance","node1-instance","node2-instance"]
+  target_tags   = ["jenkins-instance"]
 }
