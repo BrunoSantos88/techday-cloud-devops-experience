@@ -1,5 +1,5 @@
 module "automaçao-compute" {
-  source       = "./cloudrun-automation"
+  source       = "./compute-automation"
 }
 
 //module "devops-automaçao" {
