@@ -1,5 +1,5 @@
 data "template_file" "startup_script" {
-  template = file("cluster.sh")
+  template = file("docker.sh")
 }
 
 resource "google_compute_instance" "cluster_instance" {

@@ -8,9 +8,9 @@ resource "google_compute_firewall" "allow-instance" {
   # Define the allowed ports
   allow {
     protocol = "tcp"
-    ports    = ["30000-32800", "22"]  # Example ports (customize as needed)
+    ports    = ["9000", "22"]  # Example ports (customize as needed)
   }
 
   # Specify the target tags to associate this rule with instances
-  target_tags   = ["cluster-instance","node1-instance","node2-instance"]
+  target_tags   = ["cluster-instance"]
 }
