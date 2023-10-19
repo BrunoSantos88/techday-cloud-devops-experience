@@ -1,5 +1,5 @@
 module "automaçao-compute" {
-  source       = "./compute-automation"
+  source       = "./devops-automation"
 }
 
 //module "devops-automaçao" {
